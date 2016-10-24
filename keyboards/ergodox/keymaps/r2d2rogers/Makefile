@@ -2,6 +2,7 @@
 #   change to "no" to disable the options, or define them in the Makefile in 
 #   the appropriate keymap folder that will get included automatically
 #
+SUBPROJECT_DEFAULT = infinity
 BOOTMAGIC_ENABLE  = no       # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE   = yes      # Mouse keys(+4700)
 EXTRAKEY_ENABLE   = yes      # Audio control and System control(+450)
@@ -17,8 +18,9 @@ AUDIO_ENABLE      = no       # Audio output on port C6
 BACKLIGHT_ENABLE  = no       # Enable keyboard backlight functionality
 BLUETOOTH_ENABLE  = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE   = no       # Enable WS2812 RGB underlight.  Do not enable this with audio at the same time.
-VISUALIZER_ENABLE = yes
-SUBPROJECT_DEFAULT = infinity
+#ifdef SUBPROJECT_ez
+	VISUALIZER_ENABLE = yes
+#endif
 
 
 ifndef QUANTUM_DIR
