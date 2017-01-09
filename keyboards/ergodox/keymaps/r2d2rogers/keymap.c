@@ -12,6 +12,7 @@
 #define TEMP 6 // Template for new layers
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
 /* Keymap 0: Basic layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |   `    |   1  |   2  |   3  |   4  |   5  |   =  |           | NPAD |   6  |   7  |   8  |   9  |   0  |   -    |
@@ -22,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| ~FKEY|           | ~FKEY|------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LGui | LAlt |  Ins |   [  |   ]  |                                       | Left |  Up  | Down | Right| RGui |
+ *   | LGui | LAlt |  Ins |   [  |   ]  |                                       | Left | Down |  Up  | Right| RGui |
  *   `----------------------------------'                                       `----------------------------------'
  *                                       ,-------------.         ,-------------.
  *                                       | Ctrl |  Alt |         | Alt  | Ctrl |
@@ -269,6 +270,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,
         KC_TRNS,KC_TRNS,KC_TRNS
     ),
+
 /* Keymap ?: Keymap Template
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -311,6 +313,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,
         KC_TRNS,KC_TRNS,KC_TRNS
     ),
+
 };
 const uint16_t fn_actions[] = {
     ACTION_LAYER_MOMENTARY(1),                      // FN0 - switch to Layer1
