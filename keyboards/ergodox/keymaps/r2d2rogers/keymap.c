@@ -320,5 +320,5 @@ const uint16_t fn_actions[] = {
     ACTION_LAYER_MOMENTARY(1),                      // FN0 - switch to Layer1
     ACTION_LAYER_SET(2, ON_PRESS),                  // FN1 - set Layer2
     ACTION_LAYER_TOGGLE(3),                         // FN2 - toggle Layer3 aka Numpad layer
-    ACTION_LAYER_SET(0, ON_PRESS),                  // FN3 - set Layer0
+    ACTION_LAYER_SET(0, ON_PRESS)                   // FN3 - set Layer0
 };
