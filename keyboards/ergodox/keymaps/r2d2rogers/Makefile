@@ -18,10 +18,8 @@ AUDIO_ENABLE      = no       # Audio output on port C6
 BACKLIGHT_ENABLE  = no       # Enable keyboard backlight functionality
 BLUETOOTH_ENABLE  = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE   = no       # Enable WS2812 RGB underlight.  Do not enable this with audio at the same time.
-#ifdef SUBPROJECT_ez
-	VISUALIZER_ENABLE = yes
-#endif
 
+VISUALIZER_ENABLE = yes
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
