@@ -58,7 +58,7 @@ bool display_welcome(keyframe_animation_t* animation, visualizer_state_t* state)
 static keyframe_animation_t startup_animation = {
     .num_frames = 4,
     .loop = false,
-    .frame_lengths = {0, gfxMillisecondsToTicks(1000), gfxMillisecondsToTicks(5000), 0},
+    .frame_lengths = {0, MS2ST(1000), MS2ST(5000), 0},
     .frame_functions = {
             display_welcome,
             keyframe_animate_backlight_color,
@@ -74,7 +74,7 @@ static keyframe_animation_t color_animation = {
     // Note that there's a 200 ms no-operation frame,
     // this prevents the color from changing when activating the layer
     // momentarily
-    .frame_lengths = {gfxMillisecondsToTicks(200), gfxMillisecondsToTicks(500)},
+    .frame_lengths = {MS2ST(200), MS2ST(500)},
     .frame_functions = {keyframe_no_operation, keyframe_animate_backlight_color},
 };
 
@@ -83,14 +83,14 @@ static keyframe_animation_t color_animation = {
 static keyframe_animation_t lcd_animation = {
     .num_frames = 2,
     .loop = true,
-    .frame_lengths = {gfxMillisecondsToTicks(2000), gfxMillisecondsToTicks(2000)},
+    .frame_lengths = {MS2ST(2000), MS2ST(2000)},
     .frame_functions = {keyframe_display_layer_text, keyframe_display_layer_bitmap},
 };
 
 static keyframe_animation_t suspend_animation = {
     .num_frames = 3,
     .loop = false,
-    .frame_lengths = {0, gfxMillisecondsToTicks(1000), 0},
+    .frame_lengths = {0, MS2ST(1000), 0},
     .frame_functions = {
             keyframe_display_layer_text,
             keyframe_animate_backlight_color,
@@ -101,7 +101,7 @@ static keyframe_animation_t suspend_animation = {
 static keyframe_animation_t resume_animation = {
     .num_frames = 5,
     .loop = false,
-    .frame_lengths = {0, 0, gfxMillisecondsToTicks(1000), gfxMillisecondsToTicks(5000), 0},
+    .frame_lengths = {0, 0, MS2ST(1000), MS2ST(5000), 0},
     .frame_functions = {
             keyframe_enable_lcd_and_backlight,
             display_welcome,
