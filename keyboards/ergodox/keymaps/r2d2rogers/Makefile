@@ -9,14 +9,9 @@ CONSOLE_ENABLE    = no       # Console for debug(+400)
 COMMAND_ENABLE    = yes      # Commands for debug and configuration
 SLEEP_LED_ENABLE  = no       # Breathing sleep LED during USB suspend
 NKRO_ENABLE       = yes      # USB Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
-MIDI_ENABLE       = no       # MIDI controls
 UNICODE_ENABLE    = yes      # Unicode.
 ONEHAND_ENABLE    = yes      # Allow swapping hands of keyboard
 BLUETOOTH_ENABLE  = no       # Enable Bluetooth with the Adafruit EZ-Key HID
-
-ifeq (${SUBPROJECT},infinity)
-       VISUALIZER_ENABLE = yes	
-endif
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
