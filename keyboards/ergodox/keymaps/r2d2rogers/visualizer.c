@@ -129,7 +129,12 @@ void update_user_visualizer_state(visualizer_state_t* state) {
     // state->status.layer
     // state->status.default_layer
     // state->status.leds (see led.h for available statuses)
-    if (state->status.layer & 0x8) {
+    // 0x20, 0x40, 0x80, 0x100, 0x200
+    if (state->status.layer & 0x10) {
+        state->target_lcd_color = LCD_COLOR(0xFF, 0xB0, 0xFF);
+        state->layer_text = "Right";
+    }
+    else if (state->status.layer & 0x8) {
         state->target_lcd_color = LCD_COLOR(0xC0, 0xB0, 0xFF);
         state->layer_text = "Numpad";
     }
@@ -164,5 +169,4 @@ void user_visualizer_resume(visualizer_state_t* state) {
     state->current_lcd_color = LCD_COLOR(0x00, 0x00, 0x00);
     state->target_lcd_color = LCD_COLOR(0x10, 0xFF, 0xFF);
     start_keyframe_animation(&resume_animation);
-    start_keyframe_animation(&led_test_animation);
-}
+    start_keyframe_animation(&led_test_animation); }
