@@ -32,20 +32,20 @@ keyframe_animation_t led_test_animation = {
     .num_frames = 14,
     .loop = true,
     .frame_lengths = {
-        gfxMillisecondsToTicks(1000), // fade in
-        gfxMillisecondsToTicks(1000), // no op (leds on)
-        gfxMillisecondsToTicks(1000), // fade out
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
+        MS2ST(1000), // fade in
+        MS2ST(1000), // no op (leds on)
+        MS2ST(1000), // fade out
+        MS2ST(CROSSFADE_TIME), // crossfade
+        MS2ST(GRADIENT_TIME), // left to rigt (outside in)
+        MS2ST(CROSSFADE_TIME), // crossfade
+        MS2ST(GRADIENT_TIME), // top_to_bottom
         0,           // mirror leds
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // left_to_right (mirrored, so inside out)
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
+        MS2ST(CROSSFADE_TIME), // crossfade
+        MS2ST(GRADIENT_TIME), // left_to_right (mirrored, so inside out)
+        MS2ST(CROSSFADE_TIME), // crossfade
+        MS2ST(GRADIENT_TIME), // top_to_bottom
         0,           // normal leds
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
+        MS2ST(CROSSFADE_TIME), // crossfade
 
     },
     .frame_functions = {
