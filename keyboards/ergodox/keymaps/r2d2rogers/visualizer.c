@@ -130,7 +130,11 @@ void update_user_visualizer_state(visualizer_state_t* state) {
     // state->status.default_layer
     // state->status.leds (see led.h for available statuses)
     // 0x20, 0x40, 0x80, 0x100, 0x200
-    if (state->status.layer & 0x10) {
+    if (state->status.layer & 0x20) {
+        state->target_lcd_color = LCD_COLOR(0xFF, 0x00, 0xFF);
+        state->layer_text = "Left";
+    }
+    else if (state->status.layer & 0x10) {
         state->target_lcd_color = LCD_COLOR(0xFF, 0xB0, 0xFF);
         state->layer_text = "Right";
     }
