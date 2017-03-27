@@ -6,10 +6,10 @@
 
 #define BASE 0 // default layer
 #define FKEY 1 // function key layer
-#define UTIL 2 // keyboard utility layer
-#define NPAD 3 // numpad layer
-#define RGHT 4 // right space fn layer
-#define LEFT 5 // left space fn layer
+#define NPAD 2 // numpad layer
+#define RGHT 3 // right space fn layer
+#define LEFT 4 // left space fn layer
+#define UTIL 5 // keyboard utility layer
 #define TEMP 6 // Template for new layers
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -100,60 +100,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,KC_TRNS,KC_TRNS
     ),
 
-/* Keymap 2: Keyboard utility layer
+/* Keymap 2: Numpad layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | FLASH  |      |      |      |      |      |      |           |      |      |      |      |      |      | FLASH  |
+ * |        | Bksp | Nmlk |   /  |  *   |  -   |      |           | BASE | Nmlk |  /   |  *   |  *   |  -   | Bksp   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | DEBUG  |      |      |      |      |      |      |           |      |      |      |      |      |      | DEBUG  |
+ * |        | Bksp |  P7  |  P8  |  P9  |  -   |      |           |      | CALC |  7   |  8   |  9   |  -   | Bksp   |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |------|           |------|      |      |      |      |      |        |
+ * |        |  NO  |  P4  |  P5  |  P6  |  +   |------|           |------|  NO  |  4   |  5   |  6   |  +   | Enter  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |  Enter |  NO  |  P1  |  P2  |  P3  |  +   |      |           |      |  NO  |  1   |  2   |  3   |  +   | Enter  |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |      |      |      |      |
- *   `----------------------------------'                                       `----------------------------------'
- *                                       ,-------------.         ,-------------.
- *                                       |      |      |         |      |      |
- *                                ,------|------|------|         |------+------+------.
- *                                |      |      |      |         |      |      |      |
- *                                |      |      |------|         |------|      |      |
- *                                |      |      |      |         |      |      |      |
- *                                `--------------------'         `--------------------'
- */
-// If it accepts an argument (i.e, is a function), it doesn't need KC_.
-// Otherwise, it needs KC_*
-    [UTIL] = KEYMAP(  // layer 2 : keyboard utility functions
-        // left hand
-        RESET,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,TO(BASE),
-        DEBUG,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-                                                KC_TRNS,KC_TRNS,
-                                                        KC_TRNS,
-                                        KC_TRNS,KC_TRNS,KC_TRNS,
-        // right hand
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,RESET,
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,DEBUG,
-                KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-                        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        KC_TRNS,KC_TRNS,
-        KC_TRNS,
-        KC_TRNS,KC_TRNS,KC_TRNS
-    ),
-
-/* Keymap 3: Numpad layer
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |  Bksp  |   /  |   *  |  *   |  -   | Nmlk | BASE |           | BASE | Nmlk |  /   |  *   |  *   |  -   | Bksp   |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |  Bksp  |  P7  |  P8  |  P9  |  -   | CALC |      |           |      | CALC |  7   |  8   |  9   |  -   | Bksp   |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |  P4  |  P5  |  P6  |  +   |  NO  |------|           |------|  NO  |  4   |  5   |  6   |  +   | Enter  |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |  Enter |  P1  |  P2  |  P3  |  +   |  NO  |      |           |      |  NO  |  1   |  2   |  3   |  +   | Enter  |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | Enter|  P0  |  P0  |   .  | Enter|                                       |  0   |  .   |  /   | Enter| Enter|
+ *   | Enter|  NO  |  P0  |  P0  |   .  |                                       |  0   |  .   |  /   | Enter| Enter|
  *   `----------------------------------'                                       `----------------------------------'
  *                                       ,-------------.         ,-------------.
  *                                       |      |      |         |      |      |
@@ -167,11 +124,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
     [NPAD] = KEYMAP(  // layer 3: numpad
         // left hand
-        KC_BSPC,KC_PSLS,KC_PAST,KC_PAST,KC_PMNS,KC_NLCK,KC_TRNS,
-        KC_BSPC,KC_P7,  KC_P8,  KC_P9,  KC_PMNS,KC_CALC,KC_TRNS,
-        KC_TRNS,KC_P4,  KC_P5,  KC_P6,  KC_PPLS,KC_NO,
-        KC_PENT,KC_P1,  KC_P2,  KC_P3,  KC_PPLS,KC_NO,  KC_TRNS,
-        KC_PENT,KC_P0,  KC_P0,  KC_PDOT,KC_PENT,
+        KC_TRNS,KC_BSPC,KC_NLCK,KC_PSLS,KC_PAST,KC_PMNS,KC_TRNS,
+        KC_TRNS,KC_BSPC,KC_P7,  KC_P8,  KC_P9,  KC_PMNS,KC_TRNS,
+        KC_TRNS,KC_NO,  KC_P4,  KC_P5,  KC_P6,  KC_PPLS,
+        KC_PENT,KC_NO,  KC_P1,  KC_P2,  KC_P3,  KC_PPLS,KC_TRNS,
+        KC_PENT,KC_NO,  KC_P0,  KC_P0,  KC_PDOT,
                                                 KC_TRNS,KC_TRNS,
                                                         KC_TRNS,
                                         KC_TRNS,KC_TRNS,KC_TRNS,
@@ -186,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,KC_TRNS,KC_TRNS
     ),
 
-/* Keymap 4: Right hand shift fn layer
+/* Keymap 3: Right hand shift fn layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
@@ -229,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,KC_TRNS,KC_TRNS
     ),
 
-/* Keymap 5: Left hand shift fn layer
+/* Keymap 4: Left hand shift fn layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
@@ -272,6 +229,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,KC_TRNS,KC_DEL
     ),
     
+/* Keymap 5: Keyboard utility layer
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * | FLASH  |      |      |      |      |      |      |           |      |      |      |      |      |      | FLASH  |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * | DEBUG  |      |      |      |      |      |      |           |      |      |      |      |      |      | DEBUG  |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |------|           |------|      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |      |      |      |      |      |                                       |      |      |      |      |      |
+ *   `----------------------------------'                                       `----------------------------------'
+ *                                       ,-------------.         ,-------------.
+ *                                       |      |      |         |      |      |
+ *                                ,------|------|------|         |------+------+------.
+ *                                |      |      |      |         |      |      |      |
+ *                                |      |      |------|         |------|      |      |
+ *                                |      |      |      |         |      |      |      |
+ *                                `--------------------'         `--------------------'
+ */
+// If it accepts an argument (i.e, is a function), it doesn't need KC_.
+// Otherwise, it needs KC_*
+    [UTIL] = KEYMAP(  // layer 2 : keyboard utility functions
+        // left hand
+        RESET,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,TO(BASE),
+        DEBUG,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+                                                KC_TRNS,KC_TRNS,
+                                                        KC_TRNS,
+                                        KC_TRNS,KC_TRNS,KC_TRNS,
+        // right hand
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,RESET,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,DEBUG,
+                KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+                        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,
+        KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS
+    ),
+
 /* Keymap ?: Keymap Template
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
