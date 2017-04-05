@@ -196,6 +196,8 @@ ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
 	OPT_DEFS += -DRGBLIGHT_ENABLE
 	SRC += $(QUANTUM_DIR)/light_ws2812.c
 	SRC += $(QUANTUM_DIR)/rgblight.c
+    CIE1931_CURVE = yes
+    LED_BREATHING_TABLE = yes
 endif
 
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
@@ -221,6 +223,27 @@ ifneq ($(strip $(VARIABLE_TRACE)),)
 ifneq ($(strip $(MAX_VARIABLE_TRACE_SIZE)),)
 	OPT_DEFS += -DMAX_VARIABLE_TRACE_SIZE=$(strip $(MAX_VARIABLE_TRACE_SIZE))
 endif
+endif
+
+ifeq ($(strip $(LCD_ENABLE)), yes)
+CIE1931_CURVE = yes
+endif
+
+ifeq ($(strip $(LED_ENABLE)), yes)
+CIE1931_CURVE = yes
+endif
+
+ifeq ($(strip $(CIE1931_CURVE)), yes)
+	OPT_DEFS += -DUSE_CIE1931_CURVE
+	LED_TABLES = yes
+endif
+ifeq ($(strip $(LED_BREATHING_TABLE)), yes)
+	OPT_DEFS += -DUSE_LED_BREATHING_TABLE
+	LED_TABLES = yes
+endif
+
+ifeq ($(strip $(LED_TABLES)), yes)
+	SRC += $(QUANTUM_DIR)/led_tables.c
 endif
 
 # Optimize size but this may cause error "relocation truncated to fit"
@@ -258,12 +281,12 @@ endif
 
 OUTPUTS := $(KEYMAP_OUTPUT) $(KEYBOARD_OUTPUT)
 $(KEYMAP_OUTPUT)_SRC := $(SRC)
-$(KEYMAP_OUTPUT)_DEFS := $(OPT_DEFS) -DQMK_KEYBOARD=\"$(KEYBOARD)\" -DQMK_KEYMAP=\"$(KEYMAP)\"
+$(KEYMAP_OUTPUT)_DEFS := $(OPT_DEFS) $(GFXDEFS) -DQMK_KEYBOARD=\"$(KEYBOARD)\" -DQMK_KEYMAP=\"$(KEYMAP)\"
 $(KEYMAP_OUTPUT)_INC :=  $(VPATH) $(EXTRAINCDIRS)
 $(KEYMAP_OUTPUT)_CONFIG := $(CONFIG_H)
-$(KEYBOARD_OUTPUT)_SRC := $(CHIBISRC)
-$(KEYBOARD_OUTPUT)_DEFS := $(PROJECT_DEFS)
-$(KEYBOARD_OUTPUT)_INC := $(PROJECT_INC)
+$(KEYBOARD_OUTPUT)_SRC := $(CHIBISRC) $(GFXSRC)
+$(KEYBOARD_OUTPUT)_DEFS := $(PROJECT_DEFS) $(GFXDEFS)
+$(KEYBOARD_OUTPUT)_INC := $(PROJECT_INC) $(GFXINC)
 $(KEYBOARD_OUTPUT)_CONFIG  := $(PROJECT_CONFIG)
 
 # Default target.
