@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // right hand
         TT(NPAD), KC_6,   KC_7,   KC_8,   KC_9,   KC_0,   KC_MINS,
         KC_RBRC,KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_BSLS,
-                KC_H,   KC_FN2, KC_K,   KC_L,   KC_FN3, KC_QUOT,
+                KC_H,   KC_J,   KC_K,   KC_L,   KC_SCLN,KC_QUOT,
         TT(FKEY), KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,
                         KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,KC_RGUI,
         KC_RALT,KC_RCTL,
@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,KC_MPRV,KC_MPLY,KC_MNXT,KC_TRNS,KC_TRNS,KC_TRNS,
                 KC_MUTE,KC_VOLD,KC_VOLU,KC_TRNS,KC_TRNS,KC_TRNS,
         KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-                        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+                        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,OSL(UTIL),
         KC_TRNS,KC_TRNS,
         KC_TRNS,
         KC_TRNS,KC_TRNS,KC_TRNS
@@ -319,7 +319,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
   ACTION_SWAP_HANDS_TAP_KEY(KC_A),
-  ACTION_SWAP_HANDS_TAP_KEY(KC_F),
-  ACTION_SWAP_HANDS_TAP_KEY(KC_J),
-  ACTION_SWAP_HANDS_TAP_KEY(KC_SCLN)
+  ACTION_SWAP_HANDS_TAP_KEY(KC_F)
 };
