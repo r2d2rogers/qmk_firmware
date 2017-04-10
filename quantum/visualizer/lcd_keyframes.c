@@ -18,12 +18,12 @@
 #include <string.h>
 #include "action_util.h"
 #include "led.h"
+#include "resources/resources.h"
 
 bool lcd_keyframe_display_layer_text(keyframe_animation_t* animation, visualizer_state_t* state) {
     (void)animation;
     gdispClear(White);
     gdispDrawString(0, 10, state->layer_text, state->font_dejavusansbold12, Black);
-    gdispFlush();
     return false;
 }
 
@@ -62,7 +62,6 @@ bool lcd_keyframe_display_layer_bitmap(keyframe_animation_t* animation, visualiz
     gdispDrawString(0, 10, layer_buffer, state->font_fixed5x8, Black);
     format_layer_bitmap_string(state->status.default_layer >> 16, state->status.layer >> 16, layer_buffer);
     gdispDrawString(0, 20, layer_buffer, state->font_fixed5x8, Black);
-    gdispFlush();
     return false;
 }
 
@@ -101,7 +100,6 @@ bool lcd_keyframe_display_mods_bitmap(keyframe_animation_t* animation, visualize
     format_mods_bitmap_string(state->status.mods, status_buffer);
     gdispDrawString(0, 20, status_buffer, state->font_fixed5x8, Black);
 
-    gdispFlush();
     return false;
 }
 
@@ -140,7 +138,6 @@ bool lcd_keyframe_display_led_states(keyframe_animation_t* animation, visualizer
     get_led_state_string(output, state);
     gdispClear(White);
     gdispDrawString(0, 10, output, state->font_dejavusansbold12, Black);
-    gdispFlush();
     return false;
 }
 
@@ -155,9 +152,26 @@ bool lcd_keyframe_display_layer_and_led_states(keyframe_animation_t* animation, 
         y = 17;
     }
     gdispDrawString(0, y, state->layer_text, state->font_dejavusansbold12, Black);
-    gdispFlush();
     return false;
 }
+
+bool lcd_keyframe_draw_logo(keyframe_animation_t* animation, visualizer_state_t* state) {
+    (void)state;
+    (void)animation;
+    // Read the uGFX documentation for information how to use the displays
+    // http://wiki.ugfx.org/index.php/Main_Page
+    gdispClear(White);
+
+    // You can use static variables for things that can't be found in the animation
+    // or state structs, here we use the image
+
+    //gdispGBlitArea is a tricky function to use since it supports blitting part of the image
+    // if you have full screen image, then just use 128 and 32 for both source and target dimensions
+    gdispGBlitArea(GDISP, 0, 0, 128, 32, 0, 0, 128, (pixel_t*)resource_lcd_logo);
+
+    return false;
+}
+
 
 bool lcd_keyframe_disable(keyframe_animation_t* animation, visualizer_state_t* state) {
     (void)animation;

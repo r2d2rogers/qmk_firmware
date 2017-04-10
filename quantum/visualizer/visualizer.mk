@@ -37,11 +37,13 @@ ifeq ($(strip $(LCD_ENABLE)), yes)
 SRC += $(VISUALIZER_DIR)/lcd_backlight.c
 SRC += $(VISUALIZER_DIR)/lcd_keyframes.c
 SRC += $(VISUALIZER_DIR)/lcd_backlight_keyframes.c
+# Note, that the linker will strip out any resources that are not actually in use
+SRC += $(VISUALIZER_DIR)/resources/lcd_logo.c
 OPT_DEFS += -DLCD_BACKLIGHT_ENABLE
 endif
 
 ifeq ($(strip $(LED_ENABLE)), yes)
-SRC += $(VISUALIZER_DIR)/led_test.c
+SRC += $(VISUALIZER_DIR)/led_keyframes.c
 OPT_DEFS += -DLED_ENABLE
 endif
 
