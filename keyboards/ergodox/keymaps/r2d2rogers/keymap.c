@@ -59,13 +59,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Keymap 1: Function key layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |  POWER |  F1  |  F2  |  F3  |  F4  |  F5  |  F11 |           |  F12 |  F6  |  F7  |  F8  |  F9  | F10  |        |
+ * |        |  F1  |  F2  |  F3  |  F4  |  F5  |  F11 |           |  F12 |  F6  |  F7  |  F8  |  F9  | F10  |        |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |  SLEEP |      |      |      |      |      |      |           |      | MPRV | MPLY | MNXT |      |      |        |
+ * |        |  F11 |  F12 |  F13 |  F14 |  F15 |      |           |      |  F16 |  F17 |  F18 |  F19 | F20  |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |  WAKE  |      |      |      |      |      |------|           |------| MUTE | VOLD | VOLU |      |      |        |
+ * |        |      |      |      |      |      |------|           |------|      | MPRV | MPLY | MNXT |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |  DEBUG |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |        |      |      |      |      |      |      |           |      |      | MUTE | VOLD | VOLU |      |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | UTIL1|      |      |      |      |                                       |      |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -81,19 +81,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Otherwise, it needs KC_*
     [FKEY] = KEYMAP(  // layer 1 : function and symbol keys
         // left hand
-        KC_PWR, KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,
-        KC_SLEP,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        KC_WAKE,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        DEBUG,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,
+        KC_TRNS,KC_F11, KC_F12, KC_F13, KC_F14, KC_F15, KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
         OSL(UTIL),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
                                                 KC_TRNS,KC_TRNS,
                                                         KC_TRNS,
                                         KC_TRNS,KC_TRNS,KC_TRNS,
         // right hand
         KC_F12, KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_TRNS,
-        KC_TRNS,KC_MPRV,KC_MPLY,KC_MNXT,KC_TRNS,KC_TRNS,KC_TRNS,
-                KC_MUTE,KC_VOLD,KC_VOLU,KC_TRNS,KC_TRNS,KC_TRNS,
-        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_F16, KC_F17, KC_F18, KC_F19, KC_F20, KC_TRNS,
+                KC_TRNS,KC_MPRV,KC_MPLY,KC_MNXT,KC_TRNS,KC_TRNS,
+        KC_TRNS,KC_TRNS,KC_MUTE,KC_VOLD,KC_VOLU,KC_TRNS,KC_TRNS,
                         KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,OSL(UTIL),
         KC_TRNS,KC_TRNS,
         KC_TRNS,
