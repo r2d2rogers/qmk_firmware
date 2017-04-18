@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         KC_GRV, KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_EQL,
         KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_LBRC,
-        MT(MOD_LCTL, KC_ESC),   KC_FN0, KC_S,   KC_D,   KC_FN1,   KC_G,
+        MT(MOD_LCTL, KC_ESC),   KC_FN0, KC_S,   KC_D,   KC_F,   KC_FN1,
         KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   TT(FKEY),
         KC_LGUI,KC_LALT,KC_INS, KC_LBRC,KC_RBRC,
                                                 KC_LCTL,KC_LALT,
@@ -319,5 +319,5 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
   ACTION_SWAP_HANDS_TAP_KEY(KC_A),
-  ACTION_SWAP_HANDS_TAP_KEY(KC_F)
+  ACTION_SWAP_HANDS_TAP_KEY(KC_G)
 };
