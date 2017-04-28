@@ -65,6 +65,25 @@ keyframe_animation_t default_suspend_animation = {
 #define CROSSFADE_TIME 1000
 #define GRADIENT_TIME 3000
 
+keyframe_animation_t led_short_test_animation = {
+    .num_frames = 5,
+    .loop = false,
+    .frame_lengths = {
+        gfxMillisecondsToTicks(1000), // fade in
+        gfxMillisecondsToTicks(1000), // no op (leds on)
+        gfxMillisecondsToTicks(1000), // fade out
+        gfxMillisecondsToTicks(1000), // no op (leds off)
+        gfxMillisecondsToTicks(1000), // fade in
+    },
+    .frame_functions = {
+        led_keyframe_fade_in_all,
+        keyframe_no_operation,
+        led_keyframe_fade_out_all,
+        keyframe_no_operation,
+        led_keyframe_fade_in_all,
+    },
+};
+
 keyframe_animation_t led_test_animation = {
     .num_frames = 14,
     .loop = true,
