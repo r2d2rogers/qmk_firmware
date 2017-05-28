@@ -1,11 +1,10 @@
 #include "lets_split.h"
+#ifdef AUDIO_ENABLE
+	#include "audio.h"
+#endif
 #include "rekeymap.h"
 #include "action_layer.h"
 #include "eeconfig.h"
-
-#ifdef AUDIO_ENABLE
-  #include "audio.h"
-#endif
 
 extern keymap_config_t keymap_config;
 
@@ -113,7 +112,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   switch(id) {
     case M_USERNAME:
       if (record->event.pressed) {
-        SEND_STRING("nicinabox");
+        SEND_STRING("r2d2rogers");
       }
       break;
 
