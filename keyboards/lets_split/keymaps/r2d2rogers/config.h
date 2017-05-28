@@ -1,36 +1,24 @@
-/*
-Copyright 2012 Jun Wako <wakojun@gmail.com>
+#ifndef CONFIG_USER_H
+#define CONFIG_USER_H
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
+#include "../../rev2/config.h"
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+#undef RGBLED_NUM
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
+#define TAPPING_TERM 200
+#define RGBLED_NUM 16
+#define RGBLIGHT_HUE_STEP 10
+#define RGBLIGHT_SAT_STEP 17
+#define RGBLIGHT_VAL_STEP 17
 
 #define USE_SERIAL
-
-//#define MASTER_LEFT
-//#define _MASTER_RIGHT
 #define EE_HANDS
 
-#define AUDIO_VOICES
+#define randadd 53
+#define randmul 181
+#define randmod 167
 
+#define _______ KC_TRNS
+#define XXXXXXX KC_NO
 
-#ifdef SUBPROJECT_rev1
-    #include "../../rev1/config.h"
-#endif
-#ifdef SUBPROJECT_rev2
-    #include "../../rev2/config.h"
-#endif
-#ifdef SUBPROJECT_rev2fliphalf
-	#include "../../rev2fliphalf/config.h"
 #endif
