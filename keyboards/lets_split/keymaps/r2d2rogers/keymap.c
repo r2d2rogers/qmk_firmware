@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,            KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC, \
   CTL_T(KC_ESC),     KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT, \
   TD(SFT_CAPS),      KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  MT(MOD_RSFT, KC_ENT), \
-  MO(UNDERGLOW_LAYER),  KC_MEH,   KC_LALT,  KC_LGUI,  F(1),     F(3),     F(3),     F(2),  MT(MOD_RGUI, KC_LEFT),  KC_DOWN,  KC_UP,    KC_RGHT \
+  MO(UNDERGLOW_LAYER),  KC_MEH,   KC_LALT,  KC_LGUI,  F(3),     F(1),     F(2),     F(3),  MT(MOD_RGUI, KC_LEFT),  KC_DOWN,  KC_UP,    KC_RGHT \
 ),
 
 [UPPER_LAYER] = KEYMAP( \
