@@ -5,6 +5,7 @@
 
 #undef RGBLED_NUM
 
+#define BACKLIGHT_LEVELS 10
 #define TAPPING_TERM 200
 #define RGBLED_NUM 16
 #define RGBLIGHT_HUE_STEP 10
