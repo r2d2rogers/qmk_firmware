@@ -41,7 +41,7 @@ MO(UNDERGLOW), KC_MEH, KC_LALT, KC_LGUI, F(3), F(1), F(2), F(3), MT(MOD_RGUI, KC
   KC_GRV   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8         , KC_9   , KC_0   , _______  , \
   _______  , KC_4   , KC_5   , KC_6   , KC_DOT , _______, _______, KC_MINS, KC_EQL       , KC_LBRC, KC_RBRC, KC_BSLS  , \
   _______  , KC_7   , KC_8   , KC_9   , KC_0   , _______, _______, _______, _______      , KC_DOT , _______, _______  , \
-  TG(NORMAN, KC_HYPR, _______, _______, _______, _______, _______, _______, TD(MPLY_MUTE), KC_VOLD, KC_VOLU, KC_MFFD \
+  TG(NORMAN), KC_HYPR, _______, _______, _______, _______, _______, _______, TD(MPLY_MUTE), KC_VOLD, KC_VOLU, KC_MFFD \
 ),
 
 [LOWER] = KEYMAP( \
