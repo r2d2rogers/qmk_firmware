@@ -12,6 +12,12 @@
 #define UTIL 5 // keyboard utility layer
 #define TEMP 6 // Template for new layers
 
+// Tap Dance
+enum {
+  SFT_CAPS = 0,
+  MPLY_MUTE = 2,
+};
+
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
   EPRM,
@@ -19,6 +25,12 @@ enum custom_keycodes {
   RGB_SLD
 };
 
+// Macros
+enum macro_id {
+  M_USERNAME,
+  M_RANDDIGIT,
+  M_RANDLETTER,
+};
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Keymap 0: Basic layer
@@ -47,8 +59,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // left hand
         KC_GRV, KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_EQL,
         KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_LBRC,
-        MT(MOD_LCTL, KC_ESC),   KC_FN0, KC_S,   KC_D,   KC_F,   KC_FN1,
-        KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   TT(FKEY),
+MT(MOD_LCTL, KC_ESC),   KC_FN0, KC_S,   KC_D,   KC_F,   KC_FN1,
+   TD(SFT_CAPS),KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   TT(FKEY),
         KC_LGUI,KC_LALT,KC_INS, KC_LBRC,KC_RBRC,
                                                 KC_LCTL,KC_LALT,
                                                         KC_HOME,
@@ -68,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * | BL_ON  |  F1  |  F2  |  F3  |  F4  |  F5  |  F11 |           |  F12 |  F6  |  F7  |  F8  |  F9  | F10  | BL_TOG |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | BL_INC |  F11 |  F12 |  F13 |  F14 |  F15 |      |           |      |  F16 |  F17 |  F18 |  F19 | F20  | BL_INC |
+ * | BL_INC |  F11 |  F12 |  F13 |  F14 |  F15 |      |           |      | F16  | F17  | F18  | F19  | F20  | BL_INC |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | BL_DEC |      |      |      |      |      |------|           |------|      | MPRV | MPLY | MNXT |      | BL_DEC |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -99,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // right hand
         KC_F12, KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, BL_TOGG,
         KC_TRNS,KC_F16, KC_F17, KC_F18, KC_F19, KC_F20, BL_INC, 
-                KC_TRNS,KC_MPRV,KC_MPLY,KC_MNXT,KC_TRNS,BL_DEC, 
+                KC_TRNS,KC_MPRV,TD(MPLY_MUTE),KC_MNXT,KC_TRNS,BL_DEC,
         KC_TRNS,KC_TRNS,KC_MUTE,KC_VOLD,KC_VOLU,KC_TRNS,BL_STEP,
                         KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,OSL(UTIL),
         KC_TRNS,KC_TRNS,
@@ -329,16 +341,26 @@ const uint16_t PROGMEM fn_actions[] = {
   ACTION_SWAP_HANDS_TAP_KEY(KC_G)
 };
 
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [SFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
+  [MPLY_MUTE] = ACTION_TAP_DANCE_DOUBLE(KC_MPLY, KC_MUTE)
+};
+
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
-      switch(id) {
-        case 0:
+  switch(id) {
+    case M_USERNAME:
+      if (record->event.pressed) {
+        SEND_STRING("r2d2rogers");
+      }
+      break;
+        case 1:
         if (record->event.pressed) {
           SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
         }
         break;
-        case 1:
+        case 2:
         if (record->event.pressed) { // For resetting EEPROM
           eeconfig_init();
         }

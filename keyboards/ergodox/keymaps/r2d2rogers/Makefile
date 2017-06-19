@@ -2,7 +2,7 @@
 #   change to "no" to disable the options, or define them in the Makefile in 
 #   the appropriate keymap folder that will get included automatically
 #
-SUBPROJECT_DEFAULT= infinity
+SUBPROJECT = infinity
 LCD_BACKLIGHT_ENABLE        = yes
 LCD_ENABLE        = yes
 BACKLIGHT_ENABLE  = yes	
