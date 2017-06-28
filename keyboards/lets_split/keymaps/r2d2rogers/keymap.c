@@ -2,7 +2,6 @@
 #ifdef AUDIO_ENABLE
 	#include "audio.h"
 #endif
-#include "rekeymap.h"
 #include "action_layer.h"
 #include "eeconfig.h"
 
