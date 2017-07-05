@@ -1,14 +1,13 @@
 #ifndef CONFIG_USER_H
 #define CONFIG_USER_H
 
-#include "../../rev2/config.h"
+#include "../../config.h"
 
 #undef RGBLED_NUM
+#define RGBLED_NUM 32
 
 #define BACKLIGHT_LEVELS 10
-#define TAPPING_TERM 200
 #define RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 32
 #define RGBLIGHT_EFFECT_KNIGHT_OFFSET 32
 #define RGBLIGHT_EFFECT_DUALKNIGHT_LENGTH 6
 #define RGBLIGHT_HUE_STEP 10
@@ -26,5 +25,7 @@
 
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
+
+#define TAPPING_TERM 200
 
 #endif
