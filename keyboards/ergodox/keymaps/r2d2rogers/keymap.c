@@ -78,13 +78,13 @@ MT(MOD_LCTL, KC_ESC),   KC_FN0, KC_S,   KC_D,   KC_F,   KC_FN1,
 
 /* Keymap 1: Function key layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * | BL_ON  |  F1  |  F2  |  F3  |  F4  |  F5  |  F11 |           |  F12 |  F6  |  F7  |  F8  |  F9  | F10  | BL_TOG |
+ * | BL_TOGG|  F1  |  F2  |  F3  |  F4  |  F5  |  F11 |           |  F12 |  F6  |  F7  |  F8  |  F9  | F10  | BL_TOGG|
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * | BL_INC |  F11 |  F12 |  F13 |  F14 |  F15 |      |           |      | F16  | F17  | F18  | F19  | F20  | BL_INC |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | BL_DEC |      |      |      |      |      |------|           |------|      | MPRV | MPLY | MNXT |      | BL_DEC |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * | BL_OFF |      |      |      |      |      |      |           |      |      | MUTE | VOLD | VOLU |      | BL_STEP|
+ * | BL_STEP|      |      |      |      |      |      |           |      |      | MUTE | VOLD | VOLU |      | BL_STEP|
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | UTIL1|      |      |      |      |                                       |      |      |      |      | UTIL1|
  *   `----------------------------------'                                       `----------------------------------'
@@ -100,10 +100,10 @@ MT(MOD_LCTL, KC_ESC),   KC_FN0, KC_S,   KC_D,   KC_F,   KC_FN1,
 // Otherwise, it needs KC_*
     [FKEY] = KEYMAP(  // layer 1 : function and symbol keys
         // left hand
-        BL_ON,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,
+        BL_TOGG,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,
         BL_INC, KC_F11, KC_F12, KC_F13, KC_F14, KC_F15, KC_TRNS,
         BL_DEC, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
-        BL_OFF, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
+        BL_STEP,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
         OSL(UTIL),KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
                                                 KC_TRNS,KC_TRNS,
                                                         KC_TRNS,
