@@ -156,7 +156,7 @@ MO(UNDERGLOW), KC_MEH, KC_LALT, KC_LGUI, F(3), F(1), F(2), F(3), MT(MOD_RGUI, KC
 ),
 };
   
-c onst uint16_t PROGMEM fn_actions[] = {
+const uint16_t PROGMEM fn_actions[] = {
      [0] = ACTION_DEFAULT_LAYER_SET(QWERTY),
 
     // Tap for backspace, hold for LOWER
