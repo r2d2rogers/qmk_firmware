@@ -2,11 +2,13 @@
 #ifndef CONFIG_USER_H
 #define CONFIG_USER_H
 
-#include "../../config.h"
+#include QMK_KEYBOARD_CONFIG_H
 
 #define ONESHOT_TAP_TOGGLE 2
 #define ONESHOT_TIMEOUT 3000
 #undef TAPPING_TERM
 #define TAPPING_TERM 180
+
+#define PERMISSIVE_HOLD
 
 #endif
