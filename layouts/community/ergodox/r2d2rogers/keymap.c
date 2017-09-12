@@ -409,6 +409,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
+    debug_enable=true;
+    //debug_matrix=true;
+    debug_keyboard=true;
+
     //start_keyframe_animation(&led_test_animation);
     //start_keyframe_animation(&led_short_test_animation);
 };
@@ -421,14 +425,31 @@ void matrix_scan_user(void) {
 
     switch (layer) {
       // TODO: Make this relevant to the ErgoDox EZ.
+        case 0:
+#ifdef SUBPROJECT_infinity
+      lcd_backlight_hal_color(5000, 0, 0);
+#endif
+        case 1:
+#ifdef SUBPROJECT_infinity
+      lcd_backlight_hal_color(5000, 0, 0);
+#endif
         case 2:
             ergodox_right_led_1_on();
+#ifdef SUBPROJECT_infinity
+      lcd_backlight_hal_color(5000, 0, 0);
+#endif
             break;
         case 3:
             ergodox_right_led_2_on();
+#ifdef SUBPROJECT_infinity
+      lcd_backlight_hal_color(5000, 0, 0);
+#endif
             break;
         case 4:
             ergodox_right_led_3_on();
+#ifdef SUBPROJECT_infinity
+      lcd_backlight_hal_color(5000, 0, 0);
+#endif
             break;
         default:
             ergodox_board_led_off();
