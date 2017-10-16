@@ -27,25 +27,29 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
     if (state->status.leds & (1u << USB_LED_CAPS_LOCK)) {
         saturation = 255;
     }
-    if (state->status.layer & 0x20) {
+    if (state->status.layer & 0x40) {
         state->target_lcd_color = LCD_COLOR(0, saturation, 0xFF);
-        state->layer_text = "KBD functions";
+        state->layer_text = "Keyboard Utilities";
+    }
+    else if (state->status.layer & 0x20) {
+        state->target_lcd_color = LCD_COLOR(0, saturation, 0xFF);
+        state->layer_text = "Space Function";
     }
     else if (state->status.layer & 0x10) {
         state->target_lcd_color = LCD_COLOR(180, saturation, 0xFF);
-        state->layer_text = "Left";
+        state->layer_text = "Numpad";
     }
     else if (state->status.layer & 0x8) {
         state->target_lcd_color = LCD_COLOR(60, saturation, 0xFF);
-        state->layer_text = "Right";
+        state->layer_text = "Function keys";
     }
     else if (state->status.layer & 0x4) {
         state->target_lcd_color = LCD_COLOR(210, saturation, 0xFF);
-        state->layer_text = "Numpad";
+        state->layer_text = "Lower - Lowered";
     }
     else if (state->status.layer & 0x2) {
         state->target_lcd_color = LCD_COLOR(150, saturation, 0xFF);
-        state->layer_text = "Function keys";
+        state->layer_text = "Upper - Raised";
     }
     else {
         state->target_lcd_color = LCD_COLOR(90, saturation, 0xFF);

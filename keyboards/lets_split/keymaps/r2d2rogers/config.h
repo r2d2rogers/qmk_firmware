@@ -2,8 +2,9 @@
 #define CONFIG_USER_H
 
 #include "../../config.h"
+
 #undef TAPPING_TERM
-#define TAPPING_TERM 200
+#define TAPPING_TERM 180
 
 /* Use I2C or Serial, not both */
 
