@@ -22,6 +22,9 @@
 #undef RGBLED_NUM
 #define RGBLED_NUM 32
 #define RGBLIGHT_ANIMATIONS
+#endif
+
+#ifdef RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_EFFECT_SNAKE_LENGTH 4
 #define RGBLIGHT_EFFECT_KNIGHT_LENGTH 3
 #define RGBLIGHT_EFFECT_KNIGHT_OFFSET 8
@@ -38,7 +41,9 @@
 #define randmod 167
 
 #ifdef AUDIO_ENABLE
+//#define B5_AUDIO
 #define C6_AUDIO
 #endif
 
 #endif
+

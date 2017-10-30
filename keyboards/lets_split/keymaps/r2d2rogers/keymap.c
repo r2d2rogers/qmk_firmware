@@ -1,6 +1,7 @@
 #include "lets_split.h"
 #include "action_layer.h"
 #include "eeconfig.h"
+#include "version.h"
 #ifdef AUDIO_ENABLE
   #include "audio.h"
 #endif
@@ -11,12 +12,10 @@
 #define SPACEFN 3
 #define TKEY 4
 #define ADJUST 5
+#define MUSIC 6
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
-  EPRM,
-  VRSN,
-  RGB_SLD
 };
 
 // Tap Dance
@@ -28,8 +27,8 @@ enum {
 // Macros
 enum macro_id {
   M_UN,
-  M_RD,
-  M_RL,
+  M_VN,
+  M_RE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -85,7 +84,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
 [LOWER] = KEYMAP( \
     KC_TILD,KC_EXLM,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,      KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______, \
     _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,      KC_F6  ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE, \
-    _______,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,      KC_F12 ,_______,_______,_______,_______,_______, \
+  TG(MUSIC),KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,      KC_F12 ,_______,_______,_______,_______,_______, \
    TG(TKEY),KC_HYPR,_______,_______,_______,_______,      _______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END \
 ),
 
@@ -101,9 +100,9 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * -------------------------------------------------     -------------------------------------------------
  */
 [SPACEFN] = KEYMAP( \
-    _______,M(M_RD),M(M_RL),_______,M(M_UN),_______,      _______,_______,_______,_______,_______,KC_DELETE, \
-    _______,_______,_______,_______,_______,_______,      KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______, \
-    _______,_______,_______,_______,_______,_______,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET, \
+    _______,_______,KC_BTN2,KC_BTN3,KC_BTN1,M(M_UN),      KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,_______,KC_DELETE, \
+    _______,_______,KC_MS_L,KC_MS_U,KC_MS_D,KC_MS_R,      KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______, \
+    _______,_______,KC_WH_L,KC_WH_U,KC_WH_D,KC_WH_R,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET, \
     _______,_______,_______,_______,_______,_______,      _______,_______,_______,_______,_______,_______ \
 ),
 
@@ -131,7 +130,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * --------------------------------------------------    --------------------------------------------------
  * |AU_OFF |BL_DEC |RGB_TOG|RGB_HUD|RGB_SAD|RGB_VAD |    |BL_DEC |RGB_TOG|RGB_HUD|RGB_SAD|RGB_VAD |AU_OFF |
  * --------------------------------------------------    --------------------------------------------------
- * |_______|BL_STEP| Plain |Rainbow| Snake |Christms|    |BL_STEP| Plain |Rainbow| Snake |Christms|_______|
+ * |MU_TOG |BL_STEP| Plain |Rainbow| Snake |Christms|    |BL_STEP| Plain |Rainbow| Snake |Christms|MU_MOD |
  * --------------------------------------------------    --------------------------------------------------
  * |_______|BL_TOGG|Breathe| Swirl | Knight|Gradient|    |BL_TOGG|Breathe| Swirl | Knight|Gradient|_______|
  * --------------------------------------------------    --------------------------------------------------
@@ -139,10 +138,16 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
 [ADJUST] = KEYMAP( \
     AU_ON  ,BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI,      BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI, AU_ON  ,\
     AU_OFF ,BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD,      BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD, AU_OFF ,\
-    _______,BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,     BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,_______, \
+    MU_TOG ,BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,     BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,MU_MOD , \
     _______,BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,     BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,_______\
 ),
 
+[MUSIC] = KEYMAP(\
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  \
+),
 };
   
 const uint16_t PROGMEM fn_actions[] = {
@@ -164,16 +169,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [MPLY_MUTE] = ACTION_TAP_DANCE_DOUBLE(KC_MPLY, KC_MUTE)
 };
 
-// This bit of logic seeds a wee linear congruential random number generator
-// lots of prime numbers everywhere...
-static uint16_t random_value = 157;
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  uint8_t clockbyte=0;
-  clockbyte = TCNT1 % 256;
-  uint8_t rval;
-
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
   // MACRODOWN only works in this function
   switch(id) {
     case M_UN:
@@ -181,36 +177,47 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         SEND_STRING("r2d2rogers");
       }
       break;
-
-    case M_RD:
-      // Generate, based on random number generator, a keystroke for
-      // a numeric digit chosen at random
-      random_value = ((random_value + randadd) * randmul) % randmod;
+    case M_VN:
       if (record->event.pressed) {
-        // Here, we mix the LCRNG with low bits from one of the system
-        // clocks via XOR in the theory that this may be more random
-        // than either separately
-        rval = (random_value ^ clockbyte) % 10;
-        // Note that KC_1 thru KC_0 are a contiguous range
-        register_code (KC_1 + rval);
-        unregister_code (KC_1 + rval);
+        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
       }
       break;
-
-    case M_RL:
-      // Generate, based on random number generator, a keystroke for
-      // a letter chosen at random
-      // Here, we mix the LCRNG with low bits from one of the system
-      // clocks via XOR in the theory that this may be more random
-      // than either separately
-      random_value = ((random_value + randadd) * randmul) % randmod;
-      if (record->event.pressed) {
-        rval = (random_value ^ clockbyte) % 26;
-        register_code (KC_A + rval);
-        unregister_code (KC_A + rval);
+    case M_RE:
+      if (record->event.pressed) { // For resetting EEPROM
+        eeconfig_init();
       }
       break;
   }
-
   return MACRO_NONE;
+};
+
+// Runs just one time when the keyboard initializes.
+void matrix_init_user(void) {
+    //debug_enable=true;
+    //debug_matrix=true;
+    //debug_keyboard=true;
+};
+
+// Runs constantly in the background, in a loop.
+void matrix_scan_user(void) {
+
+    uint8_t layer = biton32(layer_state);
+
+    switch (layer) {
+      // TODO: Make this relevant to the ErgoDox EZ.
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        default:
+            break;
+    }
 };

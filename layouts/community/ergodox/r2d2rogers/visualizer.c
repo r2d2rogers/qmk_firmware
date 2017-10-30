@@ -33,15 +33,15 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
     }
     else if (state->status.layer & 0x20) {
         state->target_lcd_color = LCD_COLOR(0, saturation, 0xFF);
-        state->layer_text = "Space Function";
+        state->layer_text = "Numpad";
     }
     else if (state->status.layer & 0x10) {
         state->target_lcd_color = LCD_COLOR(180, saturation, 0xFF);
-        state->layer_text = "Numpad";
+        state->layer_text = "Function keys";
     }
     else if (state->status.layer & 0x8) {
         state->target_lcd_color = LCD_COLOR(60, saturation, 0xFF);
-        state->layer_text = "Function keys";
+        state->layer_text = "Space Function";
     }
     else if (state->status.layer & 0x4) {
         state->target_lcd_color = LCD_COLOR(210, saturation, 0xFF);
