@@ -1,14 +1,11 @@
 #include "lets_split.h"
-#ifdef POINTING_DEVICE_ENABLE
 #include "analog.h"
 #include "pointing_device.h"
 #include "report.h"
-#endif
 
 
-#ifdef POINTING_DEVICE_ENABLE
 void pointing_device_task(void){
-        print "Pointing device task start";
+        print("Pointing device task start");
         report_mouse_t currentReport = {};
 
         currentReport = pointing_device_get_report();
@@ -29,7 +26,6 @@ void pointing_device_task(void){
 
     pointing_device_send();
 }
-#endif
 
 #ifdef ONEHAND_ENABLE
 __attribute__ ((weak))

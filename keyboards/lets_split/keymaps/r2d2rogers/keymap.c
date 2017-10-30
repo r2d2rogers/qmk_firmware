@@ -3,10 +3,8 @@
 #include "eeconfig.h"
 #include "version.h"
 #include "debug.h"
-#ifdef POINTING_DEVICE_ENABLE
-#include "pointing_device"
+#include "pointing_device.h"
 #include "report.h"
-#endif
 #ifdef AUDIO_ENABLE
   #include "audio.h"
 #endif
@@ -97,7 +95,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * -------------------------------------------------     -------------------------------------------------
  * |       |       |       |       | UNAME |       |     |       |       |       |       |       | DELETE|
  * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       | RANDD |       |     |  LEFT |  DOWN |  UP   | RIGHT |       |       |
+ * |       |       |       |       | RANDD |       |     |  LEFT |  DOWN |  UP   | RIGHT |       | DEBUG |
  * -------------------------------------------------     -------------------------------------------------
  * |       |       |       |       | RANDL |       |     |  HOME |  PGDN |  PGUP |  END  |       | RESET |
  * -------------------------------------------------     -------------------------------------------------
@@ -106,7 +104,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  */
 [SPACEFN] = KEYMAP( \
     _______,_______,KC_BTN2,KC_BTN3,KC_BTN1,M(M_UN),      KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,_______,KC_DELETE, \
-    _______,_______,KC_MS_L,KC_MS_U,KC_MS_D,KC_MS_R,      KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______, \
+    _______,_______,KC_MS_L,KC_MS_U,KC_MS_D,KC_MS_R,      KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,DEBUG, \
     _______,_______,KC_WH_L,KC_WH_U,KC_WH_D,KC_WH_R,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET, \
     _______,_______,_______,_______,_______,_______,      _______,_______,_______,_______,_______,_______ \
 ),
