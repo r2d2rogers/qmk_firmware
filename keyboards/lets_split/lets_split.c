@@ -1,4 +1,35 @@
 #include "lets_split.h"
+#ifdef POINTING_DEVICE_ENABLE
+#include "analog.h"
+#include "pointing_device.h"
+#include "report.h"
+#endif
+
+
+#ifdef POINTING_DEVICE_ENABLE
+void pointing_device_task(void){
+        print "Pointing device task start";
+        report_mouse_t currentReport = {};
+
+        currentReport = pointing_device_get_report();
+//shifting and transferring the info to the mouse report varaible
+//mouseReport.x = 127 max -127 min
+        //currentReport.x = analogRead(PF4);
+        currentReport.x = 15;
+//mouseReport.y = 127 max -127 min
+        //currentReport.y = analogRead(PF5);
+        currentReport.y = 50;
+
+//mouseReport.v = 127 max -127 min (scroll vertical)
+        currentReport.v = 0;
+//mouseReport.h = 127 max -127 min (scroll horizontal)
+        currentReport.h = 0;
+
+    pointing_device_set_report(currentReport);
+
+    pointing_device_send();
+}
+#endif
 
 #ifdef ONEHAND_ENABLE
 __attribute__ ((weak))

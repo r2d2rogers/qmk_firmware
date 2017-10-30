@@ -2,6 +2,11 @@
 #include "action_layer.h"
 #include "eeconfig.h"
 #include "version.h"
+#include "debug.h"
+#ifdef POINTING_DEVICE_ENABLE
+#include "pointing_device"
+#include "report.h"
+#endif
 #ifdef AUDIO_ENABLE
   #include "audio.h"
 #endif
@@ -193,9 +198,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-    //debug_enable=true;
-    //debug_matrix=true;
-    //debug_keyboard=true;
+    debug_enable=true;
+    debug_matrix=true;
+    debug_keyboard=true;
 };
 
 // Runs constantly in the background, in a loop.

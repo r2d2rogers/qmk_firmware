@@ -2,6 +2,9 @@
 #   change to "no" to disable the options, or define them in the Makefile in 
 #   the appropriate keymap folder that will get included automatically
 
+DEBUG_ENABLE     = yes
+CONSOLE_ENABLE   = yes
+COMMAND_ENABLE   = yes
 NKRO_ENABLE      = yes # Nkey Rollover - see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 TAP_DANCE_ENABLE = yes
 ONEHAND_ENABLE   = yes # Allow swapping hands of keyboard
