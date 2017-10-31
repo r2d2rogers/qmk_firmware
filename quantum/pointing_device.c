@@ -29,13 +29,13 @@ static report_mouse_t mouseReport = {};
 __attribute__ ((weak))
 void pointing_device_init(void){
     //initialize device, if that needs to be done.
-    print("Pointing Device; enabled. \n");
+    dprintf("Pointing Device: Master init. \n");
 }
 
 __attribute__ ((weak))
 void pointing_device_send(void){
     //If you need to do other things, like debugging, this is the place to do it.
-    print("pointing device pre send");
+    dprintf("Pointing Device: Master send. \n");
     host_mouse_send(&mouseReport);
 	//send it and 0 it out except for buttons, so those stay until they are explicity over-ridden using update_pointing_device
 	mouseReport.x = 20;
@@ -46,6 +46,7 @@ void pointing_device_send(void){
 
 __attribute__ ((weak))
 void pointing_device_task(void){
+    dprintf("Pointing Device: Master task. \n");
     //gather info and put it in:
     //mouseReport.x = 127 max -127 min
     //mouseReport.y = 127 max -127 min

@@ -246,8 +246,7 @@ MATRIX_LOOP_END:
 #endif
 
 #ifdef POINTING_DEVICE_ENABLE
-    print ("Running Pointing device task in tmk\n");
-    dprintf("Running Pointing device task in tmk d\n");
+    dprintf("Pointing Device: Running task inside tmk ifdef\n");
     pointing_device_task();
 #endif
 
