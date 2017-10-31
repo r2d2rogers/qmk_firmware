@@ -71,6 +71,7 @@ endif
 
 ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
 	OPT_DEFS += -DPOINTING_DEVICE_ENABLE
+	OPT_DEFS += -DMOUSE_ENABLE
 	SRC += $(QUANTUM_DIR)/pointing_device.c
 endif
 
