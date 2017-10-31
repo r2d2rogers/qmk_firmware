@@ -23,11 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "pointing_device.h"
 
+    
 static report_mouse_t mouseReport = {};
 
 __attribute__ ((weak))
 void pointing_device_init(void){
     //initialize device, if that needs to be done.
+    print("Pointing Device; enabled. \n");
 }
 
 __attribute__ ((weak))
@@ -36,8 +38,8 @@ void pointing_device_send(void){
     print("pointing device pre send");
     host_mouse_send(&mouseReport);
 	//send it and 0 it out except for buttons, so those stay until they are explicity over-ridden using update_pointing_device
-	mouseReport.x = 0;
-	mouseReport.y = 0;
+	mouseReport.x = 20;
+	mouseReport.y = 20;
 	mouseReport.v = 0;
 	mouseReport.h = 0;
 }

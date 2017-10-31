@@ -1,7 +1,7 @@
 #include "lets_split.h"
-#include "analog.h"
 #include "pointing_device.h"
 #include "report.h"
+#include "analog.h"
 
 
 void pointing_device_task(void){

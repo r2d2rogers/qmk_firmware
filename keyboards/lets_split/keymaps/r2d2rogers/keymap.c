@@ -1,10 +1,11 @@
 #include "lets_split.h"
+#include "pointing_device.h"
+#include "report.h"
+
 #include "action_layer.h"
 #include "eeconfig.h"
 #include "version.h"
 #include "debug.h"
-#include "pointing_device.h"
-#include "report.h"
 #ifdef AUDIO_ENABLE
   #include "audio.h"
 #endif
@@ -47,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | ADJST |  CTRL |  ALT  |  GUI  | SPACE | LOWER |     | RAISE | SPACE |  LEFT |  DOWN |  UP   | RIGHT |
  * -------------------------------------------------     -------------------------------------------------
  */
-[QWERTY] = KEYMAP( \
+[QWERTY] = KEYMAP(\
     KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,      KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSPC, \
 CTL_T(KC_ESC), F(3), KC_S  , KC_D  , KC_F  , F(4)  ,      F(5)   , KC_J  , KC_K  , KC_L  ,KC_SCLN, F(6)  , \
 TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,MT(MOD_RSFT, KC_ENT), \
@@ -66,7 +67,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * |       | HYPER |       |       |       |       |     |       |       | PLYMT | VOLDN | VOLUP |  MFFD |
  * -------------------------------------------------     -------------------------------------------------
  */
-[UPPER] = KEYMAP( \
+[UPPER] = KEYMAP(\
     KC_GRV ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,KC_5   ,      KC_6   ,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______, \
     _______,KC_4   ,KC_5   ,KC_6   ,KC_DOT ,_______,      _______,KC_MINS,KC_EQL ,KC_LBRC,KC_RBRC,KC_BSLS, \
     _______,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______,      _______,_______,_______,KC_DOT ,_______,_______, \
@@ -84,7 +85,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * | 10KEY | HYPER |       |       |       |       |     |       |       |  HOME |  PGDN |  PGUP |  END  |
  * -------------------------------------------------     -------------------------------------------------
  */
-[LOWER] = KEYMAP( \
+[LOWER] = KEYMAP(\
     KC_TILD,KC_EXLM,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,      KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______, \
     _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,      KC_F6  ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE, \
   TG(MUSIC),KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,      KC_F12 ,_______,_______,_______,_______,_______, \
@@ -102,7 +103,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * |       |       |       |       |       |       |     |       |       |       |       |       |       |
  * -------------------------------------------------     -------------------------------------------------
  */
-[SPACEFN] = KEYMAP( \
+[SPACEFN] = KEYMAP(\
     _______,_______,KC_BTN2,KC_BTN3,KC_BTN1,M(M_UN),      KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,_______,KC_DELETE, \
     _______,_______,KC_MS_L,KC_MS_U,KC_MS_D,KC_MS_R,      KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,DEBUG, \
     _______,_______,KC_WH_L,KC_WH_U,KC_WH_D,KC_WH_R,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET, \
@@ -120,7 +121,7 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * |       |       |       |       |       |       |     |       | KP 0  |       |       |       |       |
  * -------------------------------------------------     -------------------------------------------------
  */
-[TKEY] = KEYMAP( \
+[TKEY] = KEYMAP(\
     _______,_______,_______,_______,_______,_______,      _______,KC_KP_7,KC_KP_8,KC_KP_9,KC_PMNS,KC_BSPC,\
     _______,_______,_______,_______,_______,_______,      _______,KC_KP_4,KC_KP_5,KC_KP_6,KC_PPLS,KC_NLCK,\
     _______,_______,_______,_______,_______,_______,      _______,KC_KP_1,KC_KP_2,KC_KP_3,KC_PDOT,KC_ENT, \
@@ -138,18 +139,29 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * |_______|BL_TOGG|Breathe| Swirl | Knight|Gradient|    |BL_TOGG|Breathe| Swirl | Knight|Gradient|_______|
  * --------------------------------------------------    --------------------------------------------------
  */
-[ADJUST] = KEYMAP( \
+[ADJUST] = KEYMAP(\
     AU_ON  ,BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI,      BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI, AU_ON  ,\
     AU_OFF ,BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD,      BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD, AU_OFF ,\
     MU_TOG ,BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,     BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,MU_MOD , \
     _______,BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,     BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,_______\
 ),
 
+/* Layer 6: MUSIC SHIELD
+ * -------------------------------------------------     -------------------------------------------------
+ * |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|     |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|
+ * -------------------------------------------------     -------------------------------------------------
+ * |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|     |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|
+ * -------------------------------------------------     -------------------------------------------------
+ * |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|     |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|
+ * -------------------------------------------------     -------------------------------------------------
+ * |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|     |XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|XXXXXXX|
+ * -------------------------------------------------     -------------------------------------------------
+ */
 [MUSIC] = KEYMAP(\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  \
+    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
+    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
+    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
+    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX\
 ),
 };
   
