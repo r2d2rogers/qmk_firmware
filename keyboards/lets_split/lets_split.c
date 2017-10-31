@@ -3,19 +3,40 @@
 #include "report.h"
 #include "analog.h"
 
+int8_t readaxis(uint16_t axis){
+    int8_t reaxis = ((axis - 16) >> 3) - 63;
+    if(reaxis < 0){
+            if(reaxis < -10 ){
+                    return reaxis + 10;
+            }else{
+                    return 0;
+            }
+    }else if(reaxis > 0){
+            if(reaxis > 10 ){
+                    return reaxis - 10;
+            }else{
+                    return 0;
+            }
+    }
+    return 0;
+
+}
 
 void pointing_device_task(void){
         uprint("Pointing Device: Let's Split: task start\n");
         report_mouse_t currentReport = {};
 
+        xprintf("Pointing Device: Let's Split: raw x is %d\n",analogRead(2));
+        xprintf("Pointing Device: Let's Split: raw y is %d\n",analogRead(3));
+
         currentReport = pointing_device_get_report();
 //shifting and transferring the info to the mouse report varaible
+
 //mouseReport.x = 127 max -127 min
-        //currentReport.x = analogRead(PF4);
-        currentReport.x = 15;
+        currentReport.x = readaxis(analogRead(3));
+
 //mouseReport.y = 127 max -127 min
-        //currentReport.y = analogRead(PF5);
-        currentReport.y = 50;
+        currentReport.y = readaxis(analogRead(2)) * -1;
 
 //mouseReport.v = 127 max -127 min (scroll vertical)
         currentReport.v = 0;
