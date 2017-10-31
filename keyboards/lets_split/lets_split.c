@@ -5,7 +5,7 @@
 
 
 void pointing_device_task(void){
-        print("Pointing device task start");
+        print("Pointing Device: Let's Split: task start\n");
         report_mouse_t currentReport = {};
 
         currentReport = pointing_device_get_report();
