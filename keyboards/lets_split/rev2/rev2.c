@@ -14,6 +14,8 @@ void led_set_kb(uint8_t usb_led) {
 
 void matrix_init_kb(void) {
 
+        debug_enable =true;
+
     #ifdef AUDIO_ENABLE
         _delay_ms(20); // gets rid of tick
         PLAY_SONG(tone_startup);

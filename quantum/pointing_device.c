@@ -35,11 +35,12 @@ void pointing_device_init(void){
 __attribute__ ((weak))
 void pointing_device_send(void){
     //If you need to do other things, like debugging, this is the place to do it.
-    dprintf("Pointing Device: Master send. \n");
+    //dprintf("Pointing Device: Master sending %d\n", &mouseReport);
+    xprintf("Pointing Device X: %I",mouseReport.x);
     host_mouse_send(&mouseReport);
 	//send it and 0 it out except for buttons, so those stay until they are explicity over-ridden using update_pointing_device
-	mouseReport.x = 20;
-	mouseReport.y = 20;
+	mouseReport.x = 0;
+	mouseReport.y = 0;
 	mouseReport.v = 0;
 	mouseReport.h = 0;
 }

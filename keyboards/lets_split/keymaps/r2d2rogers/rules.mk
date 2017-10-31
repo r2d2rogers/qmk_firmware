@@ -15,6 +15,8 @@ RGBLIGHT_ENABLE  = no  # Enable WS2812 RGB underlight.
 POINTING_DEVICE_ENABLE = yes
 USE_I2C          = no
 
+EXTRAFLAGS=-flto
+
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
 endif
