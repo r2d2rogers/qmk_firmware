@@ -5,7 +5,7 @@
 
 
 void pointing_device_task(void){
-        print("Pointing Device: Let's Split: task start\n");
+        uprint("Pointing Device: Let's Split: task start\n");
         report_mouse_t currentReport = {};
 
         currentReport = pointing_device_get_report();
@@ -22,9 +22,12 @@ void pointing_device_task(void){
 //mouseReport.h = 127 max -127 min (scroll horizontal)
         currentReport.h = 0;
 
+        currentReport.buttons = 0x00;
+
     pointing_device_set_report(currentReport);
 
     pointing_device_send();
+        uprint("Pointing Device: Let's Split: task end\n");
 }
 
 #ifdef ONEHAND_ENABLE
