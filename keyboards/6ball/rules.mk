@@ -1,24 +1,5 @@
-#----------------------------------------------------------------------------
-# On command line:
-#
-# make = Make software.
-#
-# make clean = Clean out built project files.
-#
-# That's pretty much all you need. To compile, always go make clean, 
-# followed by make.
-#
-# For advanced users only:
-# make teensy = Download the hex file to the device, using teensy_loader_cli.
-#               (must have teensy_loader_cli installed).
-#
-#----------------------------------------------------------------------------
-
-# # project specific files
-SRC = twimaster.c \
-	  matrix.c
-
 # MCU name
+#MCU = at90usb1287
 MCU = atmega32u4
 
 # Processor frequency.
@@ -33,7 +14,6 @@ MCU = atmega32u4
 #     reflect the processor speed set externally so that the code can use accurate
 #     software delays.
 F_CPU = 16000000
-
 
 #
 # LUFA specific
@@ -64,27 +44,24 @@ OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 #   Atmel DFU loader 4096
 #   LUFA bootloader  4096
 #   USBaspLoader     2048
-OPT_DEFS += -DBOOTLOADER_SIZE=512
-
-# If you have Left LEDs (see
-# https://geekhack.org/index.php?topic=22780.msg873819#msg873819 for
-# details), include the following define:
-# OPT_DEFS += -DLEFT_LEDS
+OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
 # Build Options
-#   comment out to disable the options.
+#   change to "no" to disable the options, or define them in the Makefile in 
+#   the appropriate keymap folder that will get included automatically
 #
-BOOTMAGIC_ENABLE = no  # Virtual DIP switch configuration(+1000)
-MOUSEKEY_ENABLE  = yes # Mouse keys(+4700)
-EXTRAKEY_ENABLE  = yes # Audio control and System control(+450)
-CONSOLE_ENABLE   = no  # Console for debug(+400)
-COMMAND_ENABLE   = yes # Commands for debug and configuration
-CUSTOM_MATRIX    = yes # Custom matrix file for the ErgoDox EZ
-NKRO_ENABLE      = yes # USB Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
-UNICODE_ENABLE   = yes # Unicode
-ONEHAND_ENABLE   = yes # Allow swapping hands of keyboard
-SLEEP_LED_ENABLE = no
-API_SYSEX_ENABLE = no
-RGBLIGHT_ENABLE = yes
+BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration(+1000)
+MOUSEKEY_ENABLE = yes       # Mouse keys(+4700)
+EXTRAKEY_ENABLE = yes       # Audio control and System control(+450)
+CONSOLE_ENABLE = no         # Console for debug(+400)
+COMMAND_ENABLE = no         # Commands for debug and configuration
+NKRO_ENABLE = yes           # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
+BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
+MIDI_ENABLE = no            # MIDI controls
+AUDIO_ENABLE = no           # Audio output on port C6
+UNICODE_ENABLE = yes        # Unicode
+BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
+RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
 
-LAYOUTS = ergodox
+# Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
+SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
