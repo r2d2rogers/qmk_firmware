@@ -59,12 +59,8 @@ void host_keyboard_send(report_keyboard_t *report)
 
 void host_mouse_send(report_mouse_t *report)
 {
-    xprintf("Host Mouse Send: x of report is: %d \n",(*report).x);
-
     if (!driver) return;
     (*driver->send_mouse)(report);
-
-    xprintf("Host Mouse Sent\n");
 }
 
 void host_system_send(uint16_t report)

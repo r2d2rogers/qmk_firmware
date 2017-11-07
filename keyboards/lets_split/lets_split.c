@@ -4,30 +4,27 @@
 #include "analog.h"
 
 int8_t readaxis(uint16_t axis){
-    int8_t reaxis = ((axis - 16) >> 3) - 63;
+    int8_t reaxis = ((axis - 16) >> 5) - 15;
+    uint8_t deadzone = 2;    
     if(reaxis < 0){
-            if(reaxis < -10 ){
-                    return reaxis + 10;
+            if(reaxis < - deadzone ){
+                    return reaxis + deadzone;
             }else{
                     return 0;
             }
     }else if(reaxis > 0){
-            if(reaxis > 10 ){
-                    return reaxis - 10;
+            if(reaxis > deadzone ){
+                    return reaxis - deadzone;
             }else{
                     return 0;
             }
     }
     return 0;
-
 }
 
 void pointing_device_task(void){
-        uprint("Pointing Device: Let's Split: task start\n");
         report_mouse_t currentReport = {};
 
-        xprintf("Pointing Device: Let's Split: raw x is %d\n",analogRead(2));
-        xprintf("Pointing Device: Let's Split: raw y is %d\n",analogRead(3));
 
         currentReport = pointing_device_get_report();
 //shifting and transferring the info to the mouse report varaible
@@ -45,10 +42,9 @@ void pointing_device_task(void){
 
         currentReport.buttons = 0x00;
 
-    pointing_device_set_report(currentReport);
+        pointing_device_set_report(currentReport);
 
-    pointing_device_send();
-        uprint("Pointing Device: Let's Split: task end\n");
+        pointing_device_send();
 }
 
 #ifdef ONEHAND_ENABLE
