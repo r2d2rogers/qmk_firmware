@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Also make sure that the buffer passed to state->layer_text remains valid until the previous animation is
 // stopped. This can be done by either double buffering it or by using constant strings
 static void get_visualizer_layer_and_color(visualizer_state_t* state) {
-    uint8_t saturation = 100;
+    uint8_t saturation = 188;
     if (state->status.leds & (1u << USB_LED_CAPS_LOCK)) {
         saturation = 255;
     }
@@ -32,27 +32,27 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
         state->layer_text = "Keyboard Utilities";
     }
     else if (state->status.layer & 0x20) {
-        state->target_lcd_color = LCD_COLOR(0, saturation, 0xFF);
+        state->target_lcd_color = LCD_COLOR(212, saturation, 0xFF);
         state->layer_text = "Numpad";
     }
     else if (state->status.layer & 0x10) {
-        state->target_lcd_color = LCD_COLOR(180, saturation, 0xFF);
+        state->target_lcd_color = LCD_COLOR(42, saturation, 0xFF);
         state->layer_text = "Function keys";
     }
     else if (state->status.layer & 0x8) {
-        state->target_lcd_color = LCD_COLOR(60, saturation, 0xFF);
+        state->target_lcd_color = LCD_COLOR(128, saturation, 0xFF);
         state->layer_text = "Space Function";
     }
     else if (state->status.layer & 0x4) {
-        state->target_lcd_color = LCD_COLOR(210, saturation, 0xFF);
+        state->target_lcd_color = LCD_COLOR(170, saturation, 0xFF);
         state->layer_text = "Lower - Lowered";
     }
     else if (state->status.layer & 0x2) {
-        state->target_lcd_color = LCD_COLOR(150, saturation, 0xFF);
+        state->target_lcd_color = LCD_COLOR(32, saturation, 0xFF);
         state->layer_text = "Upper - Raised";
     }
     else {
-        state->target_lcd_color = LCD_COLOR(90, saturation, 0xFF);
+        state->target_lcd_color = LCD_COLOR(64, saturation, 0xFF);
         state->layer_text = "Default";
     }
 }

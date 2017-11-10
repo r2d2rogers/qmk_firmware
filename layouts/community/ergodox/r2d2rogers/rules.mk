@@ -4,7 +4,7 @@
 
 NKRO_ENABLE          = yes # USB Nkey Rollover - see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 TAP_DANCE_ENABLE     = yes
-ONEHAND_ENABLE       = no # Allow swapping hands of keyboard
+ONEHAND_ENABLE       = yes # Allow swapping hands of keyboard
 EXTRAKEY_ENABLE      = yes # Audio control and System control(+450)
 MOUSEKEY_ENABLE      = yes # Mouse keys(+4700)
 LCD_BACKLIGHT_ENABLE = yes
