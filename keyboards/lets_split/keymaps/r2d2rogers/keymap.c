@@ -35,21 +35,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Layer 0: QWERTY
  * -------------------------------------------------     -------------------------------------------------
- * |  TAB  |   Q   |   W   |   E   |   R   |   T   |     |   Y   |   U   |   I   |   O   |   P   |  BKSP |
+ * |  TAB  |   Q   |   W   |   E   |   R   |   T   |     |   Y   |   U   |   I   |   O   |   P   |   \   |
  * -------------------------------------------------     -------------------------------------------------
- * |  ESC  |   A   |   S   |   D   |   F   |   G   |     |   H   |   J   |   K   |   L   |   ;   |   '   |
+ * |  ESC  | A/Flip|   S   |   D   |   F   | G/Flip|     | H/Flip|   J   |   K   |   L   |   ;   | '/Flip|
  * -------------------------------------------------     -------------------------------------------------
- * | SHIFT |   Z   |   X   |   C   |   V   |   B   |     |   N   |   M   |   ,   |   .   |   /   | SHIFT |
+ * | LSHIFT|   Z   |   X   |   C   |   V   |   B   |     |   N   |   M   |   ,   |   .   |   /   |RSHIFT |
  * -------------------------------------------------     -------------------------------------------------
  * | ADJST |  CTRL |  ALT  |  GUI  | SPACE | LOWER |     | RAISE | SPACE |  LEFT |  DOWN |  UP   | RIGHT |
  * -------------------------------------------------     -------------------------------------------------
  */
+
 [QWERTY] = KEYMAP( \
-    KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,      KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSPC, \
+    KC_TAB , KC_Q  , KC_W  , KC_E  , KC_R  , KC_T  ,      KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_BSLS, \
 CTL_T(KC_ESC), F(3), KC_S  , KC_D  , KC_F  , F(4)  ,      F(5)   , KC_J  , KC_K  , KC_L  ,KC_SCLN, F(6)  , \
-TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,MT(MOD_RSFT, KC_ENT), \
- MO(ADJUST), KC_MEH,KC_LALT,KC_LGUI, F(0)  , F(1)  ,      F(2)   , F(0)  ,
-                                                            MT(MOD_RGUI, KC_LEFT),KC_DOWN, KC_UP ,KC_RGHT \
+TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,         \
+                                                                                     MT(MOD_RSFT, KC_ENT), \
+ MO(ADJUST), KC_MEH,KC_LALT,KC_LGUI, F(0)  , F(1)  ,      F(2)   , F(0)  ,                                 \
+                                                            MT(MOD_RGUI, KC_LEFT),KC_DOWN, KC_UP ,KC_RGHT  \
 ),
 
 /* Layer 1: UPPER
@@ -63,91 +65,79 @@ TD(SFT_CAPS) , KC_Z, KC_X  , KC_C  , KC_V  , KC_B  ,      KC_N   , KC_M  ,KC_COM
  * |       | HYPER |       |       |       |       |     |       |       | PLYMT | VOLDN | VOLUP |  MFFD |
  * -------------------------------------------------     -------------------------------------------------
  */
+
 [UPPER] = KEYMAP( \
     KC_GRV ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,KC_5   ,      KC_6   ,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______, \
     _______,KC_4   ,KC_5   ,KC_6   ,KC_DOT ,_______,      _______,KC_MINS,KC_EQL ,KC_LBRC,KC_RBRC,KC_BSLS, \
     _______,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______,      _______,_______,_______,KC_DOT ,_______,_______, \
-    _______,KC_HYPR,_______,_______,_______,_______,      _______,_______,TD(MPLY_MUTE), KC_VOLD, KC_VOLU, KC_MFFD \
+    _______,KC_HYPR,_______,_______,_______,_______,      _______,_______,                                 \
+                                                                    TD(MPLY_MUTE),KC_VOLD,KC_VOLU,KC_MFFD  \
 ),
 
 /* Layer 2: LOWER
  * -------------------------------------------------     -------------------------------------------------
  * |   ~   |   !   |   @   |   #   |   $   |   %   |     |   ^   |   &   |   *   |   (   |   )   |       |
  * -------------------------------------------------     -------------------------------------------------
- * |       |  F1   |  F2   |  F3   |  F4   |  F5   |     |  F6   |   _   |   +   |   {   |   }   |   |   |
+ * |       |  F1   |  F2   |  F3   |  F4   |  F5   |     |  F11  |   _   |   +   |   {   |   }   |   |   |
  * -------------------------------------------------     -------------------------------------------------
- * |       |  F7   |  F8   |  F9   |  F10  |  F11  |     |  F12  |       |       |       |       |       |
+ * |       |  F6   |  F7   |  F8   |  F9   |  F10  |     |  F12  |       |       |       |       |       |
  * -------------------------------------------------     -------------------------------------------------
  * | 10KEY | HYPER |       |       |       |       |     |       |       |  HOME |  PGDN |  PGUP |  END  |
  * -------------------------------------------------     -------------------------------------------------
  */
+
 [LOWER] = KEYMAP( \
     KC_TILD,KC_EXLM,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,      KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______, \
-    _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,      KC_F6  ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE, \
-  TG(MUSIC),KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,      KC_F12 ,_______,_______,_______,_______,_______, \
-   TG(TKEY),KC_HYPR,_______,_______,_______,_______,      _______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END \
+    _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,      KC_F11 ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE, \
+  TG(MUSIC),KC_F7  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,      KC_F12 ,_______,_______,_______,_______,_______, \
+   TG(TKEY),KC_HYPR,_______,_______,_______,_______,      _______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END   \
 ),
 
 /* Layer 3: SPACEFN
  * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       | UNAME |       |     |       |       |       |       |       | DELETE|
+ * |       |       |MsRtClk|MsMdClk|MsLtClk| UNAME |     |ScrollL|ScrollD|ScrollU|ScrollR|       | DELETE|
  * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       | RANDD |       |     |  LEFT |  DOWN |  UP   | RIGHT |       |       |
+ * |       |       |MseLeft| MseUp |MseDown|MseRght|     |  LEFT |  DOWN |  UP   | RIGHT |       |       |
  * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       | RANDL |       |     |  HOME |  PGDN |  PGUP |  END  |       | RESET |
+ * |       |       |ScrollL|ScrollU|ScrollD|ScrollR|     |  HOME |  PGDN |  PGUP |  END  |       | RESET |
  * -------------------------------------------------     -------------------------------------------------
  * |       |       |       |       |       |       |     |       |       |       |       |       |       |
  * -------------------------------------------------     -------------------------------------------------
  */
+
 [SPACEFN] = KEYMAP( \
-    _______,_______,KC_BTN2,KC_BTN3,KC_BTN1,M(M_UN),      KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,_______,KC_DELETE, \
+    _______,_______,KC_BTN2,KC_BTN3,KC_BTN1,M(M_UN),      KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,_______,KC_DELE, \
     _______,_______,KC_MS_L,KC_MS_U,KC_MS_D,KC_MS_R,      KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______, \
-    _______,_______,KC_WH_L,KC_WH_U,KC_WH_D,KC_WH_R,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET, \
-    _______,_______,_______,_______,_______,_______,      _______,_______,_______,_______,_______,_______ \
+    _______,_______,KC_WH_L,KC_WH_U,KC_WH_D,KC_WH_R,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET  , \
+    _______,_______,_______,_______,_______,_______,      _______,_______,_______,_______,_______,_______  \
 ),
 
-/* Layer 4: TKEY
- * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       |       |       |     |       | KP 7  | KP 8  | KP 9  | KP -  |BACKSPC|
- * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       |       |       |     |       | KP 4  | KP 5  | KP 6  | KP +  | NMLCK |
- * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       |       |       |     |       | KP 1  | KP 2  | KP 3  | KP .  | KP ENT|
- * -------------------------------------------------     -------------------------------------------------
- * |       |       |       |       |       |       |     |       | KP 0  |       |       |       |       |
- * -------------------------------------------------     -------------------------------------------------
+/* Layer 4: ADJUST
+ * --------------------------------------------------    --------------------------------------------------
+ * |BL_INC |RGB_MOD|RGB_HUI|RGB_SAI|RGB_VAI |AU_ON  |    |AU_ON  |RGB_MOD|RGB_HUI|RGB_SAI|RGB_VAI |BL_INC |
+ * --------------------------------------------------    --------------------------------------------------
+ * |BL_DEC |RGB_TOG|RGB_HUD|RGB_SAD|RGB_VAD |AU_OFF |    |AU_OFF |RGB_TOG|RGB_HUD|RGB_SAD|RGB_VAD |BL_DEC |
+ * --------------------------------------------------    --------------------------------------------------
+ * |BL_STEP| Plain |Rainbow| Snake |Christms|MU_TOG |    |MU_MOD | Plain |Rainbow| Snake |Christms|BL_STEP|
+ * --------------------------------------------------    --------------------------------------------------
+ * |BL_TOGG|Breathe| Swirl | Knight|Gradient|_______|    |_______|Breathe| Swirl | Knight|Gradient|BL_TOGG|
+ * --------------------------------------------------    --------------------------------------------------
  */
-[TKEY] = KEYMAP( \
-    _______,_______,_______,_______,_______,_______,      _______,KC_KP_7,KC_KP_8,KC_KP_9,KC_PMNS,KC_BSPC,\
-    _______,_______,_______,_______,_______,_______,      _______,KC_KP_4,KC_KP_5,KC_KP_6,KC_PPLS,KC_NLCK,\
-    _______,_______,_______,_______,_______,_______,      _______,KC_KP_1,KC_KP_2,KC_KP_3,KC_PDOT,KC_ENT, \
-    _______,_______,_______,_______,_______,_______,      _______,KC_KP_0,_______,_______,_______,_______ \
-),
 
-/* Layer 5: ADJUST
- * --------------------------------------------------    --------------------------------------------------
- * |AU_ON  |BL_INC |RGB_MOD|RGB_HUI|RGB_SAI|RGB_VAI |    |BL_INC |RGB_MOD|RGB_HUI|RGB_SAI|RGB_VAI |AU_ON  |
- * --------------------------------------------------    --------------------------------------------------
- * |AU_OFF |BL_DEC |RGB_TOG|RGB_HUD|RGB_SAD|RGB_VAD |    |BL_DEC |RGB_TOG|RGB_HUD|RGB_SAD|RGB_VAD |AU_OFF |
- * --------------------------------------------------    --------------------------------------------------
- * |MU_TOG |BL_STEP| Plain |Rainbow| Snake |Christms|    |BL_STEP| Plain |Rainbow| Snake |Christms|MU_MOD |
- * --------------------------------------------------    --------------------------------------------------
- * |_______|BL_TOGG|Breathe| Swirl | Knight|Gradient|    |BL_TOGG|Breathe| Swirl | Knight|Gradient|_______|
- * --------------------------------------------------    --------------------------------------------------
- */
 [ADJUST] = KEYMAP( \
-    AU_ON  ,BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI,      BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI, AU_ON  ,\
-    AU_OFF ,BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD,      BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD, AU_OFF ,\
-    MU_TOG ,BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,     BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,MU_MOD , \
-    _______,BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,     BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,_______\
+    BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI, AU_ON  ,     AU_ON  ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI ,BL_INC , \
+    BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD, AU_OFF ,     AU_OFF ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD ,BL_DEC , \
+    BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,MU_TOG ,     MU_MOD ,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,BL_STEP, \
+    BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,_______,     _______,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,BL_TOGG  \
 ),
 
 [MUSIC] = KEYMAP(\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  ,\
-    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  \
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , \
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , \
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , \
+    KC_NO  ,KC_NO  ,KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,     KC_NO  ,KC_NO  , KC_NO  ,KC_NO  ,KC_NO  ,KC_NO    \
 ),
+
 };
   
 const uint16_t PROGMEM fn_actions[] = {
@@ -216,6 +206,8 @@ void matrix_scan_user(void) {
         case 4:
             break;
         case 5:
+            break;
+        case 6:
             break;
         default:
             break;

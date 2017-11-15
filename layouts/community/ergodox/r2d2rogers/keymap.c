@@ -55,6 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      | Space| End  |         | PgDn | Enter|SPCFN |
  *                                `--------------------'         `--------------------'
  */
+
     [BASE] = KEYMAP(  // layer 0 : default
         // left hand
         KC_GRV, KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_EQL,
@@ -96,6 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      |      |      |         |      |      |      |
  *                                `--------------------'         `--------------------'
  */
+
     [UPPER] = KEYMAP(  // layer 1 : Keymap Template
         // left hand
         _______,_______,_______,_______,_______,_______,_______,
@@ -137,6 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      |      |      |         |      |      |      |
  *                                `--------------------'         `--------------------'
  */
+
 [LOWER] = KEYMAP(  // layer 2 : Keymap Template
         // left hand
         _______,_______,_______,_______,_______,_______,_______,
@@ -178,6 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      |      |      |         |      |      |      |
  *                                `--------------------'         `--------------------'
  */
+
     [SPACEFN] = KEYMAP(  // layer 3 : Right Space
         // left hand
         _______,_______,_______,_______,_______,_______,_______,
@@ -219,6 +223,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |        |      |
  *                                 `--------------------'       `----------------------'
  */
+
     [FKEY] = KEYMAP(  // layer 4 : function and symbol keys
         // left hand
         BL_TOGG,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,
@@ -260,6 +265,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      |      |      |         |      |      |      |
  *                                `--------------------'         `--------------------'
  */
+
     [NPAD] = KEYMAP(  // layer 5: numpad
         // left hand
         KC_BSPC,KC_CALC,KC_NLCK,KC_PSLS,KC_PAST,KC_PMNS,_______,
@@ -301,6 +307,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      |      |      |         |      |      |      |
  *                                `--------------------'         `--------------------'
  */
+
     [UTIL] = KEYMAP(  // layer 5 : keyboard utility functions
         // left hand
         RESET,  _______,_______,_______,_______,_______,TO(BASE),
@@ -342,6 +349,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                |      |      |      |         |      |      |      |
  *                                `--------------------'         `--------------------'
  */
+
     [TEMP] = KEYMAP(  // layer ? : Keymap Template
         // left hand
         _______,_______,_______,_______,_______,_______,_______,
