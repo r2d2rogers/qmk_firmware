@@ -78,3 +78,5 @@ CUSTOM_MATRIX = yes
 LAYOUTS = ortho_6x12
 
 DEFAULT_FOLDER = handwired/dactyl_manuform/rev1
+
+SRC += analog.c

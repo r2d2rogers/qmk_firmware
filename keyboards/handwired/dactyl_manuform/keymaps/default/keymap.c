@@ -1,6 +1,7 @@
 #include "dactyl_manuform.h"
 #include "action_layer.h"
 #include "eeconfig.h"
+#include "pointing_device.h"
 
 extern keymap_config_t keymap_config;
 
