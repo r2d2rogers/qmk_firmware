@@ -76,4 +76,4 @@ CUSTOM_MATRIX = yes
 
 LAYOUTS = ortho_6x12
 
-DEFAULT_FOLDER = dactyl_manuform/rev1
+DEFAULT_FOLDER = handwired/dactyl_manuform/rev1

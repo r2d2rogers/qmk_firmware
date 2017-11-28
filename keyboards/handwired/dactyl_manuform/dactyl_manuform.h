@@ -1,9 +1,9 @@
 #ifndef DACTYL_MANUFORM_H
 #define DACTYL_MANUFORM_H
 
-#ifdef KEYBOARD_DACTYL_MANUFORM_rev1
+//#ifdef SUBPROJECT_rev1
     #include "rev1.h"
-#endif
+//#endif
 
 #include "quantum.h"
 
