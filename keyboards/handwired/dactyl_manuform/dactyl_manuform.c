@@ -31,11 +31,11 @@ void pointing_device_task(void){
 //shifting and transferring the info to the mouse report varaible
 
 //mouseReport.x = 127 max -127 min
-        currentReport.x = readaxis(analogRead(3)) * -1;
+        currentReport.x = readaxis(analogRead(2));
         //currentReport.x = 0;
 
 //mouseReport.y = 127 max -127 min
-        currentReport.y = readaxis(analogRead(2)) * -1;
+        currentReport.y = readaxis(analogRead(3)) * -1;
         //currentReport.y = 0;
 
 //mouseReport.v = 127 max -127 min (scroll vertical)
