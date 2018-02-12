@@ -134,43 +134,6 @@ keyframe_animation_t default_suspend_animation = {
 #define CROSSFADE_TIME 1000
 #define GRADIENT_TIME 3000
 
-keyframe_animation_t led_short_test_animation = {
-    .num_frames = 5,
-    .loop = false,
-    .frame_lengths = {
-        gfxMillisecondsToTicks(1000), // fade in
-        gfxMillisecondsToTicks(1000), // no op (leds on)
-        gfxMillisecondsToTicks(1000), // fade out
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // left to rigt (outside in)
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
-        0,           // mirror leds
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // left_to_right (mirrored, so inside out)
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-        gfxMillisecondsToTicks(GRADIENT_TIME), // top_to_bottom
-        0,           // normal leds
-        gfxMillisecondsToTicks(CROSSFADE_TIME), // crossfade
-    },
-    .frame_functions = {
-        led_backlight_keyframe_fade_in_all,
-        keyframe_no_operation,
-        led_backlight_keyframe_fade_out_all,
-        led_backlight_keyframe_crossfade,
-        led_backlight_keyframe_left_to_right_gradient,
-        led_backlight_keyframe_crossfade,
-        led_backlight_keyframe_top_to_bottom_gradient,
-        led_backlight_keyframe_mirror_orientation,
-        led_backlight_keyframe_crossfade,
-        led_backlight_keyframe_left_to_right_gradient,
-        led_backlight_keyframe_crossfade,
-        led_backlight_keyframe_top_to_bottom_gradient,
-        led_backlight_keyframe_normal_orientation,
-        led_backlight_keyframe_crossfade,
-    },
-};
-
 keyframe_animation_t led_test_animation = {
     .num_frames = 14,
     .loop = true,
