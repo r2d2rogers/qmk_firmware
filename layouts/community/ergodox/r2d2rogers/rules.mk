@@ -12,6 +12,7 @@ LCD_ENABLE           = yes
 BACKLIGHT_ENABLE     = yes	
 VISUALIZER_ENABLE    = yes	
 UNICODE_ENABLE       = yes # Unicode.
+MIDI_ENABLE          = yes
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
