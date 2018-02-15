@@ -48,6 +48,8 @@
 //#define rgblight_set_        rgblight_sethsv (0, 255, 255);
 #endif // DRASHNA_SETRGB
 
+extern bool rgb_layer_change;
+
 enum userspace_custom_keycodes {
  KC_QWERTY = SAFE_RANGE, // can always be here      
  KC_COLEMAK,
@@ -56,6 +58,9 @@ enum userspace_custom_keycodes {
  LOWER,
  RAISE,
  ADJUST,
+ SPACEFN,
+ MUSIC,
+ TKEY,
  KC_MAKE,
  KC_RESET,
  KC_SECRET_1,
@@ -66,6 +71,10 @@ enum userspace_custom_keycodes {
  EPRM,
  USER,
  VRSN,
+ KC_SW_A,
+ KC_SW_G,
+ KC_SW_H,
+ KC_SW_QT,
  KC_RGB_T,
  NEW_SAFE_RANGE // use "NEWPLACEHOLDER" for keymap specific codes
 };
