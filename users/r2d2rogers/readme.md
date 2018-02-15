@@ -12,3 +12,5 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Starting to consolidate common useful functions for my keymaps.
