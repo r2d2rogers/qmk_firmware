@@ -421,21 +421,8 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
         //printf("action_function() called\n");
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    // dynamically generate these.
-    case EPRM:
-      if (record->event.pressed) {
-        eeconfig_init();
-      }
-      return false;
-      break;
-    case VRSN:
-      if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-      }
-      return false;
-      break;
     case RGB_SLD:
       if (record->event.pressed) {
         #ifdef RGBLIGHT_ENABLE
@@ -449,7 +436,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 // Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
+void matrix_init_keymap(void) {
     //debug_enable=true;
     //debug_matrix=true;
     //debug_keyboard=true;
@@ -459,7 +446,7 @@ void matrix_init_user(void) {
 };
 
 // Runs constantly in the background, in a loop.
-void matrix_scan_user(void) {
+void matrix_scan_keymap(void) {
 
     uint8_t layer = biton32(layer_state);
 
