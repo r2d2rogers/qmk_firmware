@@ -90,9 +90,9 @@ MO(_ADJUST),KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC),F(1),F(2), LT(_SPACEFN,K
 
   [_LOWER] = KEYMAP( \
       KC_TILD,KC_EXLM,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,      KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______, \
-      _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,      KC_F11 ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE, \
-      TG(MUSIC),KC_F7  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,      KC_F12 ,_______,_______,_______,_______,_______, \
-      TG(TKEY),KC_HYPR,_______,_______,_______,_______,      _______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END   \
+      TG(TKEY),KC_F1  ,KC_F2 ,KC_F3  ,KC_F4  ,KC_F5  ,      KC_F11 ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE, \
+      TG(MUSIC),KC_F7 ,KC_F7 ,KC_F8  ,KC_F9  ,KC_F10 ,      KC_F12 ,_______,_______,_______,_______,_______, \
+      _______,KC_HYPR,_______,_______,_______,_______,      _______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END   \
       ),
 
   /* Layer 3: _SPACEFN
@@ -122,7 +122,7 @@ MO(_ADJUST),KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC),F(1),F(2), LT(_SPACEFN,K
    * --------------------------------------------------    --------------------------------------------------
    * |BL_STEP| Plain |Rainbow| Snake |Christms|MU_TOG |    |MU_MOD | Plain |Rainbow| Snake |Christms|BL_STEP|
    * --------------------------------------------------    --------------------------------------------------
-   * |BL_TOGG|Breathe| Swirl | Knight|Gradient|_______|    |_______|Breathe| Swirl | Knight|Gradient|BL_TOGG|
+   * |       |Breathe| Swirl | Knight|Gradient|_______|    |_______|Breathe| Swirl | Knight|Gradient|BL_TOGG|
    * --------------------------------------------------    --------------------------------------------------
    */
 
@@ -130,7 +130,7 @@ MO(_ADJUST),KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC),F(1),F(2), LT(_SPACEFN,K
       BL_INC ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI, AU_ON  ,     AU_ON  ,RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI ,BL_INC , \
       BL_DEC ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD, AU_OFF ,     AU_OFF ,RGB_TOG,RGB_HUD,RGB_SAD,RGB_VAD ,BL_DEC , \
       BL_STEP,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,MU_TOG ,     MU_MOD ,RGB_M_P,RGB_M_R,RGB_M_SN,RGB_M_X,BL_STEP, \
-      BL_TOGG,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,_______,     _______,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,BL_TOGG  \
+      _______,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,_______,     _______,RGB_M_B,RGB_M_SW,RGB_M_K,RGB_M_G,BL_TOGG  \
       ),
 
   [_MUSIC] = KEYMAP(\
