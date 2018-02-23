@@ -23,39 +23,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * -------------------------------------------------     -------------------------------------------------
    */
 
-  [_QWERTY] = KEYMAP_wrapper( \
-       KC_TAB, _________________QWERTY_L1_________________, _________________QWERTY_R1_________________, KC_BSLS, \
-CTL_T(KC_ESC), _________________QWERTY_L2_________________, _________________QWERTY_R2_________________, KC_QUOT, \
-     MOD_LSFT, _________________QWERTY_L3_________________, _________________QWERTY_R3_________________,          \
-                                                                                            MT(MOD_RSFT, KC_ENT), \
-       MO(_ADJUST), KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC), F(1)  ,      F(2)   ,  LT(_SPACEFN,KC_SPC),                                 \
-                                                                   MT(MOD_RGUI, KC_LEFT),KC_DOWN, KC_UP ,KC_RGHT  \
-      ),
+   [_QWERTY] = KEYMAP_wrapper( \
+              KC_TAB, _________________QWERTY_L1_________________, _________________QWERTY_R1_________________,     KC_BSLS,           \
+      CTL_T(KC_ESC),  _________________QWERTY_L2_________________, _________________QWERTY_R2_________________,     KC_QUOT,           \
+            MOD_LSFT, _________________QWERTY_L3_________________, _________________QWERTY_R3_________________, MT(MOD_RSFT,     KC_ENT),       \
+MO(_ADJUST), KC_MEH, KC_LALT, KC_LGUI, LT(_SPACEFN, KC_SPC), LT(_LOWER,KC_BSPC), LT(_RAISE,KC_ENT), LT(_SPACEFN, KC_SPC), MT(MOD_RGUI, KC_LEFT), KC_DOWN, KC_UP, KC_RGHT  \
+                   ),
 
   [_COLEMAK] = KEYMAP_wrapper( \
-       KC_TAB, _________________COLEMAK_L1_________________, _________________COLEMAK_R1_________________, KC_BSLS, \
-CTL_T(KC_ESC), _________________COLEMAK_L2_________________, _________________COLEMAK_R2_________________, KC_QUOT, \
-     MOD_LSFT, _________________COLEMAK_L3_________________, _________________COLEMAK_R3_________________,          \
-                                                                                              MT(MOD_RSFT, KC_ENT), \
-         MO(_ADJUST), KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC)  , F(1)  ,      F(2)   , LT(_SPACEFN,KC_SPC)  ,                                 \
-                                                                     MT(MOD_RGUI, KC_LEFT),KC_DOWN, KC_UP ,KC_RGHT  \
-      ),
+              KC_TAB, _________________COLEMAK_L1________________, _________________COLEMAK_R1________________,     KC_BSLS,           \
+      CTL_T(KC_ESC),  _________________COLEMAK_L2________________, _________________COLEMAK_R2________________,     KC_QUOT,           \
+            MOD_LSFT, _________________COLEMAK_L3________________, _________________COLEMAK_R3________________, MT(MOD_RSFT,     KC_ENT),       \
+MO(_ADJUST), KC_MEH, KC_LALT, KC_LGUI, LT(_SPACEFN, KC_SPC), LT(_LOWER,KC_BSPC), LT(_RAISE,KC_ENT), LT(_SPACEFN, KC_SPC), MT(MOD_RGUI, KC_LEFT), KC_DOWN, KC_UP, KC_RGHT  \
+                  ),
 
-  [_DVORAK] = KEYMAP_wrapper( \
-       KC_TAB, _________________DVORAK_L1_________________, _________________DVORAK_R1_________________, KC_BSLS, \
-CTL_T(KC_ESC), _________________DVORAK_L2_________________, _________________DVORAK_R2_________________, KC_QUOT, \
-     MOD_LSFT, _________________DVORAK_L3_________________, _________________DVORAK_R3_________________,          \
-                                                                                            MT(MOD_RSFT, KC_ENT), \
-       MO(_ADJUST), KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC)  , F(1)  ,      F(2)   , LT(_SPACEFN,KC_SPC)  ,   \
-                                                                   MT(MOD_RGUI, KC_LEFT),KC_DOWN, KC_UP ,KC_RGHT  \
-      ),
+   [_DVORAK] = KEYMAP_wrapper( \
+              KC_TAB, _________________DVORAK_L1_________________, _________________DVORAK_R1_________________,     KC_BSLS,           \
+      CTL_T(KC_ESC),  _________________DVORAK_L2_________________, _________________DVORAK_R2_________________,     KC_QUOT,           \
+            MOD_LSFT, _________________DVORAK_L3_________________, _________________DVORAK_R3_________________, MT(MOD_RSFT,     KC_ENT),       \
+MO(_ADJUST), KC_MEH, KC_LALT, KC_LGUI, LT(_SPACEFN, KC_SPC), LT(_LOWER,KC_BSPC), LT(_RAISE,KC_ENT), LT(_SPACEFN, KC_SPC), MT(MOD_RGUI, KC_LEFT), KC_DOWN, KC_UP, KC_RGHT  \
+                  ),
 
   [_WORKMAN] = KEYMAP_wrapper( \
-       KC_TAB, _________________WORKMAN_L1_________________, _________________WORKMAN_R1_________________, KC_BSLS, \
-CTL_T(KC_ESC), _________________WORKMAN_L2_________________, _________________WORKMAN_R2_________________, KC_QUOT,    \
-     MOD_LSFT, _________________WORKMAN_L3_________________, _________________WORKMAN_R3_________________, MT(MOD_RSFT, KC_ENT), \
-MO(_ADJUST),KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC),F(1),F(2), LT(_SPACEFN,KC_SPC),MT(MOD_RGUI, KC_LEFT),KC_DOWN, KC_UP ,KC_RGHT  \
-      ),
+              KC_TAB, _________________WORKMAN_L1________________, _________________WORKMAN_R1________________,     KC_BSLS,           \
+      CTL_T(KC_ESC),  _________________WORKMAN_L2________________, _________________WORKMAN_R2________________,     KC_QUOT,           \
+            MOD_LSFT, _________________WORKMAN_L3________________, _________________WORKMAN_R3________________, MT(MOD_RSFT,     KC_ENT),       \
+MO(_ADJUST), KC_MEH, KC_LALT, KC_LGUI, LT(_SPACEFN, KC_SPC), LT(_LOWER,KC_BSPC), LT(_RAISE,KC_ENT), LT(_SPACEFN, KC_SPC), MT(MOD_RGUI, KC_LEFT), KC_DOWN, KC_UP, KC_RGHT  \
+                               ),
+
 
   /* Layer 1: _RAISE
    * -------------------------------------------------     -------------------------------------------------
@@ -101,7 +96,7 @@ MO(_ADJUST),KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC),F(1),F(2), LT(_SPACEFN,K
    * -------------------------------------------------     -------------------------------------------------
    * |       |       |MseLeft| MseUp |MseDown|MseRght|     |  LEFT |  DOWN |  UP   | RIGHT |       |       |
    * -------------------------------------------------     -------------------------------------------------
-   * |       |       |ScrollL|ScrollU|ScrollD|ScrollR|     |  HOME |  PGDN |  PGUP |  END  |       | RESET |
+   * | RESET |       |ScrollL|ScrollU|ScrollD|ScrollR|     |  HOME |  PGDN |  PGUP |  END  |       | RESET |
    * -------------------------------------------------     -------------------------------------------------
    * |       |       |       |       |       |       |     |       |       |       |       |       |       |
    * -------------------------------------------------     -------------------------------------------------
@@ -110,7 +105,7 @@ MO(_ADJUST),KC_MEH,KC_LALT,KC_LGUI, LT(_SPACEFN,KC_SPC),F(1),F(2), LT(_SPACEFN,K
   [_SPACEFN] = KEYMAP( \
       _______,_______,KC_BTN2,KC_BTN3,KC_BTN1,USER,         KC_WH_L,KC_WH_D,KC_WH_U,KC_WH_R,_______,KC_DEL,  \
       _______,_______,KC_MS_L,KC_MS_U,KC_MS_D,KC_MS_R,      KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______, \
-      _______,_______,KC_WH_L,KC_WH_U,KC_WH_D,KC_WH_R,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET  , \
+      RESET  ,_______,KC_WH_L,KC_WH_U,KC_WH_D,KC_WH_R,      KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,RESET  , \
       _______,_______,_______,_______,_______,_______,      _______,_______,_______,_______,_______,_______  \
       ),
 
