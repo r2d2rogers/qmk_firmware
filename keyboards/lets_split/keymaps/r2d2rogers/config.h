@@ -1,15 +1,15 @@
 #ifndef CONFIG_USER_H
 #define CONFIG_USER_H
 
-#include "../../config.h"
+#include QMK_KEYBOARD_CONFIG_H
 
 #undef TAPPING_TERM
 #define TAPPING_TERM 180
 
 /* Use I2C or Serial, not both */
 
-#define USE_SERIAL
-// #define USE_I2C
+// #define USE_SERIAL
+#define USE_I2C
 
 /* Select hand configuration */
 
@@ -20,14 +20,14 @@
 
 #ifdef RGBLIGHT_ENABLE
 #undef RGBLED_NUM
-#define RGBLED_NUM 32
+#define RGBLED_NUM 24
 #define RGBLIGHT_ANIMATIONS
 #endif
 
 #ifdef RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_EFFECT_SNAKE_LENGTH 4
 #define RGBLIGHT_EFFECT_KNIGHT_LENGTH 3
-#define RGBLIGHT_EFFECT_KNIGHT_OFFSET 8
+#define RGBLIGHT_EFFECT_KNIGHT_OFFSET 4
 #define RGBLIGHT_EFFECT_KNIGHT_LED_NUM 16
 #define RGBLIGHT_EFFECT_CHRISTMAS_INTERVAL 500
 #define RGBLIGHT_EFFECT_CHRISTMAS_STEP 3

@@ -1,7 +1,10 @@
 #include "r2d2rogers.h"
+#include "quantum.h"
+#include "action.h"
 #include "version.h"
 
-#if (__has_include("secrets.h"))
+
+#if __has_include("secrets.h")
 #include "secrets.h"
 #else
 // `PROGMEM const char secret[][x]` may work better, but it takes up more space in the firmware
@@ -41,7 +44,6 @@ __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
-
 __attribute__ ((weak))
 uint32_t layer_state_set_keymap (uint32_t state) {
   return state;
@@ -49,6 +51,9 @@ uint32_t layer_state_set_keymap (uint32_t state) {
 
 __attribute__ ((weak))
 void led_set_keymap(uint8_t usb_led) {}
+#ifdef RGBLIGHT_ENABLE
+bool rgb_layer_change = true;
+#endif
 
 // Call user matrix init, set default RGB colors and then
 // call the keymap's init function
@@ -78,24 +83,38 @@ void matrix_init_user(void) {
     rgblight_mode(5);
   }
 #endif
-#ifdef AUDIO_ENABLE
-//  wait_ms(21); // gets rid of tick
-//  stop_all_notes();
-//  PLAY_SONG(tone_hackstartup);
-#endif
   matrix_init_keymap();
 }
 
+// No global matrix scan code, so just run keymap's matix
+// scan function
+void matrix_scan_user(void) {
+  matrix_scan_keymap();
+}
+
+#ifdef AUDIO_ENABLE
+float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
+float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
+float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
+float tone_workman[][2]    = SONG(PLOVER_SOUND);
+#endif
+
+
+void persistent_default_layer_set(uint16_t default_layer) {
+  eeconfig_update_default_layer(default_layer);
+  default_layer_set(default_layer);
+}
 
 void led_set_user(uint8_t usb_led) {
   led_set_keymap(usb_led);
 }
 
 
+
 // Defines actions tor my global custom keycodes. Defined in r2d2rogers.h file
 // Then runs the _keymap's recod handier if not processed here
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
+  
 #ifdef CONSOLE_ENABLE
   xprintf("KL: row: %u, column: %u, pressed: %u\n", record->event.key.col, record->event.key.row, record->event.pressed);
 #endif
@@ -217,14 +236,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
     break;
-  case KC_RGB_T:  // Because I want the option to go back to normal RGB mode rather than always layer indication
-#ifdef RGBLIGHT_ENABLE
-    if (record->event.pressed) {
-      rgb_layer_change = !rgb_layer_change;
-    }
-#endif
-    return false;
-    break;
 #ifdef RGBLIGHT_ENABLE
   case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT: // quantum_keycodes.h L400 for definitions
     if (record->event.pressed) { //This disrables layer indication, as it's assumed that if you're changing this ... you want that disabled
@@ -278,5 +289,3 @@ uint32_t layer_state_set_user(uint32_t state) {
 #endif
   return layer_state_set_keymap (state);
 }
-
-
