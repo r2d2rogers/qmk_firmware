@@ -4,16 +4,19 @@
 #include "quantum.h"
 
 // Layers
-#define _QWERTY  0
-#define _COLEMAK 1
-#define _DVORAK  2
-#define _WORKMAN 3
-#define _RAISE   4
-#define _LOWER   5
-#define _SPACEFN 6
-#define _TKEY    7
-#define _ADJUST  8
-#define _MUSIC   9
+enum layers {
+_QWERTY = 0, 
+_COLEMAK, 
+_DVORAK, 
+_WORKMAN, 
+_RAISE, 
+_LOWER, 
+_SPACEFN, 
+_TKEY, 
+_ADJUST, 
+_MUSIC,
+_UTIL
+};
 
 #ifndef RGBLIGHT_ANIMATIONS // add "EXTRA_FLADS=-DDRASHNA_SETRGB" to enable this ... but don't
 #define rgblight_set_blue        rgblight_setrgb (0x00, 0x00, 0xFF);
@@ -51,32 +54,32 @@
 extern bool rgb_layer_change;
 
 enum userspace_custom_keycodes {
- KC_QWERTY = SAFE_RANGE, // can always be here      
- KC_COLEMAK,
- KC_DVORAK,
- KC_WORKMAN,
- LOWER,
- RAISE,
- ADJUST,
- SPACEFN,
- MUSIC,
- TKEY,
- KC_MAKE,
- KC_RESET,
- KC_SECRET_1,
- KC_SECRET_2,
- KC_SECRET_3,
- KC_SECRET_4,
- KC_SECRET_5,
- EPRM,
- USER,
- VRSN,
- KC_SW_A,
- KC_SW_G,
- KC_SW_H,
- KC_SW_QT,
- KC_RGB_T,
- NEW_SAFE_RANGE // use "NEWPLACEHOLDER" for keymap specific codes
+        KC_QWERTY = SAFE_RANGE, // can always be here
+        KC_COLEMAK,
+        KC_DVORAK,
+        KC_WORKMAN,
+        //LOWER,
+        //RAISE,
+        //ADJUST,
+        //SPACEFN,
+        MUSIC,
+        TKEY,
+        KC_MAKE,
+        KC_RESET,
+        KC_SECRET_1,
+        KC_SECRET_2,
+        KC_SECRET_3,
+        KC_SECRET_4,
+        KC_SECRET_5,
+        EPRM,
+        USER,
+        VRSN,
+        KC_SW_A,
+        KC_SW_G,
+        KC_SW_H,
+        KC_SW_QT,
+        KC_RGB_T,
+        NEW_SAFE_RANGE // use "NEWPLACEHOLDER" for keymap specific codes
 };
 
 #ifdef TAP_DANCE_ENABLE
@@ -100,8 +103,18 @@ enum {
 #define KC_D3_4 KC_4
 #endif
 
-// Since our quirky block definitions are basically a list of comma separated 
-// arguments, we need a wrapper in order for these definitions to be 
+#define KC_ESCC MT(MOD_LCTL, KC_ESC)
+#define SPACEFN LT(_SPACEFN, KC_SPC)
+#define RAISE LT(_RAISE, KC_ENT)
+#define LOWER LT(_LOWER, KC_BSPC)
+#define ADJUST MO(_ADJUST)
+#define TKEY TT(_TKEY)
+#define UTIL OSL(_UTIL)
+#define RSFTENT MT(KC_RSFT, KC_ENT)
+#define GUIRGHT MT(MOD_RGUI, KC_RGHT)
+
+// Since our quirky block definitions are basically a list of comma separated
+// arguments, we need a wrapper in order for these definitions to be
 // expanded before being used as arguments to the LAYOUT_xxx macro.
 #define LAYOUT_ergodox_wrapper(...)   LAYOUT_ergodox(__VA_ARGS__)
 #define KEYMAP_wrapper(...)           KEYMAP(__VA_ARGS__)
@@ -118,7 +131,7 @@ enum {
 
 #define _________________QWERTY_R1_________________        KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
 #define _________________QWERTY_R2_________________        KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
-#define _________________QWERTY_R3_________________        KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLASH
+#define _________________QWERTY_R3_________________        KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
 
 #define _________________COLEMAK_L1________________        KC_Q,    KC_W,    KC_F,    KC_P,    KC_G
@@ -127,7 +140,7 @@ enum {
 
 #define _________________COLEMAK_R1________________        KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
 #define _________________COLEMAK_R2________________        KC_H,    KC_N,    KC_E,    KC_I,    KC_O
-#define _________________COLEMAK_R3________________        KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLASH
+#define _________________COLEMAK_R3________________        KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
 
 #define _________________DVORAK_L1_________________        KC_QUOT, KC_COMM, KC_DOT, KC_P,     KC_Y
@@ -153,6 +166,10 @@ enum {
 // this allows us to quickly modify the bottom row for all of the layouts
 // so we don't have to alter it 4 times and hope that we haven't missed
 // anything
-#define ___________ERGODOX_BOTTOM_LEFT_____________        KC_QUOT, KC_LGUI, KC_LBRC, KC_RBRC
+#define ___________ERGODOX_BOTTOM_LEFT_____________        KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
 #define ___________ERGODOX_BOTTOM_RIGHT____________        KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+
+#define ___________GENERAL_BOTTOM_LEFT_____________        ADJUST,  KC_MEH,  KC_LALT, KC_LGUI, SPACEFN, LOWER
+#define ___________GENERAL_BOTTOM_RIGHT____________        RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
+
 #endif

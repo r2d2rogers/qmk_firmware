@@ -1,36 +1,21 @@
 #include QMK_KEYBOARD_H
+#include "r2d2rogers.h"
 #include "debug.h"
 #include "action_layer.h"
 #include "action_util.h"
 #include "version.h"
 
-#define BASE 0 // default layer
-#define UPPER 1 // keyboard raise layer
-#define LOWER 2 // keyboard lower layer
-#define SPACEFN 3 // right space fn layer
-#define FKEY 4 // function key layer
-#define NPAD 5 // numpad layer
-#define UTIL 6 // keyboard utility layer
-#define TEMP 7 // Template for new layers
+//#define BASE 0 // default layer
+//#define UPPER 1 // keyboard raise layer
+//#define LOWER 2 // keyboard lower layer
+//#define SPACEFN 3 // right space fn layer
+//#define FKEY 4 // function key layer
+//#define NPAD 5 // numpad layer
+//#define UTIL 6 // keyboard utility layer
+//#define TEMP 7 // Template for new layers
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
-  EPRM,
-  VRSN,
-  RGB_SLD
-};
-
-// Tap Dance
-enum {
-  SFT_CAPS = 0,
-  MPLY_MUTE = 1,
-};
-
-// Macros
-enum macro_id {
-  M_UN,
-  M_VN,
-  M_RE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -56,25 +41,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'         `--------------------'
  */
 
-    [BASE] = KEYMAP(  // layer 0 : default
+    [_QWERTY] = LAYOUT_ergodox_wrapper(  // layer 0 : default
         // left hand
-        KC_GRV, KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_EQL,
-        KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_LBRC,
- CTL_T(KC_ESC), F(3),   KC_S,   KC_D,   KC_F,   F(4),
-        KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   MO(FKEY),
-        KC_LGUI,KC_LALT,KC_INS, KC_LBRC,KC_RBRC,
-                                                KC_LCTL,KC_LALT,
-                                                        KC_HOME,
-                                        KC_SPC,   F(1),   KC_END,
+        KC_GRV, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,
+        KC_TAB, _________________QWERTY_L1_________________, KC_LBRC,
+        KC_ESCC,_________________QWERTY_L2_________________,
+        KC_LSFT,_________________QWERTY_L3_________________, ADJUST,
+        KC_LGUI,___________ERGODOX_BOTTOM_LEFT_____________,
+                                                   KC_LCTL,  KC_LALT,
+                                                             KC_HOME,
+                                          KC_SPC,  LOWER,    KC_END,
         // right hand
-        TT(NPAD),KC_6,  KC_7,   KC_8,   KC_9,   KC_0,   KC_MINS,
-        KC_RBRC, KC_Y,  KC_U,   KC_I,   KC_O,   KC_P,   KC_BSLS,
-                 F(5),  KC_J,   KC_K,   KC_L,   KC_SCLN,F(6),
-        MO(FKEY),KC_N,  KC_M,   KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,
-                        KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,KC_RGUI,
+        TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_MINS,
+        KC_RBRC, _________________QWERTY_R1_________________,KC_BSLS,
+                 _________________QWERTY_R2_________________,KC_QUOT,
+        ADJUST,  _________________QWERTY_R3_________________,KC_RSFT,
+                 ___________ERGODOX_BOTTOM_RIGHT____________,KC_RGUI,
         KC_RALT,KC_RCTL,
         KC_PGUP,
-        KC_PGDN,F(2),   F(0)
+        KC_PGDN, RAISE,   SPACEFN
     ),
    
 /* Keymap 1: Keyboard Upper Layer
@@ -98,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'         `--------------------'
  */
 
-    [UPPER] = KEYMAP(  // layer 1 : Keymap Template
+    [_RAISE] = LAYOUT_ergodox_wrapper(  // layer 1 : Keymap Template
         // left hand
         _______,_______,_______,_______,_______,_______,_______,
         KC_GRV ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,KC_5   ,_______,  
@@ -113,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,KC_6   ,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______,
                 _______,KC_MINS,KC_EQL ,KC_LBRC,KC_RBRC,KC_BSLS,
         _______,_______,_______,_______,KC_DOT ,_______,_______,
-                        _______,TD(MPLY_MUTE), KC_VOLD, KC_VOLU, KC_MFFD,
+                        _______,KC_MPLY,KC_VOLD, KC_VOLU, KC_MFFD,
         _______,_______,
         _______,
         _______,_______,_______
@@ -140,13 +125,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'         `--------------------'
  */
 
-[LOWER] = KEYMAP(  // layer 2 : Keymap Template
+[_LOWER] = LAYOUT_ergodox_wrapper(  // layer 2 : Keymap Template
         // left hand
         _______,_______,_______,_______,_______,_______,_______,
         KC_TILD,KC_EXLM,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,_______,
         _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,
         _______,KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,_______,
-       TG(NPAD),KC_HYPR,_______,_______,_______,
+        TKEY,   KC_HYPR,_______,_______,_______,
                                                 _______,_______,
                                                         _______,
                                         _______,_______,_______,
@@ -182,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'         `--------------------'
  */
 
-    [SPACEFN] = KEYMAP(  // layer 3 : Right Space
+    [_SPACEFN] = LAYOUT_ergodox_wrapper(  // layer 3 : Right Space
         // left hand
         _______,_______,_______,_______,_______,_______,_______,
         _______,_______,KC_BTN2,KC_MS_U,KC_BTN1,KC_WH_U,_______,
@@ -224,22 +209,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 `--------------------'       `----------------------'
  */
 
-    [FKEY] = KEYMAP(  // layer 4 : function and symbol keys
+    [_ADJUST] = LAYOUT_ergodox_wrapper(  // layer 4 : function and symbol keys
         // left hand
         BL_TOGG,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,
         BL_INC, KC_F11, KC_F12, KC_F13, KC_F14, KC_F15, _______,
         BL_DEC, _______,_______,_______,_______,_______,
         BL_STEP,_______,_______,_______,_______,_______,_______,
-        OSL(UTIL),_______,_______,_______,_______,
+        UTIL,   _______,_______,_______,_______,
                                                 _______,_______,
                                                         _______,
                                         _______,_______,_______,
         // right hand
         KC_F12, KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, BL_TOGG,
         _______,KC_F16, KC_F17, KC_F18, KC_F19, KC_F20, BL_INC, 
-                _______,KC_MPRV,TD(MPLY_MUTE),KC_MNXT,_______,BL_DEC,
+                _______,KC_MPRV,KC_MPLY,KC_MNXT,_______,BL_DEC,
         _______,_______,KC_MUTE,KC_VOLD,KC_VOLU,_______,BL_STEP,
-                        _______,_______,_______,_______,OSL(UTIL),
+                        _______,_______,_______,_______,UTIL,
         _______,_______,
         _______,
         _______,_______,_______
@@ -266,7 +251,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'         `--------------------'
  */
 
-    [NPAD] = KEYMAP(  // layer 5: numpad
+    [_TKEY] = LAYOUT_ergodox_wrapper(  // layer 5: numpad
         // left hand
         KC_BSPC,KC_CALC,KC_NLCK,KC_PSLS,KC_PAST,KC_PMNS,_______,
         _______,XXXXXXX,KC_P7,  KC_P8,  KC_P9,  KC_PPLS,_______,
@@ -308,9 +293,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                `--------------------'         `--------------------'
  */
 
-    [UTIL] = KEYMAP(  // layer 5 : keyboard utility functions
+    [_UTIL] = LAYOUT_ergodox_wrapper(  // layer 5 : keyboard utility functions
         // left hand
-        RESET,  _______,_______,_______,_______,_______,TO(BASE),
+        RESET,  _______,_______,_______,_______,_______,TO(_QWERTY),
         DEBUG,  _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,
@@ -329,109 +314,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______
     ),
 
-/* Keymap ?: Keymap Template
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |------|           |------|      |      |      |      |      |        |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |      |      |      |      |      |                                       |      |      |      |      |      |
- *   `----------------------------------'                                       `----------------------------------'
- *                                       ,-------------.         ,-------------.
- *                                       |      |      |         |      |      |
- *                                ,------|------|------|         |------+------+------.
- *                                |      |      |      |         |      |      |      |
- *                                |      |      |------|         |------|      |      |
- *                                |      |      |      |         |      |      |      |
- *                                `--------------------'         `--------------------'
- */
-
-    [TEMP] = KEYMAP(  // layer ? : Keymap Template
-        // left hand
-        _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,
-                                                _______,_______,
-                                                        _______,
-                                        _______,_______,_______,
-        // right hand
-        _______,_______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,
-                _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,
-                        _______,_______,_______,_______,_______,
-        _______,_______,
-        _______,
-        _______,_______,_______
-    ),
-
 };
-
-const uint16_t PROGMEM fn_actions[] = {
-  // Tap for backspace, hold for LOWER
-  [0] = ACTION_LAYER_TAP_KEY(SPACEFN, KC_SPC),
-
-  // Tap for backspace, hold for LOWER
-  [1] = ACTION_LAYER_TAP_KEY(LOWER, KC_BSPC),
-
-  // Tap for enter, hold for RAISE
-  [2] = ACTION_LAYER_TAP_KEY(UPPER, KC_ENT),
-
-  // Hold for layout mirror swap hands
-  [3] = ACTION_SWAP_HANDS_TAP_KEY(KC_A),
-  [4] = ACTION_SWAP_HANDS_TAP_KEY(KC_G),
-  [5] = ACTION_SWAP_HANDS_TAP_KEY(KC_H),
-  [6] = ACTION_SWAP_HANDS_TAP_KEY(KC_QUOT)
-};
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [SFT_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
-  [MPLY_MUTE] = ACTION_TAP_DANCE_DOUBLE(KC_MPLY, KC_MUTE)
-};
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
-  // MACRODOWN only works in this function
-  switch(id) {
-    case M_UN:
-      if (record->event.pressed) {
-        SEND_STRING("r2d2rogers");
-      }
-      break;
-    case M_VN:
-      if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-      }
-      break;
-    case M_RE:
-      if (record->event.pressed) { // For resetting EEPROM
-        eeconfig_init();
-      }
-      break;
-  }
-  return MACRO_NONE;
-};
-
-void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
-        //printf("action_function() called\n");
-}
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case RGB_SLD:
-      if (record->event.pressed) {
-        #ifdef RGBLIGHT_ENABLE
-          rgblight_mode(1);
-        #endif
-      }
-      return false;
-      break;
-  }
   return true;
 }
 
@@ -442,7 +327,6 @@ void matrix_init_keymap(void) {
     //debug_keyboard=true;
 
     //start_keyframe_animation(&led_test_animation);
-    //start_keyframe_animation(&led_short_test_animation);
 };
 
 // Runs constantly in the background, in a loop.

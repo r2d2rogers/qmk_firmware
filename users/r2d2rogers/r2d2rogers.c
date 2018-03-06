@@ -110,7 +110,6 @@ void led_set_user(uint8_t usb_led) {
 }
 
 
-
 // Defines actions tor my global custom keycodes. Defined in r2d2rogers.h file
 // Then runs the _keymap's recod handier if not processed here
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
