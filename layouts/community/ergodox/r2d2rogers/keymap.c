@@ -1,9 +1,5 @@
 #include QMK_KEYBOARD_H
 #include "r2d2rogers.h"
-#include "debug.h"
-#include "action_layer.h"
-#include "action_util.h"
-#include "version.h"
 
 //#define BASE 0 // default layer
 //#define UPPER 1 // keyboard raise layer
@@ -43,25 +39,88 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_QWERTY] = LAYOUT_ergodox_wrapper(  // layer 0 : default
         // left hand
-        KC_GRV, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,
-        KC_TAB, _________________QWERTY_L1_________________, KC_LBRC,
-        KC_ESCC,_________________QWERTY_L2_________________,
-        KC_LSFT,_________________QWERTY_L3_________________, ADJUST,
-        KC_LGUI,___________ERGODOX_BOTTOM_LEFT_____________,
-                                                   KC_LCTL,  KC_LALT,
-                                                             KC_HOME,
-                                          KC_SPC,  LOWER,    KC_END,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,
+        KC_TAB,  _________________QWERTY_L1_________________, KC_LBRC,
+        KC_ESCC, _________________QWERTY_L2_________________,
+        KC_LSFT, _________________QWERTY_L3_________________, ADJUST,
+        KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,
+                                                     KC_LCTL, KC_LALT,
+                                                              KC_HOME,
+                                            KC_SPC,  LOWER,   KC_END,
         // right hand
-        TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_MINS,
-        KC_RBRC, _________________QWERTY_R1_________________,KC_BSLS,
-                 _________________QWERTY_R2_________________,KC_QUOT,
-        ADJUST,  _________________QWERTY_R3_________________,KC_RSFT,
-                 ___________ERGODOX_BOTTOM_RIGHT____________,KC_RGUI,
-        KC_RALT,KC_RCTL,
+        TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_RBRC, _________________QWERTY_R1_________________, KC_BSLS,
+                 _________________QWERTY_R2_________________, KC_QUOT,
+        ADJUST,  _________________QWERTY_R3_________________, KC_RSFT,
+                 ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
+        KC_RALT, KC_RCTL,
         KC_PGUP,
         KC_PGDN, RAISE,   SPACEFN
     ),
-   
+
+    [_COLEMAK] = LAYOUT_ergodox_wrapper(  // layer 0 : default
+        // left hand
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,
+        KC_TAB,  _________________QWERTY_L1_________________, KC_LBRC,
+        KC_ESCC, _________________QWERTY_L2_________________,
+        KC_LSFT, _________________QWERTY_L3_________________, ADJUST,
+        KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,
+                                                     KC_LCTL, KC_LALT,
+                                                              KC_HOME,
+                                            KC_SPC,  LOWER,   KC_END,
+        // right hand
+        TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_RBRC, _________________QWERTY_R1_________________, KC_BSLS,
+                 _________________QWERTY_R2_________________, KC_QUOT,
+        ADJUST,  _________________QWERTY_R3_________________, KC_RSFT,
+                 ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
+        KC_RALT, KC_RCTL,
+        KC_PGUP,
+        KC_PGDN, RAISE,   SPACEFN
+    ),
+
+    [_DVORAK] = LAYOUT_ergodox_wrapper(  // layer 0 : default
+        // left hand
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,
+        KC_TAB,  _________________QWERTY_L1_________________, KC_LBRC,
+        KC_ESCC, _________________QWERTY_L2_________________,
+        KC_LSFT, _________________QWERTY_L3_________________, ADJUST,
+        KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,
+                                                     KC_LCTL, KC_LALT,
+                                                              KC_HOME,
+                                            KC_SPC,  LOWER,   KC_END,
+        // right hand
+        TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_RBRC, _________________QWERTY_R1_________________, KC_BSLS,
+                 _________________QWERTY_R2_________________, KC_QUOT,
+        ADJUST,  _________________QWERTY_R3_________________, KC_RSFT,
+                 ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
+        KC_RALT, KC_RCTL,
+        KC_PGUP,
+        KC_PGDN, RAISE,   SPACEFN
+    ),
+
+    [_WORKMAN] = LAYOUT_ergodox_wrapper(  // layer 0 : default
+        // left hand
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,
+        KC_TAB,  _________________QWERTY_L1_________________, KC_LBRC,
+        KC_ESCC, _________________QWERTY_L2_________________,
+        KC_LSFT, _________________QWERTY_L3_________________, ADJUST,
+        KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,
+                                                     KC_LCTL, KC_LALT,
+                                                              KC_HOME,
+                                            KC_SPC,  LOWER,   KC_END,
+        // right hand
+        TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_RBRC, _________________QWERTY_R1_________________, KC_BSLS,
+                 _________________QWERTY_R2_________________, KC_QUOT,
+        ADJUST,  _________________QWERTY_R3_________________, KC_RSFT,
+                 ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
+        KC_RALT, KC_RCTL,
+        KC_PGUP,
+        KC_PGDN, RAISE,   SPACEFN
+    ),
+
 /* Keymap 1: Keyboard Upper Layer
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
@@ -85,23 +144,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_RAISE] = LAYOUT_ergodox_wrapper(  // layer 1 : Keymap Template
         // left hand
-        _______,_______,_______,_______,_______,_______,_______,
-        KC_GRV ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,KC_5   ,_______,  
-        _______,KC_4   ,KC_5   ,KC_6   ,KC_DOT ,_______,
-        _______,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______,_______,
-        _______,KC_HYPR,_______,_______,_______,
-                                                _______,_______,
-                                                        _______,
-                                        _______,_______,_______,
+        _______, _______, _______, _______, _______, _______, _______,
+        KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , _______,
+        _______, KC_4   , KC_5   , KC_6   , KC_DOT , _______,
+        _______, KC_7   , KC_8   , KC_9   , KC_0   , _______, _______,
+        _______, KC_HYPR, _______, _______, _______,
+                                                     _______, _______,
+                                                              _______,
+                                            _______, _______, _______,
         // right hand
-        _______,_______,_______,_______,_______,_______,_______,
-        _______,KC_6   ,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______,
-                _______,KC_MINS,KC_EQL ,KC_LBRC,KC_RBRC,KC_BSLS,
-        _______,_______,_______,_______,KC_DOT ,_______,_______,
-                        _______,KC_MPLY,KC_VOLD, KC_VOLU, KC_MFFD,
-        _______,_______,
+        _______, _______, _______, _______, _______, _______, _______,
+        _______, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , _______,
+                 _______, KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS,
+        _______, _______, _______, _______, KC_DOT , _______, _______,
+                          _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MFFD,
+        _______, _______,
         _______,
-        _______,_______,_______
+        _______, _______, _______
     ),
 
 /* Keymap 2: Keyboard Lower Layer
@@ -140,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______,
                 KC_F11 ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE,
         _______,KC_F12 ,_______,_______,_______,_______,_______,
-                        _______,KC_HOME,KC_PGDN,KC_PGUP,KC_END , 
+                        _______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,
         _______,_______,
         _______,
         _______,_______,_______
@@ -221,7 +280,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         _______,_______,_______,
         // right hand
         KC_F12, KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, BL_TOGG,
-        _______,KC_F16, KC_F17, KC_F18, KC_F19, KC_F20, BL_INC, 
+        _______,KC_F16, KC_F17, KC_F18, KC_F19, KC_F20, BL_INC,
                 _______,KC_MPRV,KC_MPLY,KC_MNXT,_______,BL_DEC,
         _______,_______,KC_MUTE,KC_VOLD,KC_VOLU,_______,BL_STEP,
                         _______,_______,_______,_______,UTIL,
@@ -263,7 +322,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                         _______,_______,_______,
         // right hand
         _______,KC_CALC,KC_NLCK,KC_PSLS,KC_PAST,KC_PMNS,KC_BSPC,
-        _______,XXXXXXX,KC_P7,  KC_P8,  KC_P9,  KC_PPLS,KC_TAB, 
+        _______,XXXXXXX,KC_P7,  KC_P8,  KC_P9,  KC_PPLS,KC_TAB,
                 XXXXXXX,KC_P4,  KC_P5,  KC_P6,  KC_PPLS,KC_PENT,
         _______,XXXXXXX,KC_P1,  KC_P2,  KC_P3,  KC_PENT,KC_PENT,
                         KC_P0,  KC_P0,  KC_PDOT,KC_PENT,KC_PENT,
