@@ -105,7 +105,8 @@ enum {
 // arguments, we need a wrapper in order for these definitions to be
 // expanded before being used as arguments to the LAYOUT_xxx macro.
 #define LAYOUT_ergodox_wrapper(...)   LAYOUT_ergodox(__VA_ARGS__)
-#define KEYMAP_wrapper(...)           KEYMAP(__VA_ARGS__)
+#define KEYMAP_wrapper(...)           LAYOUT(__VA_ARGS__)
+#define LAYOUT_wrapper(...)           LAYOUT(__VA_ARGS__)
 
 // Blocks for each of the four major keyboard layouts
 // Organized so we can quickly adapt and modify all of them
