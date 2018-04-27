@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_QWERTY] =  LAYOUT_wrapper(
         KC_TAB,  _________________QWERTY_L1_________________,      _________________QWERTY_R1_________________, KC_BSLS,
-        KC_ESCC, _________________QWERTY_L2_________________,      _________________QWERTY_R2_________________, KC_QUOT,
+        KC_ESCC, _________________QWERTY_L2_________________,      _________________QWERTY_R2_________________, SH_T(KC_QUOT),
         KC_LSFT, _________________QWERTY_L3_________________,      _________________QWERTY_R3_________________, RSFTENT,
                  ___________GENERAL_BOTTOM_LEFT_____________,      ___________GENERAL_BOTTOM_RIGHT____________        ),
 

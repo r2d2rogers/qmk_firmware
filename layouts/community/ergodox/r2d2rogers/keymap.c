@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         // right hand
         TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
         KC_RBRC, _________________QWERTY_R1_________________, KC_BSLS,
-                 _________________QWERTY_R2_________________, KC_QUOT,
+                 _________________QWERTY_R2_________________, SH_T(KC_QUOT),
         ADJUST,  _________________QWERTY_R3_________________, KC_RSFT,
                  ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
         KC_RALT, KC_RCTL,
