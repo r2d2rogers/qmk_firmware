@@ -89,7 +89,7 @@ enum userspace_custom_keycodes {
 #define ADJUST MO(_ADJUST)
 #define TKEY TT(_TKEY)
 #define UTIL OSL(_UTIL)
-#define RSFTENT MT(KC_RSFT, KC_ENT)
+#define RSFTENT MT(MOD_RSFT, KC_ENT)
 #define GUIRGHT MT(MOD_RGUI, KC_RGHT)
 
 #ifdef TAP_DANCE_ENABLE
