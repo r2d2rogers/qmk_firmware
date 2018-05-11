@@ -11,6 +11,7 @@ MOUSEKEY_ENABLE  = no  # Mouse keys(+4700)
 TAP_DANCE_ENABLE = no
 POINTING_DEVICE_ENABLE = no
 USE_I2C          = yes
+RGB_MATRIX_ENABLE= yes
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile

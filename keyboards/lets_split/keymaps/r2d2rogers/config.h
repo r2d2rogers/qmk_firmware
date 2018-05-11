@@ -45,5 +45,17 @@
 #define C6_AUDIO
 #endif
 
+#ifdef RGB_MATRIX_ENABLE
+
+#define DRIVER_ADDR_1 0b1110100
+
+#define DRIVER_COUNT 1
+#define DRIVER_1_LED_TOTAL 18
+#define DRIVER_2_LED_TOTAL 0
+
+#define DRIVER_LED_TOTAL DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL
+
+#endif
+
 #endif
 
