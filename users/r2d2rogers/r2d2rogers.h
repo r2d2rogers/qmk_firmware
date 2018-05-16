@@ -74,10 +74,6 @@ enum userspace_custom_keycodes {
         EPRM,
         USER,
         VRSN,
-        KC_SW_A,
-        KC_SW_G,
-        KC_SW_H,
-        KC_SW_QT,
         KC_RGB_T,
         NEW_SAFE_RANGE // use "NEWPLACEHOLDER" for keymap specific codes
 };
@@ -91,6 +87,11 @@ enum userspace_custom_keycodes {
 #define UTIL OSL(_UTIL)
 #define RSFTENT MT(MOD_RSFT, KC_ENT)
 #define GUIRGHT MT(MOD_RGUI, KC_RGHT)
+#define KC_S1 KC_SECRET_1
+#define KC_S2 KC_SECRET_2
+#define KC_S3 KC_SECRET_3
+#define KC_S4 KC_SECRET_4
+#define KC_S5 KC_SECRET_5
 
 #ifdef TAP_DANCE_ENABLE
 enum {

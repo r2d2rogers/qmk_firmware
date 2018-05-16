@@ -81,24 +81,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT(
         KC_TILD, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC,      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
        TG(TKEY), KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,      KC_F11 , KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-      TG(MUSIC), KC_F7  , KC_F7  , KC_F8  , KC_F9  , KC_F10 ,      KC_F12 , _______, _______, _______, _______, _______,
+      TG(MUSIC), KC_F7  , KC_F7  , KC_F8  , KC_F9  , KC_F10 ,      KC_F12 , KC_S1  , KC_S2  , KC_S3  , KC_S4  , KC_S5  ,
         _______, KC_HYPR, _______, _______, _______, _______,      _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END),
 
     /* Layer 3: _SPACEFN
      * ------------------------------------------------------     ------------------------------------------------------
-     * |       ||       ||MsRtClk||MsMdClk||MsLtClk|| UNAME |     |ScrollL||ScrollD||ScrollU||ScrollR||       || DELETE|
+     * | CLEAR ||       ||MsRtClk||MsMdClk||MsLtClk|| UNAME |     |ScrollL||ScrollD||ScrollU||ScrollR||       || DELETE|
      * ------------------------------------------------------     ------------------------------------------------------
-     * |       ||       ||MseLeft|| MseUp ||MseDown||MseRght|     |  LEFT ||  DOWN ||  UP   || RIGHT ||       ||       |
+     * |VERSION||       ||MseLeft|| MseUp ||MseDown||MseRght|     |  LEFT ||  DOWN ||  UP   || RIGHT ||       ||       |
      * ------------------------------------------------------     ------------------------------------------------------
      * | RESET ||       ||ScrollL||ScrollU||ScrollD||ScrollR|     |  HOME ||  PGDN ||  PGUP ||  END  ||       || RESET |
      * ------------------------------------------------------     ------------------------------------------------------
-     * |       ||       ||       ||       ||       ||       |     |       ||       ||       ||       ||       || MAKE  |
+     * | MAKE  ||       ||       ||       ||       ||       |     |       ||       ||       ||       ||       || MAKE  |
      * ------------------------------------------------------     ------------------------------------------------------
      */
 
     [_SPACEFN] = LAYOUT(
-        _______, _______, KC_BTN2, KC_BTN3, KC_BTN1, USER   ,      KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, KC_DEL ,
-        _______, _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,      KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
+        EPRM   , _______, KC_BTN2, KC_BTN3, KC_BTN1, USER   ,      KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, KC_DEL ,
+        VRSN   , _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,      KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
         RESET  , _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R,      KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, RESET  ,
         KC_MAKE, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, KC_MAKE),
 

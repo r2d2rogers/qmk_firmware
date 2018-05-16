@@ -248,7 +248,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         rgblight_set_goldenrod;
       }
       else {
-        rgblight_set_teal;
+        rgblight_set_blue;
       }
       break;
     }
