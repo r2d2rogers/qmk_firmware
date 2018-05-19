@@ -43,6 +43,7 @@
 #ifdef AUDIO_ENABLE
 //#define B5_AUDIO
 #define C6_AUDIO
+#define NO_MUSIC_MODE
 #endif
 
 #ifdef RGB_MATRIX_ENABLE

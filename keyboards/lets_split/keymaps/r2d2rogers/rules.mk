@@ -10,8 +10,8 @@ MOUSEKEY_ENABLE  = no  # Mouse keys(+4700)
 POINTING_DEVICE_ENABLE = no
 TAP_DANCE_ENABLE = no
 USE_I2C          = yes
-RGBLIGHT_ENABLE  = no # Enable WS2812 RGB underlight.
-RGB_MATRIX_ENABLE= yes
+RGBLIGHT_ENABLE  = no  # Enable WS2812 RGB underlight.
+RGB_MATRIX_ENABLE= no
 
 ifndef QUANTUM_DIR
 	include ../../../../Makefile
