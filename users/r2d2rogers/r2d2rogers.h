@@ -159,7 +159,7 @@ enum {
 #define ___________ERGODOX_BOTTOM_LEFT_____________        KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
 #define ___________ERGODOX_BOTTOM_RIGHT____________        KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
-#define ___________GENERAL_BOTTOM_LEFT_____________        ADJUST,  KC_MEH,  KC_LALT, KC_LGUI, SPACEFN, LOWER
+#define ___________GENERAL_BOTTOM_LEFT_____________        KC_LGUI,  KC_MEH,  KC_LALT, KC_INS, SPACEFN, LOWER
 #define ___________GENERAL_BOTTOM_RIGHT____________        RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
 
 #endif

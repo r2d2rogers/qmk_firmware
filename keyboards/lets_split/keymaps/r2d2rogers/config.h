@@ -4,7 +4,7 @@
 #include QMK_KEYBOARD_CONFIG_H
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 150
+#define TAPPING_TERM 170
 
 /* Use I2C or Serial, not both */
 
