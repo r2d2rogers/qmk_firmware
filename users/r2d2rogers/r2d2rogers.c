@@ -1,8 +1,18 @@
 #include "r2d2rogers.h"
 #include "version.h"
 
+/*
+ * Macros, Tapdance,
+ * Username short cut
+ * make command, shift for make and flash
+ * Layers, names purpose?
+ * sounds
+ * lights
+ * joystick
+ *
+ */
 
-#if __has_include("secrets.h")
+#if (__has_include("secrets.h") && !defined(NO_SECRETS))
 #include "secrets.h"
 #else
 // `PROGMEM const char secret[][x]` may work better, but it takes up more space in the firmware
@@ -16,17 +26,39 @@ PROGMEM const char secret[][64] = {
 };
 #endif
 
-/* IDEAS
- *
- * Macros, Tapdance,
- * Username short cut
- * make command, shift for make and flash
- * Layers, names purpose?
- * sounds
- * lights
- * joystick
- *
- */
+
+float tone_copy[][2]            = SONG(SCROLL_LOCK_ON_SOUND);
+float tone_paste[][2]           = SONG(SCROLL_LOCK_OFF_SOUND);
+
+
+userspace_config_t userspace_config;
+
+//  Helper Functions
+void tap(uint16_t keycode){ register_code(keycode); unregister_code(keycode); };
+
+#ifdef RGBLIGHT_ENABLE
+void rgblight_sethsv_default_helper(uint8_t index) {
+  uint8_t default_layer = eeconfig_read_default_layer();
+  if (default_layer & (1UL << _COLEMAK)) {
+    rgblight_sethsv_at(300, 255, 255, index);
+    rgblight_sethsv_at(300, 255, 255, index);
+  }
+  else if (default_layer & (1UL << _DVORAK)) {
+    rgblight_sethsv_at(120, 255, 255, index);
+    rgblight_sethsv_at(120, 255, 255, index);
+  }
+  else if (default_layer & (1UL << _WORKMAN)) {
+    rgblight_sethsv_at(43, 255, 255, index);
+    rgblight_sethsv_at(43, 255, 255, index);
+  }
+  else {
+    rgblight_sethsv_at(180, 255, 255, index);
+    rgblight_sethsv_at(180, 255, 255, index);
+  }
+}
+#endif // RGBLIGHT_ENABLE
+
+
 
 // Add reconfigurable functions here, for keymap customization
 // This allows for a global, userspace functions, and continued
@@ -42,6 +74,7 @@ __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
+
 __attribute__ ((weak))
 uint32_t layer_state_set_keymap (uint32_t state) {
   return state;
@@ -49,168 +82,157 @@ uint32_t layer_state_set_keymap (uint32_t state) {
 
 __attribute__ ((weak))
 void led_set_keymap(uint8_t usb_led) {}
-#ifdef RGBLIGHT_ENABLE
-bool rgb_layer_change = true;
-#endif
+
 
 // Call user matrix init, set default RGB colors and then
 // call the keymap's init function
 void matrix_init_user(void) {
-#ifdef RGBLIGHT_ENABLE
   uint8_t default_layer = eeconfig_read_default_layer();
+  userspace_config.raw = eeprom_read_byte(EECONFIG_USERSPACE);
 
-  rgblight_enable();
+#ifdef BOOTLOADER_CATERINA
+  DDRD &= ~(1<<5);
+  PORTD &= ~(1<<5);
 
-  if (true) {
-    if (default_layer & (1UL << _COLEMAK)) {
-      rgblight_set_magenta;
-    }
-    else if (default_layer & (1UL << _DVORAK)) {
-      rgblight_set_green;
-    }
-    else if (default_layer & (1UL << _WORKMAN)) {
-      rgblight_set_purple;
-    }
-    else {
-      rgblight_set_teal;
-    }
-  }
-  else
-  {
-    rgblight_set_red;
-    rgblight_mode(5);
-  }
+  DDRB &= ~(1<<0);
+  PORTB &= ~(1<<0);
 #endif
-  matrix_init_keymap();
-}
 
-// No global matrix scan code, so just run keymap's matix
+  if (userspace_config.rgb_layer_change) {
+#ifdef RGBLIGHT_ENABLE
+    rgblight_enable();
+#endif // RGBLIGHT_ENABLE
+    if (default_layer & (1UL << _COLEMAK)) {
+  #ifdef RGBLIGHT_ENABLE
+      rgblight_sethsv_magenta();
+  #endif // RGBLIGHT_ENABLE
+    } else if (default_layer & (1UL << _DVORAK)) {
+  #ifdef RGBLIGHT_ENABLE
+      rgblight_sethsv_green();
+  #endif // RGBLIGHT_ENABLE
+    } else if (default_layer & (1UL << _WORKMAN)) {
+  #ifdef RGBLIGHT_ENABLE
+      rgblight_sethsv_goldenrod();
+  #endif // RGBLIGHT_ENABLE
+    } else {
+  #ifdef RGBLIGHT_ENABLE
+      rgblight_sethsv_teal();
+  #endif // RGBLIGHT_ENABLE
+    }
+  }
+
+}
+// No global matrix scan code, so just run keymap's matrix
 // scan function
 void matrix_scan_user(void) {
+
   matrix_scan_keymap();
 }
 
-#ifdef AUDIO_ENABLE
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
-float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
-float tone_workman[][2]    = SONG(PLOVER_SOUND);
-#endif
-
-
-void persistent_default_layer_set(uint16_t default_layer) {
-  eeconfig_update_default_layer(default_layer);
-  default_layer_set(default_layer);
-}
-
-void led_set_user(uint8_t usb_led) {
-  led_set_keymap(usb_led);
-}
 
 
 // Defines actions tor my global custom keycodes. Defined in r2d2rogers.h file
 // Then runs the _keymap's recod handier if not processed here
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  
+
+  // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
   xprintf("KL: row: %u, column: %u, pressed: %u\n", record->event.key.col, record->event.key.row, record->event.pressed);
-#endif
+#endif //CONSOLE_ENABLE
+
 
   switch (keycode) {
   case KC_QWERTY:
     if (record->event.pressed) {
-#ifdef AUDIO_ENABLE
-      PLAY_SONG(tone_qwerty);
-#endif
-      persistent_default_layer_set(1UL << _QWERTY);
+      set_single_persistent_default_layer(_QWERTY);
     }
     return false;
     break;
   case KC_COLEMAK:
     if (record->event.pressed) {
-#ifdef AUDIO_ENABLE
-      PLAY_SONG(tone_colemak);
-#endif
-      persistent_default_layer_set(1UL << _COLEMAK);
+      set_single_persistent_default_layer(_COLEMAK);
     }
     return false;
     break;
   case KC_DVORAK:
     if (record->event.pressed) {
-#ifdef AUDIO_ENABLE
-      PLAY_SONG(tone_dvorak);
-#endif
-      persistent_default_layer_set(1UL << _DVORAK);
+      set_single_persistent_default_layer(_DVORAK);
     }
     return false;
     break;
   case KC_WORKMAN:
     if (record->event.pressed) {
-#ifdef AUDIO_ENABLE
-      PLAY_SONG(tone_workman);
-#endif
-      persistent_default_layer_set(1UL << _WORKMAN);
+      set_single_persistent_default_layer(_WORKMAN);
     }
     return false;
     break;
-  case KC_MAKE:
+
+
+  case KC_MAKE:  // Compiles the firmware, and adds the flash command based on keyboard bootloader
     if (!record->event.pressed) {
       SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP
 #if  (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
-       ":dfu"
+                   ":dfu"
 #elif defined(BOOTLOADER_HALFKAY)
-      ":teensy"
-//#elif defined(BOOTLOADER_CATERINA)
-//       ":avrdude"
-#endif
-        SS_TAP(X_ENTER));
+                   ":teensy"
+#elif defined(BOOTLOADER_CATERINA)
+                   ":avrdude"
+#endif // bootloader options
+                   SS_TAP(X_ENTER));
     }
     return false;
     break;
-  case KC_RESET:
+
+
+  case KC_RESET: // Custom RESET code that sets RGBLights to RED
     if (!record->event.pressed) {
 #ifdef RGBLIGHT_ENABLE
       rgblight_enable();
       rgblight_mode(1);
-      rgblight_setrgb(0xff, 0x00, 0x00);
-#endif
+      rgblight_setrgb_red();
+#endif // RGBLIGHT_ENABLE
       reset_keyboard();
     }
     return false;
     break;
-  case EPRM:
+
+
+  case EPRM: // Resets EEPROM
     if (record->event.pressed) {
       eeconfig_init();
     }
     return false;
     break;
-  case VRSN:
+  case VRSN: // Prints firmware version
     if (record->event.pressed) {
-      SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+      SEND_STRING(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE);
     }
     return false;
     break;
-  case USER:
-    if (record->event.pressed) {
-      SEND_STRING("r2d2rogers");
-    }
-    return false;
-    break;
-  case KC_SECRET_1 ... KC_SECRET_5:
+
+
+  case KC_SECRET_1 ... KC_SECRET_5: // Secrets!  Externally defined strings, not stored in repo
     if (!record->event.pressed) {
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       send_string_P(secret[keycode - KC_SECRET_1]);
-    }
+      }
     return false;
-    break;
+     break;
+
+
+    case USER:
+      if (record->event.pressed) {
+        SEND_STRING(QMK_KEYBOARD);
+      }
+      return false;
+      break;
 #ifdef RGBLIGHT_ENABLE
-  case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT: // quantum_keycodes.h L400 for definitions
-    if (record->event.pressed) { //This disrables layer indication, as it's assumed that if you're changing this ... you want that disabled
-      rgb_layer_change = false;
-    }
-    return true;
-    break;
-#endif
-#ifdef TAP_DANCE_ENABLE
+   case RGB_MODE_FORWARD ... RGB_MODE_GRADIENT: // quantum_keycodes.h L400 for definitions
+      if (record->event.pressed) { //This disables layer indication, as it's assumed that if you're changing this ... you want that disabled
+        userspace_config.rgb_layer_change = false;
+        eeprom_update_byte(EECONFIG_USERSPACE, userspace_config.raw);
+      }
+      return true; break;
 #endif
   }
   return process_record_keymap(keycode, record);
@@ -220,39 +242,75 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // on layer change, no matter where the change was initiated
 // Then runs keymap's layer change check
 uint32_t layer_state_set_user(uint32_t state) {
-  state = update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
-#ifdef RGBLIGHT_ENABLE
   uint8_t default_layer = eeconfig_read_default_layer();
-  if (rgb_layer_change) {
-    switch (biton32(state)) {
+  state = update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
+
+  switch (biton32(state)) {
     case _RAISE:
-      rgblight_set_yellow;
-      rgblight_mode(5);
+#ifdef RGBLIGHT_ENABLE
+      if (userspace_config.rgb_layer_change) {
+        rgblight_sethsv_yellow();
+        rgblight_mode(5);
+      }
+#endif // RGBLIGHT_ENABLE
+
       break;
     case _LOWER:
-      rgblight_set_orange;
-      rgblight_mode(5);
+#ifdef RGBLIGHT_ENABLE
+      if (userspace_config.rgb_layer_change) {
+        rgblight_sethsv_orange();
+        rgblight_mode(5);
+      }
+#endif // RGBLIGHT_ENABLE
+
       break;
     case _ADJUST:
-      rgblight_set_red;
-      rgblight_mode(23);
+#ifdef RGBLIGHT_ENABLE
+      if (userspace_config.rgb_layer_change) {
+        rgblight_sethsv_red();
+        rgblight_mode(23);
+      }
+#endif // RGBLIGHT_ENABLE
+
       break;
-    default:
+    default: //  for any other layers, or the default layer
       if (default_layer & (1UL << _COLEMAK)) {
-        rgblight_set_magenta;
+#ifdef RGBLIGHT_ENABLE
+        if (userspace_config.rgb_layer_change) { rgblight_sethsv_magenta(); }
+#endif // RGBLIGHT_ENABLE
+
       }
       else if (default_layer & (1UL << _DVORAK)) {
-        rgblight_set_green;
+#ifdef RGBLIGHT_ENABLE
+        if (userspace_config.rgb_layer_change) { rgblight_sethsv_green(); }
+#endif // RGBLIGHT_ENABLE
+
       }
       else if (default_layer & (1UL << _WORKMAN)) {
-        rgblight_set_goldenrod;
+#ifdef RGBLIGHT_ENABLE
+        if (userspace_config.rgb_layer_change) { rgblight_sethsv_goldenrod(); }
+#endif // RGBLIGHT_ENABLE
+
       }
       else {
-        rgblight_set_blue;
+#ifdef RGBLIGHT_ENABLE
+        if (userspace_config.rgb_layer_change) { rgblight_sethsv_teal(); }
+#endif // RGBLIGHT_ENABLE
+
       }
+#ifdef RGBLIGHT_ENABLE
+      if (userspace_config.rgb_layer_change) { rgblight_mode(1); }
+#endif // RGBLIGHT_ENABLE
+
       break;
-    }
   }
-#endif
   return layer_state_set_keymap (state);
+}
+
+
+// Any custom LED code goes here.
+// So far, I only have keyboard specific code,
+// So nothing goes here.
+void led_set_user(uint8_t usb_led) {
+  led_set_keymap(usb_led);
 }

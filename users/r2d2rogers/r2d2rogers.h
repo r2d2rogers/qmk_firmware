@@ -3,95 +3,89 @@
 
 #include "quantum.h"
 
-// Layers
-enum layers {
-_QWERTY = 0,
-_COLEMAK,
-_DVORAK,
-_WORKMAN,
-_RAISE,
-_LOWER,
-_SPACEFN,
-_ADJUST,
-_TKEY,
-_UTIL,
-_MUSIC,
+// Define layer names
+enum userspace_layers {
+  _QWERTY = 0,
+  _TKEY,
+  _COLEMAK,
+  _DVORAK,
+  _WORKMAN,
+  _SPACEFN,
+  _UTIL,
+  _MUSIC,
+  _LOWER,
+  _RAISE,
+  _ADJUST,
 };
 
-#ifndef RGBLIGHT_ANIMATIONS // add "EXTRA_FLADS=-DDRASHNA_SETRGB" to enable this ... but don't
-#define rgblight_set_blue        rgblight_setrgb (0x00, 0x00, 0xFF);
-#define rgblight_set_red         rgblight_setrgb (0xFF, 0x00, 0x00);
-#define rgblight_set_green       rgblight_setrgb (0x00, 0xFF, 0x00);
-#define rgblight_set_orange      rgblight_setrgb (0xFF, 0x80, 0x00);
-#define rgblight_set_teal        rgblight_setrgb (0x00, 0xFF, 0xFF);
-#define rgblight_set_magenta     rgblight_setrgb (0xFF, 0x00, 0xFF);
-#define rgblight_set_yellow      rgblight_setrgb (0xFF, 0xFF, 0x00);
-#define rgblight_set_purple      rgblight_setrgb (0x7A, 0x00, 0xFF);
-#define rgblight_set_white       rgblight_setrgb (0xFF, 0xFF, 0xFF);
-#else
-#define rgblight_set_white       rgblight_sethsv (   0, 0x00,  255);
-#define rgblight_set_red         rgblight_sethsv (   0,  255,  255);
-#define rgblight_set_coral       rgblight_sethsv (  16,  176,  255);
-#define rgblight_set_orange      rgblight_sethsv (  39,  255,  255);
-#define rgblight_set_goldenrod   rgblight_sethsv (  43,  218,  218);
-#define rgblight_set_gold        rgblight_sethsv (  51,  255,  255);
-#define rgblight_set_yellow      rgblight_sethsv (  60,  255,  255);
-#define rgblight_set_chartreuse  rgblight_sethsv (  90,  255,  255);
-#define rgblight_set_green       rgblight_sethsv ( 120,  255,  255);
-#define rgblight_set_springgreen rgblight_sethsv ( 150,  255,  255);
-#define rgblight_set_turquoise   rgblight_sethsv ( 174,   90,  112);
-#define rgblight_set_teal        rgblight_sethsv ( 180,  255,  128);
-#define rgblight_set_cyan        rgblight_sethsv ( 180,  255,  255);
-#define rgblight_set_azure       rgblight_sethsv ( 186,  102,  255);
-#define rgblight_set_blue        rgblight_sethsv ( 240,  255,  255);
-#define rgblight_set_purple      rgblight_sethsv ( 270,  255,  255);
-#define rgblight_set_magenta     rgblight_sethsv ( 300,  255,  255);
-#define rgblight_set_pink        rgblight_sethsv ( 330,  128,  255);
+//define modifiers
+#define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+#define MODS_CTRL_MASK  (MOD_BIT(KC_LCTL)|MOD_BIT(KC_RCTRL))
+#define MODS_ALT_MASK  (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
+#define MODS_GUI_MASK  (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
 
-//#define rgblight_set_        rgblight_sethsv (0, 255, 255);
-#endif // DRASHNA_SETRGB
+// RGB color codes are no longer located here anymore.  Instead, you will want to
+// head to https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight_list.h
 
-extern bool rgb_layer_change;
+extern bool clicky_enable;
+
+#ifdef RGBLIGHT_ENABLE
+void rgblight_sethsv_default_helper(uint8_t index);
+#endif // RGBLIGHT_ENABLE
+
+#define EECONFIG_USERSPACE (uint8_t *)20
+
+typedef union {
+  uint8_t raw;
+  struct {
+    bool     clicky_enable    :1;
+    bool     rgb_layer_change :1;
+    bool     is_overwatch     :1;
+  };
+} userspace_config_t;
 
 enum userspace_custom_keycodes {
-        KC_QWERTY = SAFE_RANGE, // can always be here
-        KC_COLEMAK,
-        KC_DVORAK,
-        KC_WORKMAN,
-        //LOWER,
-        //RAISE,
-        //ADJUST,
-        //SPACEFN,
-        MUSIC,
-        TKEY,
-        KC_MAKE,
-        KC_RESET,
-        KC_SECRET_1,
-        KC_SECRET_2,
-        KC_SECRET_3,
-        KC_SECRET_4,
-        KC_SECRET_5,
-        EPRM,
-        USER,
-        VRSN,
-        KC_RGB_T,
-        NEW_SAFE_RANGE // use "NEWPLACEHOLDER" for keymap specific codes
+  EPRM = SAFE_RANGE, // can always be here
+  VRSN,
+  KC_QWERTY,
+  KC_COLEMAK,
+  KC_DVORAK,
+  KC_WORKMAN,
+  MUSIC,
+  KC_MAKE,
+  KC_RESET,
+  KC_RGB_T,
+  KC_SECRET_1,
+  KC_SECRET_2,
+  KC_SECRET_3,
+  KC_SECRET_4,
+  KC_SECRET_5,
+  USER,
+  NEW_SAFE_RANGE // use "NEWPLACEHOLDER" for keymap specific codes
 };
 
-#define KC_ESCC MT(MOD_LCTL, KC_ESC)
-#define SPACEFN LT(_SPACEFN, KC_SPC)
-#define RAISE LT(_RAISE, KC_ENT)
 #define LOWER LT(_LOWER, KC_BSPC)
+#define RAISE LT(_RAISE, KC_ENT)
 #define ADJUST MO(_ADJUST)
-#define TKEY TT(_TKEY)
-#define UTIL OSL(_UTIL)
-#define RSFTENT MT(MOD_RSFT, KC_ENT)
-#define GUIRGHT MT(MOD_RGUI, KC_RGHT)
+
+
 #define KC_S1 KC_SECRET_1
 #define KC_S2 KC_SECRET_2
 #define KC_S3 KC_SECRET_3
 #define KC_S4 KC_SECRET_4
 #define KC_S5 KC_SECRET_5
+
+#define TKEY TT(_TKEY)
+#define UTIL OSL(_UTIL)
+#define RSFTENT MT(MOD_RSFT, KC_ENT)
+#define GUIRGHT MT(MOD_RGUI, KC_RGHT)
+#define KC_ESCC MT(MOD_LCTL, KC_ESC)
+#define SPACEFN LT(_SPACEFN, KC_SPC)
+
+#define QWERTY KC_QWERTY
+#define DVORAK KC_DVORAK
+#define COLEMAK KC_COLEMAK
+#define WORKMAN KC_WORKMAN
 
 #ifdef TAP_DANCE_ENABLE
 enum {
@@ -105,15 +99,25 @@ enum {
 // Since our quirky block definitions are basically a list of comma separated
 // arguments, we need a wrapper in order for these definitions to be
 // expanded before being used as arguments to the LAYOUT_xxx macro.
-#define LAYOUT_ergodox_wrapper(...)   LAYOUT_ergodox(__VA_ARGS__)
-#define KEYMAP_wrapper(...)           LAYOUT(__VA_ARGS__)
-#define LAYOUT_wrapper(...)           LAYOUT(__VA_ARGS__)
+#if (!defined(LAYOUT) && defined(KEYMAP))
+#define LAYOUT KEYMAP
+#endif
+
+#define LAYOUT_ergodox_wrapper(...)          LAYOUT_ergodox(__VA_ARGS__)
+#define LAYOUT_ergodox_pretty_wrapper(...)   LAYOUT_ergodox_pretty(__VA_ARGS__)
+#define KEYMAP_wrapper(...)                  LAYOUT(__VA_ARGS__)
+#define LAYOUT_wrapper(...)                  LAYOUT(__VA_ARGS__)
+
 
 // Blocks for each of the four major keyboard layouts
 // Organized so we can quickly adapt and modify all of them
 // at once, rather than for each keyboard, one at a time.
-// And this allows wor much cleaner blocks in the keymaps.
+// And this allows for much cleaner blocks in the keymaps.
 // For instance Tap/Hold for Control on all of the layouts
+
+// NOTE: These are all the same length.  If you do a search/replace
+//       then you need to add/remove underscores to keep the
+//       lengths consistent.
 
 #define _________________QWERTY_L1_________________        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
 #define _________________QWERTY_L2_________________        SH_T(KC_A),    KC_S,    KC_D,    KC_F,    KC_G
@@ -124,13 +128,21 @@ enum {
 #define _________________QWERTY_R3_________________        KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
 
-#define _________________COLEMAK_L1________________        KC_Q,    KC_W,    KC_F,    KC_P,    KC_G
-#define _________________COLEMAK_L2________________        KC_A,    KC_R,    KC_S,    KC_T,    KC_D
-#define _________________COLEMAK_L3________________        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
+#define _________________COLEMAK_L1________________       KC_Q,    KC_W,    KC_F,    KC_P,    KC_G
+#define _________________COLEMAK_L2________________       KC_A,    KC_R,    KC_S,    KC_T,    KC_D
+#define _________________COLEMAK_L3________________       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
 
-#define _________________COLEMAK_R1________________        KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define _________________COLEMAK_R2________________        KC_H,    KC_N,    KC_E,    KC_I,    KC_O
-#define _________________COLEMAK_R3________________        KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
+#define _________________COLEMAK_R1________________       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
+#define _________________COLEMAK_R2________________       KC_H,    KC_N,    KC_E,    KC_I,    KC_O
+#define _________________COLEMAK_R3________________       KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
+
+#define ______________COLEMAK_MOD_DH_L1____________       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
+#define ______________COLEMAK_MOD_DH_L2____________       KC_A,    KC_R,    KC_S,    KC_T,    KC_G
+#define ______________COLEMAK_MOD_DH_L3____________ CTL_T(KC_Z),   KC_X,    KC_C,    KC_D,    KC_V
+
+#define ______________COLEMAK_MOD_DH_R1____________       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
+#define ______________COLEMAK_MOD_DH_R2____________       KC_K,    KC_N,    KC_E,    KC_I,    KC_O
+#define ______________COLEMAK_MOD_DH_R3____________       KC_M,    KC_H,    KC_COMM, KC_DOT,  CTL_T(KC_SLASH)
 
 
 #define _________________DVORAK_L1_________________        KC_QUOT, KC_COMM, KC_DOT, KC_P,     KC_Y
@@ -150,7 +162,18 @@ enum {
 #define _________________WORKMAN_R2________________        KC_D,    KC_H,    KC_T,    KC_N,    KC_S
 #define _________________WORKMAN_R3________________        KC_B,    KC_M,    KC_W,    KC_V,    KC_Z
 
+#define _________________NORMAN_L1_________________       KC_Q,    KC_W,    KC_D,    KC_F,    KC_K
+#define _________________NORMAN_L2_________________       KC_A,    KC_S,    KC_E,    KC_T,    KC_G
+#define _________________NORMAN_L3_________________ CTL_T(KC_Z),   KC_X,    KC_C,    KC_V,    KC_B
 
+#define _________________NORMAN_R1_________________       KC_J,    KC_U,    KC_R,    KC_L,    KC_SCLN
+#define _________________NORMAN_R2_________________       KC_J,    KC_N,    KC_I,    KC_O,    KC_U
+#define _________________NORMAN_R3_________________       KC_P,    KC_M,    KC_COMM, KC_DOT,  CTL_T(KC_SLASH)
+
+#define ________________NUMBER_LEFT________________       KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define ________________NUMBER_RIGHT_______________       KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+#define _________________FUNC_LEFT_________________       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+#define _________________FUNC_RIGHT________________       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
 
 // Since we have 4 default layouts (QWERTY, DVORAK, COLEMAK and WORKMAN),
 // this allows us to quickly modify the bottom row for all of the layouts
@@ -159,7 +182,12 @@ enum {
 #define ___________ERGODOX_BOTTOM_LEFT_____________        KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
 #define ___________ERGODOX_BOTTOM_RIGHT____________        KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
+
+#define __________________ERGODOX_THUMB_CLUSTER_____________________           ALT_T(KC_APP), KC_LGUI,                 KC_RGUI, CTL_T(KC_ESCAPE), \
+                                                                                              KC_HOME,                 KC_PGUP, \
+                                                                LT(_LOWER, KC_SPACE),KC_BSPC, KC_END,                  KC_PGDN, KC_DEL,  LT(_RAISE, KC_ENTER)
+
 #define ___________GENERAL_BOTTOM_LEFT_____________        KC_LGUI,  KC_MEH,  KC_LALT, KC_INS, SPACEFN, LOWER
 #define ___________GENERAL_BOTTOM_RIGHT____________        RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
 
-#endif
+#endif // !USERSPACE
