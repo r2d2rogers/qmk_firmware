@@ -40,14 +40,13 @@ uint8_t last_osm;
 #define XXXXXXX KC_NO
 
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT_wrapper(\
-  KC_ESC,  _________________QWERTY_L1_________________,                                                               _________________QWERTY_R1_________________, KC_BSPC,
-  KC_TAB,  _________________QWERTY_L2_________________,          KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI,          _________________QWERTY_R2_________________, KC_QUOT,
-  KC_LSFT, _________________QWERTY_L3_________________, LOWER,   KC_SPACE,KC_BSPC,         KC_DEL,  KC_ENT,  RAISE,   _________________QWERTY_R3_________________, KC_RSFT
-),
+  KC_TAB,  _________________QWERTY_L1_________________,                                                               _________________QWERTY_R1_________________, KC_BSPC,
+  KC_ESCC, _________________QWERTY_L2_________________,          KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI,          _________________QWERTY_R2_________________, KC_QUOT,
+  KC_LSFT, _________________QWERTY_L3_________________, LOWER,   SPACEFN, KC_BSPC,         KC_DEL,  SPACEFN,  RAISE,  _________________QWERTY_R3_________________, KC_RSFT
+  ),
 
 [_COLEMAK] = LAYOUT_wrapper(\
   KC_ESC,  _________________COLEMAK_L1________________,                                                               _________________COLEMAK_R1________________, KC_BSPC,
@@ -81,11 +80,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_ADJUST] = LAYOUT_wrapper(\
   KC_MAKE, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG,                                                               KC_S1, KC_S2, KC_S3, KC_S4, KC_S5, KC_RESET,
-  VRSN,    _______, CK_TOGG, AU_ON,   AU_OFF,  AG_NORM,          _______, _______,         _______, _______,          AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN, EPRM,
-  _______,RGB_RMOD,RGB_HUD,RGB_SAD, RGB_VAD, KC_RGB_T,_______, _______, _______,         _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY
+  VRSN,    _______, CK_TOGG, AU_ON,   AU_OFF,  AG_NORM,           _______, _______,         _______, _______,          AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN, EPRM,
+  _______,RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_RGB_T, _______, _______, _______,         _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY
+),
+
+[_SPACEFN] = LAYOUT_wrapper(\
+  EPRM   , _______, KC_BTN2, KC_BTN3, KC_BTN1, USER   ,                                                               KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, KC_DEL ,
+  VRSN   , _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,          _______, _______,         _______, _______,          KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______,
+  RESET  , _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R, _______, _______, _______,         _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______, RESET
 )
-
-
 };
 
 
