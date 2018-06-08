@@ -1,6 +1,22 @@
+/*
+Copyright 2017 Christopher Courtney <drashna@live.com> @drashna
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef USERSPACE
 #define USERSPACE
-
 #include "quantum.h"
 
 // Define layer names
@@ -24,6 +40,7 @@ enum userspace_layers {
 #define MODS_ALT_MASK  (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
 #define MODS_GUI_MASK  (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
 
+
 // RGB color codes are no longer located here anymore.  Instead, you will want to
 // head to https://github.com/qmk/qmk_firmware/blob/master/quantum/rgblight_list.h
 
@@ -33,7 +50,11 @@ extern bool clicky_enable;
 void rgblight_sethsv_default_helper(uint8_t index);
 #endif // RGBLIGHT_ENABLE
 
-#define EECONFIG_USERSPACE (uint8_t *)20
+void tap(uint16_t keycode);
+bool process_record_secrets(uint16_t keycode, keyrecord_t *record);
+
+
+#define EECONFIG_USERSPACE (uint8_t *)19
 
 typedef union {
   uint8_t raw;
@@ -41,6 +62,7 @@ typedef union {
     bool     clicky_enable    :1;
     bool     rgb_layer_change :1;
     bool     is_overwatch     :1;
+    bool     nuke_switch      :1;
   };
 } userspace_config_t;
 
@@ -69,11 +91,16 @@ enum userspace_custom_keycodes {
 #define ADJUST MO(_ADJUST)
 
 
-#define KC_S1 KC_SECRET_1
-#define KC_S2 KC_SECRET_2
-#define KC_S3 KC_SECRET_3
-#define KC_S4 KC_SECRET_4
-#define KC_S5 KC_SECRET_5
+#define KC_SEC1 KC_SECRET_1
+#define KC_SEC2 KC_SECRET_2
+#define KC_SEC3 KC_SECRET_3
+#define KC_SEC4 KC_SECRET_4
+#define KC_SEC5 KC_SECRET_5
+
+#define QWERTY KC_QWERTY
+#define DVORAK KC_DVORAK
+#define COLEMAK KC_COLEMAK
+#define WORKMAN KC_WORKMAN
 
 #define TKEY TT(_TKEY)
 #define UTIL OSL(_UTIL)
@@ -81,11 +108,6 @@ enum userspace_custom_keycodes {
 #define GUIRGHT MT(MOD_RGUI, KC_RGHT)
 #define KC_ESCC MT(MOD_LCTL, KC_ESC)
 #define SPACEFN LT(_SPACEFN, KC_SPC)
-
-#define QWERTY KC_QWERTY
-#define DVORAK KC_DVORAK
-#define COLEMAK KC_COLEMAK
-#define WORKMAN KC_WORKMAN
 
 #ifdef TAP_DANCE_ENABLE
 enum {
@@ -141,8 +163,8 @@ enum {
 #define ______________COLEMAK_MOD_DH_L3____________ CTL_T(KC_Z),   KC_X,    KC_C,    KC_D,    KC_V
 
 #define ______________COLEMAK_MOD_DH_R1____________       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define ______________COLEMAK_MOD_DH_R2____________       KC_K,    KC_N,    KC_E,    KC_I,    KC_O
-#define ______________COLEMAK_MOD_DH_R3____________       KC_M,    KC_H,    KC_COMM, KC_DOT,  CTL_T(KC_SLASH)
+#define ______________COLEMAK_MOD_DH_R2____________       KC_M,    KC_N,    KC_E,    KC_I,    KC_O
+#define ______________COLEMAK_MOD_DH_R3____________       KC_K,    KC_H,    KC_COMM, KC_DOT,  CTL_T(KC_SLASH)
 
 
 #define _________________DVORAK_L1_________________        KC_QUOT, KC_COMM, KC_DOT, KC_P,     KC_Y
@@ -154,20 +176,21 @@ enum {
 #define _________________DVORAK_R3_________________        KC_B,    KC_M,    KC_W,    KC_V,    KC_Z
 
 
-#define _________________WORKMAN_L1________________        KC_QUOT, KC_COMM, KC_DOT, KC_P,     KC_Y
-#define _________________WORKMAN_L2________________        KC_A,    KC_O,    KC_E,   KC_U,     KC_I
-#define _________________WORKMAN_L3________________        KC_SCLN, KC_Q,    KC_J,   KC_K,     KC_X
+#define _________________WORKMAN_L1________________       KC_Q,    KC_D,    KC_R,   KC_W,     KC_B
+#define _________________WORKMAN_L2________________       KC_A,    KC_S,    KC_H,   KC_T,     KC_G
+#define _________________WORKMAN_L3________________ CTL_T(KC_Z),   KC_X,    KC_M,   KC_C,     KC_V
 
-#define _________________WORKMAN_R1________________        KC_F,    KC_G,    KC_C,    KC_R,    KC_L
-#define _________________WORKMAN_R2________________        KC_D,    KC_H,    KC_T,    KC_N,    KC_S
-#define _________________WORKMAN_R3________________        KC_B,    KC_M,    KC_W,    KC_V,    KC_Z
+#define _________________WORKMAN_R1________________       KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN
+#define _________________WORKMAN_R2________________       KC_Y,    KC_N,    KC_E,    KC_O,    KC_I
+#define _________________WORKMAN_R3________________       KC_K,    KC_L,    KC_COMM, KC_DOT,    CTL_T(KC_SLASH)
+
 
 #define _________________NORMAN_L1_________________       KC_Q,    KC_W,    KC_D,    KC_F,    KC_K
 #define _________________NORMAN_L2_________________       KC_A,    KC_S,    KC_E,    KC_T,    KC_G
 #define _________________NORMAN_L3_________________ CTL_T(KC_Z),   KC_X,    KC_C,    KC_V,    KC_B
 
 #define _________________NORMAN_R1_________________       KC_J,    KC_U,    KC_R,    KC_L,    KC_SCLN
-#define _________________NORMAN_R2_________________       KC_J,    KC_N,    KC_I,    KC_O,    KC_U
+#define _________________NORMAN_R2_________________       KC_Y,    KC_N,    KC_I,    KC_O,    KC_U
 #define _________________NORMAN_R3_________________       KC_P,    KC_M,    KC_COMM, KC_DOT,  CTL_T(KC_SLASH)
 
 #define ________________NUMBER_LEFT________________       KC_1,    KC_2,    KC_3,    KC_4,    KC_5

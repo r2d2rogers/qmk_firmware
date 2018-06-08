@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT(
         KC_TILD, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC,      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
        TG(TKEY), _________________FUNC_LEFT_________________,      KC_F11 , KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-      TG(MUSIC), _________________FUNC_RIGHT________________,      KC_F12 , KC_S1  , KC_S2  , KC_S3  , KC_S4  , KC_S5  ,
+      TG(MUSIC), _________________FUNC_RIGHT________________,      KC_F12 , KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5,
         _______, KC_HYPR, _______, _______, _______, _______,      _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END),
 
     /* Layer 3: _SPACEFN
