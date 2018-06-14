@@ -205,6 +205,9 @@ enum {
 #define ___________ERGODOX_BOTTOM_LEFT_____________        KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
 #define ___________ERGODOX_BOTTOM_RIGHT____________        KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
+#define ___________ORTHODOX_THUMP_TOP_____________           KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI
+#define ___________________ORTHODOX_THUMB_BOTTOM____________________   SPACEFN,  LOWER,   KC_BSPC,         KC_DEL, RAISE,   SPACEFN   
+
 
 #define __________________ERGODOX_THUMB_CLUSTER_____________________           ALT_T(KC_APP), KC_LGUI,                 KC_RGUI, CTL_T(KC_ESCAPE), \
                                                                                               KC_HOME,                 KC_PGUP, \

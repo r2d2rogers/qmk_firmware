@@ -53,26 +53,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT_wrapper(\
   KC_TAB,  _________________QWERTY_L1_________________,                                                               _________________QWERTY_R1_________________, KC_BSPC,
-  KC_ESCC, _________________QWERTY_L2_________________,          KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI,          _________________QWERTY_R2_________________, KC_QUOT,
-  KC_LSFT, _________________QWERTY_L3_________________, LOWER,   SPACEFN, KC_BSPC,         KC_DEL,  SPACEFN,  RAISE,  _________________QWERTY_R3_________________, KC_RSFT
-  ),
+  KC_ESCC, _________________QWERTY_L2_________________,          ___________ORTHODOX_THUMP_TOP_____________,          _________________QWERTY_R2_________________, KC_QUOT,
+  KC_LSFT, _________________QWERTY_L3_________________, ___________________ORTHODOX_THUMB_BOTTOM____________________, _________________QWERTY_R3_________________, KC_RSFT
+),
 
 [_COLEMAK] = LAYOUT_wrapper(\
   KC_TAB,  _________________COLEMAK_L1________________,                                                               _________________COLEMAK_R1________________, KC_BSPC,
-  KC_ESCC,  _________________COLEMAK_L2________________,          KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI,          _________________COLEMAK_R2________________, KC_QUOT,
-  KC_LSFT, _________________COLEMAK_L3________________, LOWER,   KC_SPACE,KC_BSPC,         KC_DEL,  KC_ENT,  RAISE,   _________________COLEMAK_R3________________, KC_RSFT
+  KC_ESCC, _________________COLEMAK_L2________________,          ___________ORTHODOX_THUMP_TOP_____________,          _________________COLEMAK_R2________________, KC_QUOT,
+  KC_LSFT, _________________COLEMAK_L3________________, ___________________ORTHODOX_THUMB_BOTTOM____________________, _________________COLEMAK_R3________________, KC_RSFT
 ),
 
 [_DVORAK] = LAYOUT_wrapper(\
   KC_TAB,  _________________DVORAK_L1_________________,                                                               _________________DVORAK_R1_________________, KC_BSPC,
-  KC_ESCC,  _________________DVORAK_L2_________________,          KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI,          _________________DVORAK_R2_________________, KC_MINS,
-  KC_LSFT, _________________DVORAK_L3_________________, LOWER,   KC_SPACE,KC_BSPC,         KC_DEL,  KC_ENT,  RAISE,   _________________DVORAK_R3_________________, KC_RSFT
+  KC_ESCC, _________________DVORAK_L2_________________,          ___________ORTHODOX_THUMP_TOP_____________,          _________________DVORAK_R2_________________, KC_MINS,
+  KC_LSFT, _________________DVORAK_L3_________________, ___________________ORTHODOX_THUMB_BOTTOM____________________, _________________DVORAK_R3_________________, KC_RSFT
 ),
 
 [_WORKMAN] = LAYOUT_wrapper(\
   KC_TAB,  _________________WORKMAN_L1________________,                                                               _________________WORKMAN_R1________________, KC_BSPC,
-  KC_ESCC,  _________________WORKMAN_L2________________,          KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI,          _________________WORKMAN_R2________________, KC_MINS,
-  KC_LSFT, _________________WORKMAN_L3________________, LOWER,   KC_SPACE,KC_BSPC,         KC_DEL,  KC_ENT,  RAISE,   _________________WORKMAN_R3________________, KC_RSFT
+  KC_ESCC, _________________WORKMAN_L2________________,          ___________ORTHODOX_THUMP_TOP_____________,          _________________WORKMAN_R2________________, KC_MINS,
+  KC_LSFT, _________________WORKMAN_L3________________, ___________________ORTHODOX_THUMB_BOTTOM____________________, _________________WORKMAN_R3________________, KC_RSFT
 ),
 
 [_LOWER] = LAYOUT_wrapper(\
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_ADJUST] = LAYOUT_wrapper(\
-  KC_MAKE, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG,                                                               KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5, KC_RESET,
+  KC_MAKE, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG,                                                                KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5, KC_RESET,
   VRSN,    _______, CK_TOGG, AU_ON,   AU_OFF,  AG_NORM,           _______, _______,         _______, _______,          AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN, EPRM,
   _______,RGB_RMOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_RGB_T, _______, _______, _______,         _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY
 ),
