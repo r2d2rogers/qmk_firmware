@@ -1,3 +1,7 @@
+# Build Options
+#   change to "no" to disable the options, or define them in the Makefile in
+#   the appropriate keymap folder that will get included automatically
+
 BOOTMAGIC_ENABLE  = no       # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE   = no       # Mouse keys(+4700)
 EXTRAKEY_ENABLE   = yes       # Audio control and System control(+450)
@@ -8,7 +12,7 @@ RGBLIGHT_ENABLE   = yes
 AUDIO_ENABLE      = yes
 NKRO_ENABLE       = yes
 
-ONEHAND_ENABLE    = yes
-INDICATOR_LIGHTS  = yes
+ONEHAND_ENABLE    = yes # Allow swapping hands of keyboard
+INDICATOR_LIGHTS  = no
 MACROS_ENABLED    = no
 RGBLIGHT_TWINKLE  = yes

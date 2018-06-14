@@ -21,6 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "r2d2rogers.h"
+#include "eeconfig.h"
+#ifdef AUDIO_ENABLE
+#include "audio.h"
+#endif
 
 #ifdef INDICATOR_LIGHTS
 extern userspace_config_t userspace_config;
@@ -39,6 +43,11 @@ uint8_t last_osm;
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
+
+enum custom_keycodes
+{
+  PLACEHOLDER = SAFE_RANGE, // can always be here
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -108,3 +117,42 @@ bool indicator_is_this_led_used(uint8_t index) {
     return false;
   }
 }
+
+// Runs just one time when the keyboard initializes.
+void matrix_init_keymap(void){
+    //debug_enable=true;
+    //debug_matrix=true;
+    //debug_keyboard=true;
+};
+
+// Runs constantly in the background, in a loop.
+void matrix_scan_keymap(void)
+{
+
+  uint8_t layer = biton32(layer_state);
+
+  switch (layer)
+  {
+  // TODO: Make this relevant to the ErgoDox EZ.
+  case 0:
+    break;
+  case 1:
+    break;
+  case 2:
+    break;
+  case 3:
+    break;
+  case 4:
+    break;
+  case 5:
+    break;
+  case 6:
+    break;
+  default:
+    break;
+  }
+}
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record)
+{
+  return true;
+};
