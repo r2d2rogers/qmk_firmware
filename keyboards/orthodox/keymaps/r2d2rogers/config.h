@@ -51,7 +51,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGBLIGHT_ENABLE
 #define RGB_DI_PIN D3
 #undef RGBLED_NUM
-#define RGBLED_NUM 16     // Number of LEDs
+#define RGBLED_NUM 23     // Number of LEDs
 #define RGBLIGHT_ANIMATIONS
 #endif
 
