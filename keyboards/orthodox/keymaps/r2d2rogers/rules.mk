@@ -15,4 +15,4 @@ NKRO_ENABLE       = yes
 ONEHAND_ENABLE    = yes # Allow swapping hands of keyboard
 INDICATOR_LIGHTS  = no
 MACROS_ENABLED    = no
-RGBLIGHT_TWINKLE  = yes
+RGBLIGHT_TWINKLE  = no
