@@ -7,7 +7,7 @@
 
 int8_t readaxis(uint16_t axis){
     int8_t reaxis = ((axis - 16) >> 5) - 15;
-    uint8_t deadzone = 2;    
+    uint8_t deadzone = 2;
     if(reaxis < 0){
             if(reaxis < - deadzone ){
                     return reaxis + deadzone;
