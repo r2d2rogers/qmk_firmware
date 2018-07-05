@@ -83,6 +83,7 @@ endif
 ifeq ($(strip $(ANALOG_STICK)), yes)
   OPT_DEFS += -DANALOG_STICK_ENABLE
   SRC += $(QUANTUM_DIR)/analog_stick.c
+  SRC += analog.c
 endif
 
 ifeq ($(strip $(UCIS_ENABLE)), yes)
