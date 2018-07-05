@@ -291,8 +291,8 @@ void matrix_slave_scan(void) {
     for (int i = 0; i < ROWS_PER_HAND; ++i) {
         i2c_slave_buffer[i] = matrix[offset+i];
     }
-    i2c_slave_buffer[ROWS_PER_HAND + 1] = (uint8_t)(analogValueX >> 2);
-    i2c_slave_buffer[ROWS_PER_HAND + 2] = (uint8_t)(analogValueY >> 2);
+    i2c_slave_buffer[ROWS_PER_HAND + 1] = (uint8_t)(analogRead(ANALOG_X_PIN) >> 2);
+    i2c_slave_buffer[ROWS_PER_HAND + 2] = (uint8_t)(analogRead(ANALOG_Y_PIN) >> 2);
     i2c_slave_buffer[ROWS_PER_HAND + 3] = (uint8_t)((analogValueX & 0x0003) << 6);
     i2c_slave_buffer[ROWS_PER_HAND + 3] |= (uint8_t)((analogValueY & 0x0003) << 4);
     i2c_slave_buffer[ROWS_PER_HAND + 3] |= joystickDepressed?0x01:0x00;
