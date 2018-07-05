@@ -190,6 +190,9 @@ void matrix_init_keymap(void){
     //debug_enable=true;
     //debug_matrix=true;
     //debug_keyboard=true;
+    uint8_t analogValueX = 128;
+    uint8_t analogValueY = 128;
+    bool joystickDepressed = false;
 };
 
 void pointing_device_task(void){
