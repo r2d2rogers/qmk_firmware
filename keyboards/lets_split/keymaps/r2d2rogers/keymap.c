@@ -20,10 +20,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
+
 #include "r2d2rogers.h"
 #include "eeconfig.h"
+
 #ifdef AUDIO_ENABLE
 #include "audio.h"
+#endif
+
+#ifdef POINTING_DEVICE_ENABLE
+#include "pointing_device.h"
+#include "report.h"
+#endif
+
+#ifdef ANALOG_STICK_ENABLE
+#include "analog_stick.h"
+#include "analog.h"
 #endif
 
 #ifdef INDICATOR_LIGHTS
@@ -190,11 +202,12 @@ void matrix_init_keymap(void){
     //debug_enable=true;
     //debug_matrix=true;
     //debug_keyboard=true;
-    uint8_t analogValueX = 128;
-    uint8_t analogValueY = 128;
-    bool joystickDepressed = false;
+    //uint8_t analogValueX = 128;
+    //uint8_t analogValueY = 128;
+    //bool joystickDepressed = false;
 };
 
+#ifdef POINTING_DEVICE_ENABLE
 void pointing_device_task(void){
   report_mouse_t currentReport = {};
 
@@ -222,6 +235,7 @@ void pointing_device_task(void){
 
   pointing_device_send();
 }
+#endif
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_keymap(void)
