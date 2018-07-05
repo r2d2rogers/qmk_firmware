@@ -216,6 +216,7 @@ int i2c_transaction(void) {
 
     if (!err) {
         int i;
+#ifdef ANALOG_STICK_ENABLE
         for (i = 0; i < ROWS_PER_HAND; ++i) {
             matrix[slaveOffset+i] = i2c_master_read(I2C_ACK);
         }
@@ -226,6 +227,12 @@ int i2c_transaction(void) {
         uint16_t analogX = (i2c1 << 2) & (i2c3 >> 6);
         uint16_t analogY = (i2c2 << 2) & (0x0C & (i2c3 >> 4));
         bool buttonPressed = (i2c3 & 0x01);
+#else
+        for (i = 0; i < ROWS_PER_HAND-1; ++i) {
+            matrix[slaveOffset+i] = i2c_master_read(I2C_ACK);
+        }
+        matrix[slaveOffset+i] = i2c_master_read(I2C_NACK);
+#endif
         i2c_master_stop();
     } else {
 i2c_error: // the cable is disconnceted, or something else went wrong
@@ -291,11 +298,13 @@ void matrix_slave_scan(void) {
     for (int i = 0; i < ROWS_PER_HAND; ++i) {
         i2c_slave_buffer[i] = matrix[offset+i];
     }
+#ifdef ANALOG_STICK_ENABLE
     i2c_slave_buffer[ROWS_PER_HAND + 1] = (uint8_t)(analogRead(ANALOG_X_PIN) >> 2);
     i2c_slave_buffer[ROWS_PER_HAND + 2] = (uint8_t)(analogRead(ANALOG_Y_PIN) >> 2);
     i2c_slave_buffer[ROWS_PER_HAND + 3] = (uint8_t)((analogValueX & 0x0003) << 6);
     i2c_slave_buffer[ROWS_PER_HAND + 3] |= (uint8_t)((analogValueY & 0x0003) << 4);
     i2c_slave_buffer[ROWS_PER_HAND + 3] |= joystickDepressed?0x01:0x00;
+#endif
 #else // USE_SERIAL
     for (int i = 0; i < ROWS_PER_HAND; ++i) {
         serial_slave_buffer[i] = matrix[offset+i];
