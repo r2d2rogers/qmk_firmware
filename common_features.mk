@@ -80,7 +80,7 @@ ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
 	SRC += $(QUANTUM_DIR)/pointing_device.c
 endif
 
-ifeq ($(strip $(ANALOG_STICK)), yes)
+ifeq ($(strip $(ANALOG_STICK_ENABLE)), yes)
   OPT_DEFS += -DANALOG_STICK_ENABLE
   SRC += $(QUANTUM_DIR)/analog_stick.c
   SRC += analog.c
