@@ -308,8 +308,8 @@ void matrix_slave_scan(void) {
         i2c_slave_buffer[i] = matrix[offset+i];
     }
 #ifdef ANALOG_STICK_ENABLE
-    i2c_slave_buffer[ROWS_PER_HAND + 1] = (uint8_t)(analogRead(ANALOG_X_PIN) >> 2);
-    i2c_slave_buffer[ROWS_PER_HAND + 2] = (uint8_t)(analogRead(ANALOG_Y_PIN) >> 2);
+    i2c_slave_buffer[ROWS_PER_HAND + 1] = (uint8_t)(analogX >> 2);
+    i2c_slave_buffer[ROWS_PER_HAND + 2] = (uint8_t)(analogY >> 2);
     i2c_slave_buffer[ROWS_PER_HAND + 3] = (uint8_t)((analogX & 0x0003) << 6);
     i2c_slave_buffer[ROWS_PER_HAND + 3] |= (uint8_t)((analogY & 0x0003) << 4);
     i2c_slave_buffer[ROWS_PER_HAND + 3] |= buttonPressed?0x01:0x00;
