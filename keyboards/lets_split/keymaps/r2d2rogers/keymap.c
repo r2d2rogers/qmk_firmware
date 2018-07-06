@@ -34,10 +34,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef ANALOG_STICK_ENABLE
-extern uint16_t analogX;
-extern uint16_t analogY;
-extern bool buttonPressed;
-
 #include "analog_stick.h"
 #include "analog.h"
 #endif

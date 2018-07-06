@@ -137,14 +137,14 @@ void matrix_init(void)
     init_rows();
 #endif
 
-#ifdef pointing_device_enable
-#ifdef analog_stick_enable
-    static uint8_t analogvaluex = 128;
-    static uint8_t analogvaluey = 128;
-    static bool joystickdepressed = false;
-    static uint16_t analogx = (i2c1 << 2) & (i2c3 >> 6);
-    static uint16_t analogy = (i2c2 << 2) & (0x0c & (i2c3 >> 4));
-    static bool buttonpressed = (i2c3 & 0x01);
+#ifdef POINTING_DEVICE_ENABLE
+#ifdef ANALOG_STICK_ENABLE
+    static uint8_t analogValueX = 128;
+    static uint8_t analogValueY = 128;
+    static bool joystickDepressed = false;
+    static uint16_t analogX = 512;
+    static uint16_t analogY = 512;
+    static bool buttonPressed = false;
 #endif
 #endif
 
