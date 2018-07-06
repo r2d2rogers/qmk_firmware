@@ -60,6 +60,14 @@ static matrix_row_t matrix_debouncing[MATRIX_ROWS];
 
 #define ROWS_PER_HAND (MATRIX_ROWS/2)
 
+#ifdef POINTING_DEVICE_ENABLE
+#ifdef ANALOG_STICK_ENABLE
+    extern uint16_t analogX;
+    extern uint16_t analogY;
+    extern bool buttonPressed;
+#endif
+#endif
+
 static uint8_t error_count = 0;
 
 static const uint8_t row_pins[MATRIX_ROWS] = MATRIX_ROW_PINS;
@@ -137,16 +145,6 @@ void matrix_init(void)
     init_rows();
 #endif
 
-#ifdef POINTING_DEVICE_ENABLE
-#ifdef ANALOG_STICK_ENABLE
-    static uint8_t analogValueX = 128;
-    static uint8_t analogValueY = 128;
-    static bool joystickDepressed = false;
-    static uint16_t analogX = 512;
-    static uint16_t analogY = 512;
-    static bool buttonPressed = false;
-#endif
-#endif
 
     TX_RX_LED_INIT;
 
@@ -312,9 +310,9 @@ void matrix_slave_scan(void) {
 #ifdef ANALOG_STICK_ENABLE
     i2c_slave_buffer[ROWS_PER_HAND + 1] = (uint8_t)(analogRead(ANALOG_X_PIN) >> 2);
     i2c_slave_buffer[ROWS_PER_HAND + 2] = (uint8_t)(analogRead(ANALOG_Y_PIN) >> 2);
-    i2c_slave_buffer[ROWS_PER_HAND + 3] = (uint8_t)((analogValueX & 0x0003) << 6);
-    i2c_slave_buffer[ROWS_PER_HAND + 3] |= (uint8_t)((analogValueY & 0x0003) << 4);
-    i2c_slave_buffer[ROWS_PER_HAND + 3] |= joystickDepressed?0x01:0x00;
+    i2c_slave_buffer[ROWS_PER_HAND + 3] = (uint8_t)((analogX & 0x0003) << 6);
+    i2c_slave_buffer[ROWS_PER_HAND + 3] |= (uint8_t)((analogY & 0x0003) << 4);
+    i2c_slave_buffer[ROWS_PER_HAND + 3] |= buttonPressed?0x01:0x00;
 #endif
 #else // USE_SERIAL
     for (int i = 0; i < ROWS_PER_HAND; ++i) {

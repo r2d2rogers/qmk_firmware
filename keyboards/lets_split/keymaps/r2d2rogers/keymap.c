@@ -34,6 +34,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef ANALOG_STICK_ENABLE
+extern uint16_t analogX;
+extern uint16_t analogY;
+extern bool buttonPressed;
+
 #include "analog_stick.h"
 #include "analog.h"
 #endif
@@ -220,10 +224,12 @@ void pointing_device_task(void){
   //mouseReport.x = 127 max -127 min
   //currentReport.x = readaxis(analogRead(ANALOG_X_PIN));
   currentReport.x = readaxis(analogRead(ANALOG_X_PIN));;
+  //currentReport.x = readaxis(analogValueX);
 
   //mouseReport.y = 127 max -127 min
   //currentReport.y = readaxis(analogRead(ANALOG_Y_PIN)) * -1;
   currentReport.y = readaxis(analogRead(ANALOG_Y_PIN));;
+  //currentReport.y = readaxis(analogValueY);
 
   //mouseReport.v = 127 max -127 min (scroll vertical)
   //currentReport.v = 0;

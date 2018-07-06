@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef ANALOG_STICK_H
 #define ANALOG_STICK_H
 
-int8 readaxis(uint16_t analog_pin);
+void analog_stick_init(void);
+int8_t readaxis(uint16_t analog_pin);
 
 #endif
