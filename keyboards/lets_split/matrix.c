@@ -137,6 +137,17 @@ void matrix_init(void)
     init_rows();
 #endif
 
+#ifdef pointing_device_enable
+#ifdef analog_stick_enable
+    static uint8_t analogvaluex = 128;
+    static uint8_t analogvaluey = 128;
+    static bool joystickdepressed = false;
+    static uint16_t analogx = (i2c1 << 2) & (i2c3 >> 6);
+    static uint16_t analogy = (i2c2 << 2) & (0x0c & (i2c3 >> 4));
+    static bool buttonpressed = (i2c3 & 0x01);
+#endif
+#endif
+
     TX_RX_LED_INIT;
 
     // initialize matrix state: all keys off
@@ -224,9 +235,9 @@ int i2c_transaction(void) {
         i2c1 = i2c_master_read(I2C_ACK);
         i2c2 = i2c_master_read(I2C_ACK);
         i2c3 = i2c_master_read(I2C_NACK);
-        uint16_t analogX = (i2c1 << 2) & (i2c3 >> 6);
-        uint16_t analogY = (i2c2 << 2) & (0x0C & (i2c3 >> 4));
-        bool buttonPressed = (i2c3 & 0x01);
+        analogX = (i2c1 << 2) & (i2c3 >> 6);
+        analogY = (i2c2 << 2) & (0x0C & (i2c3 >> 4));
+        buttonPressed = (i2c3 & 0x01);
 #else
         for (i = 0; i < ROWS_PER_HAND-1; ++i) {
             matrix[slaveOffset+i] = i2c_master_read(I2C_ACK);

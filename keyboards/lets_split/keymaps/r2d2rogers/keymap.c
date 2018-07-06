@@ -34,6 +34,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef ANALOG_STICK_ENABLE
+extern uint16_t analogX;
+extern uint16_t analogY;
+extern bool buttonPressed;
+
 #include "analog_stick.h"
 #include "analog.h"
 #endif
@@ -202,12 +206,15 @@ void matrix_init_keymap(void){
     //debug_enable=true;
     //debug_matrix=true;
     //debug_keyboard=true;
-    //uint8_t analogValueX = 128;
-    //uint8_t analogValueY = 128;
-    //bool joystickDepressed = false;
 };
 
+
+// Runs constantly in the background, in a loop.
+void matrix_scan_keymap(void)
+{
+
 #ifdef POINTING_DEVICE_ENABLE
+#ifdef ANALOG_STICK_ENABLE
 void pointing_device_task(void){
   report_mouse_t currentReport = {};
 
@@ -229,18 +236,15 @@ void pointing_device_task(void){
   //currentReport.h = 0;
   currentReport.h = readaxis(analogX);
 
-  currentReport.buttons = 0x00;
+  //currentReport.buttons = 0x00;
+  currentReport.buttons = buttonPressed;
 
   pointing_device_set_report(currentReport);
 
   pointing_device_send();
 }
 #endif
-
-// Runs constantly in the background, in a loop.
-void matrix_scan_keymap(void)
-{
-
+#endif
   uint8_t layer = biton32(layer_state);
 
   switch (layer)
