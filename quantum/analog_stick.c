@@ -17,6 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "analog_stick.h"
 
+uint16_t analogX;
+uint16_t analogY;
+bool buttonPressed;
+
 int8_t readaxis(uint16_t analogValue){
   int8_t axisValue = ((analogValue - 16) >> 5) - 15;
   uint8_t deadzone = ANALOG_DEADZONE;
