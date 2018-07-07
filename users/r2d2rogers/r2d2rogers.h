@@ -202,18 +202,17 @@ enum {
 // this allows us to quickly modify the bottom row for all of the layouts
 // so we don't have to alter it 4 times and hope that we haven't missed
 // anything
-#define ___________ERGODOX_BOTTOM_LEFT_____________        KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
-#define ___________ERGODOX_BOTTOM_RIGHT____________        KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+#define ___________ERGODOX_BOTTOM_LEFT_____________       KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
+#define ___________ERGODOX_BOTTOM_RIGHT____________       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
-#define ___________ORTHODOX_THUMP_TOP_____________           KC_LALT, KC_LGUI,         KC_RALT, KC_RGUI
-#define ___________________ORTHODOX_THUMB_BOTTOM____________________   SPACEFN,  LOWER,   KC_BSPC,         KC_DEL, RAISE,   SPACEFN   
+#define ___________ORTHODOX_THUMP_TOP_____________                               KC_LALT, KC_LGUI,         KC_RGUI, KC_RALT
+#define ___________________ORTHODOX_THUMB_BOTTOM____________________   SPACEFN,  LOWER,   KC_BSPC,         KC_DEL,  RAISE,   SPACEFN
 
+#define __________________ERGODOX_THUMB_CLUSTER_____________________       ALT_T(KC_APP), KC_LGUI,         KC_RGUI, CTL_T(KC_ESCAPE), \
+                                                                                          KC_HOME,         KC_PGUP, \
+                                                             LT(_LOWER, KC_SPACE),KC_BSPC, KC_END,         KC_PGDN, KC_DEL,  LT(_RAISE, KC_ENTER)
 
-#define __________________ERGODOX_THUMB_CLUSTER_____________________           ALT_T(KC_APP), KC_LGUI,                 KC_RGUI, CTL_T(KC_ESCAPE), \
-                                                                                              KC_HOME,                 KC_PGUP, \
-                                                                LT(_LOWER, KC_SPACE),KC_BSPC, KC_END,                  KC_PGDN, KC_DEL,  LT(_RAISE, KC_ENTER)
-
-#define ___________GENERAL_BOTTOM_LEFT_____________        KC_LGUI,  KC_MEH,  KC_LALT, KC_INS, SPACEFN, LOWER
-#define ___________GENERAL_BOTTOM_RIGHT____________        RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
+#define ___________GENERAL_BOTTOM_LEFT_____________          KC_LGUI,  KC_MEH, KC_LALT, KC_INS,  SPACEFN, LOWER
+#define ___________GENERAL_BOTTOM_RIGHT____________          RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
 
 #endif // !USERSPACE
