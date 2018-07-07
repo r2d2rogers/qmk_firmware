@@ -23,10 +23,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 uint16_t analogX;
 uint16_t analogY;
 bool buttonPressed;
+uint16_t analogValue;
+int16_t axis_value;
+uint8_t deadzone;
 
-int16_t readaxis(uint16_t analog_pin){
-  int16_t axis_value = (analogRead(analog_pin) - 512);
-  uint8_t deadzone = ANALOG_DEADZONE;
+uint16_t readaxis(uint8_t analogPin){
+  analogValue = analogRead(analogPin);
+  return analogValue;
+}
+
+int16_t parseaxis(uint16_t analogValue){
+  axis_value = (analogValue - 512);
+  deadzone = ANALOG_DEADZONE;
   if(axis_value < 0){
     if(axis_value < - deadzone ){
       return axis_value + deadzone;
