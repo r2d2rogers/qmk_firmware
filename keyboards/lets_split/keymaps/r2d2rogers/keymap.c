@@ -217,36 +217,6 @@ void slave_scan_user(void){
 void matrix_scan_keymap(void)
 {
 
-#ifdef POINTING_DEVICE_ENABLE
-#ifdef ANALOG_STICK_ENABLE
-void pointing_device_task(void){
-  report_mouse_t currentReport = {};
-
-  currentReport = pointing_device_get_report();
-  //shifting and transferring the info to the mouse report varaible
-
-  //mouseReport.x = 127 max -127 min
-  //currentReport.x = readaxis(analogRead(ANALOG_X_PIN));
-  currentReport.x = parseaxis(readaxis(ANALOG_X_PIN));
-
-  //mouseReport.y = 127 max -127 min
-  //currentReport.y = readaxis(analogRead(ANALOG_Y_PIN)) * -1;
-  currentReport.y = parseaxis(readaxis(ANALOG_Y_PIN));
-
-  //mouseReport.v = 127 max -127 min (scroll vertical)
-  currentReport.v = parseaxis(analogY);
-  //mouseReport.h = 127 max -127 min (scroll horizontal)
-  currentReport.h = parseaxis(analogX);
-
-  //currentReport.buttons = 0x00;
-  currentReport.buttons = buttonPressed;
-
-  pointing_device_set_report(currentReport);
-
-  pointing_device_send();
-}
-#endif
-#endif
   uint8_t layer = biton32(layer_state);
 
   switch (layer)
