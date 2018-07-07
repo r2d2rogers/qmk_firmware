@@ -18,6 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_STICK_H
 
 void analog_stick_init(void);
-int8_t readaxis(uint16_t analog_pin);
+int16_t readaxis(uint16_t analog_pin);
 
 #endif

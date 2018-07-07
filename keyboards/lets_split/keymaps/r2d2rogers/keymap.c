@@ -208,6 +208,10 @@ void matrix_init_keymap(void){
     //debug_keyboard=true;
 };
 
+void slave_scan_user(void){
+  analogX = readaxis(ANALOG_X_PIN);
+  analogY = readaxis(ANALOG_Y_PIN);
+}
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_keymap(void)
@@ -223,12 +227,12 @@ void pointing_device_task(void){
 
   //mouseReport.x = 127 max -127 min
   //currentReport.x = readaxis(analogRead(ANALOG_X_PIN));
-  currentReport.x = readaxis(analogRead(ANALOG_X_PIN));;
+  currentReport.x = readaxis(ANALOG_X_PIN);
   //currentReport.x = readaxis(analogValueX);
 
   //mouseReport.y = 127 max -127 min
   //currentReport.y = readaxis(analogRead(ANALOG_Y_PIN)) * -1;
-  currentReport.y = readaxis(analogRead(ANALOG_Y_PIN));;
+  currentReport.y = readaxis(ANALOG_Y_PIN);
   //currentReport.y = readaxis(analogValueY);
 
   //mouseReport.v = 127 max -127 min (scroll vertical)
