@@ -228,19 +228,15 @@ void pointing_device_task(void){
   //mouseReport.x = 127 max -127 min
   //currentReport.x = readaxis(analogRead(ANALOG_X_PIN));
   currentReport.x = readaxis(ANALOG_X_PIN);
-  //currentReport.x = readaxis(analogValueX);
 
   //mouseReport.y = 127 max -127 min
   //currentReport.y = readaxis(analogRead(ANALOG_Y_PIN)) * -1;
   currentReport.y = readaxis(ANALOG_Y_PIN);
-  //currentReport.y = readaxis(analogValueY);
 
   //mouseReport.v = 127 max -127 min (scroll vertical)
-  //currentReport.v = 0;
-  currentReport.v = readaxis(analogY);
+  currentReport.v = analogY;
   //mouseReport.h = 127 max -127 min (scroll horizontal)
-  //currentReport.h = 0;
-  currentReport.h = readaxis(analogX);
+  currentReport.h = analogX;
 
   //currentReport.buttons = 0x00;
   currentReport.buttons = buttonPressed;
