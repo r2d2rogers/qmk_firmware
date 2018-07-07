@@ -17,28 +17,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "analog.h"
 #include "analog_stick.h"
 
 uint16_t analogX;
 uint16_t analogY;
 bool buttonPressed;
 
-int8_t readaxis(uint16_t analogValue){
-  int8_t axisValue = ((analogValue - 16) >> 5) - 15;
+int16_t readaxis(uint16_t analog_pin){
+  int16_t axis_value = (analogRead(analog_pin) - 512);
   uint8_t deadzone = ANALOG_DEADZONE;
-  if(axisValue < 0){
-    if(axisValue < - deadzone ){
-      return axisValue + deadzone;
+  if(axis_value < 0){
+    if(axis_value < - deadzone ){
+      return axis_value + deadzone;
     }else{
       return 0;
     }
-  }else if(axisValue > 0){
-    if(axisValue > deadzone ){
-      return axisValue - deadzone;
+  }else if(axis_value > 0){
+    if(axis_value > deadzone ){
+      return axis_value - deadzone;
     }else{
       return 0;
     }
   }
   return 0;
 }
-
