@@ -1,10 +1,10 @@
 #include "r2d2rogers.h"
 #include "rgb_stuff.h"
 
+#ifdef RGBLIGHT_ENABLE
 extern rgblight_config_t rgblight_config;
 extern userspace_config_t userspace_config;
 
-#ifdef RGBLIGHT_ENABLE
 void rgblight_sethsv_default_helper(uint8_t index) {
   rgblight_sethsv_at(rgblight_config.hue, rgblight_config.sat, rgblight_config.val, index);
 }
@@ -180,6 +180,7 @@ void matrix_init_rgb(void) {
   current_osm = last_osm = get_oneshot_mods();
 #endif
 
+#ifdef RGBLIGHT_ENABLE
   if (userspace_config.rgb_layer_change) {
     uint8_t default_layer = eeconfig_read_default_layer();
     rgblight_enable_noeeprom();
@@ -193,6 +194,7 @@ void matrix_init_rgb(void) {
       rgblight_sethsv_cyan();
     }
   }
+#endif
 }
 
 void matrix_scan_rgb(void) {
