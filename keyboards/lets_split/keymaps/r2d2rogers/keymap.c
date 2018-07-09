@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ------------------------------------------------------     ------------------------------------------------------
      * |       ||   4   ||   5   ||   6   ||   .   ||       |     |       ||   -   ||   =   ||   [   ||   ]   ||   \   |
      * ------------------------------------------------------     ------------------------------------------------------
-     * |       ||   7   ||   8   ||   9   ||   0   ||       |     |       ||       ||       ||   .   ||       ||       |
+     * |       ||   7   ||   8   ||   9   ||   0   ||       |     |       ||       ||       ||   .   ||       || DEBUG |
      * ------------------------------------------------------     ------------------------------------------------------
      * |       || HYPER ||       ||       ||       ||       |     |       ||       || PLYMT || VOLDN || VOLUP ||  MFFD |
      * ------------------------------------------------------     ------------------------------------------------------
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT(
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,      KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , _______,
         _______, KC_4   , KC_5   , KC_6   , KC_DOT , _______,      _______, KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS,
-        _______, KC_7   , KC_8   , KC_9   , KC_0   , _______,      _______, _______, _______, KC_DOT , _______, _______,
+        _______, KC_7   , KC_8   , KC_9   , KC_0   , _______,      _______, _______, _______, KC_DOT , _______, DEBUG  ,
         _______, KC_HYPR, _______, _______, _______, _______,      _______, _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MFFD),
 
     /* Layer 2: _LOWER
@@ -209,8 +209,10 @@ void matrix_init_keymap(void){
 };
 
 void slave_scan_user(void){
-  analogX = readaxis(ANALOG_X_PIN);
-  analogY = readaxis(ANALOG_Y_PIN);
+  analogX = 512;
+  analogY = 512;
+  //analogX = readaxis(ANALOG_X_PIN);
+  //analogY = readaxis(ANALOG_Y_PIN);
 }
 
 #ifdef POINTING_DEVICE_ENABLE
@@ -237,7 +239,8 @@ void pointing_device_task(void){
   //currentReport.buttons = 0x00;
   currentReport.buttons = buttonPressed;
 
-  xprintf("PD x: %d y: %d v: %d h: %d \n", mouseReport.x, mouseReport.y, mouseReport.v, mouseReport.h);
+  xprintf("PD Master: %d,   %d Slave: %d,   %d \n", readaxis(ANALOG_X_PIN), readaxis(ANALOG_Y_PIN), analogX, analogY);
+  xprintf("PD      x: %d y: %d v:     %d h: %d \n", currentReport.x, currentReport.y, currentReport.v, currentReport.h);
 
   pointing_device_set_report(currentReport);
 
