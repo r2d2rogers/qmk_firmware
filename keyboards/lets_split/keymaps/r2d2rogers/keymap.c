@@ -203,9 +203,9 @@ bool indicator_is_this_led_used(uint8_t index) {
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_keymap(void){
-    //debug_enable=true;
-    //debug_matrix=true;
-    //debug_keyboard=true;
+    debug_enable=true;
+    debug_matrix=true;
+    debug_keyboard=true;
 };
 
 void slave_scan_user(void){
