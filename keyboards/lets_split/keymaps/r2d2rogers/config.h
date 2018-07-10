@@ -120,7 +120,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define ANALOG_X_PIN 2
 #define ANALOG_Y_PIN 3
-#define ANALOG_DEADZONE 250
+#define ANALOG_DEADZONE 20 
 
 //#define ANALOG_SEL_PIN 2
 
