@@ -92,6 +92,13 @@ void matrix_scan_user(void) {
 }
 
 
+//void matrix_slave_scan_user(void){
+  //matrix_slave_scan_keymap();
+//}
+
+//__attribute__ ((weak))
+//void matrix_slave_scan_keymap(void){
+//}
 
 
 // Defines actions tor my global custom keycodes. Defined in r2d2rogers.h file

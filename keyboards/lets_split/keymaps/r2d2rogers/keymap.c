@@ -208,11 +208,9 @@ void matrix_init_keymap(void){
     debug_keyboard=true;
 };
 
-void slave_scan_keymap(void){
-  analogX = 512;
-  analogY = 512;
-  //analogX = readaxis(ANALOG_X_PIN);
-  //analogY = readaxis(ANALOG_Y_PIN);
+void matrix_slave_scan_user(void){
+  analogX = readaxis(ANALOG_X_PIN);
+  analogY = readaxis(ANALOG_Y_PIN);
 }
 
 #ifdef POINTING_DEVICE_ENABLE
