@@ -233,9 +233,13 @@ int i2c_transaction(void) {
         i2c1 = i2c_master_read(I2C_ACK);
         i2c2 = i2c_master_read(I2C_ACK);
         i2c3 = i2c_master_read(I2C_NACK);
-        analogX = (i2c1 << 2) & (i2c3 >> 6);
-        analogY = (i2c2 << 2) & (0x0C & (i2c3 >> 4));
+
+        analogX = (i2c1 << 2) | (i2c3 >> 6);
+        analogY = (i2c2 << 2) | (0x03 & (i2c3 >> 4));
         buttonPressed = (i2c3 & 0x01);
+
+  xprintf("I2C: %016b %016b %016b \n", i2c1, i2c2, i2c3);
+
 #else
         for (i = 0; i < ROWS_PER_HAND-1; ++i) {
             matrix[slaveOffset+i] = i2c_master_read(I2C_ACK);
@@ -308,6 +312,8 @@ void matrix_slave_scan(void) {
         i2c_slave_buffer[i] = matrix[offset+i];
     }
 #ifdef ANALOG_STICK_ENABLE
+    analogX = 42;
+    analogY = 42;
     i2c_slave_buffer[ROWS_PER_HAND + 1] = (uint8_t)(analogX >> 2);
     i2c_slave_buffer[ROWS_PER_HAND + 2] = (uint8_t)(analogY >> 2);
     i2c_slave_buffer[ROWS_PER_HAND + 3] = (uint8_t)((analogX & 0x0003) << 6);
