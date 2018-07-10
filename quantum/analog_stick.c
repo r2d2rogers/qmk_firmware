@@ -32,8 +32,9 @@ uint16_t readaxis(uint8_t analogPin){
   return analogValue;
 }
 
-int16_t parseaxis(uint16_t analogValue){
-  axis_value = (analogValue - 512);
+int8_t parseaxis(uint16_t analogValue){
+  uint8_t newVal = (uint8_t)(0x00FF & (analogValue >> 2));
+  int8_t axis_value = (int8_t)(newVal - 127);
   deadzone = ANALOG_DEADZONE;
   if(axis_value < 0){
     if(axis_value < - deadzone ){
