@@ -237,9 +237,7 @@ int i2c_transaction(void) {
         analogX = (i2c1 << 2) | (i2c3 >> 6);
         analogY = (i2c2 << 2) | (0x03 & (i2c3 >> 4));
         buttonPressed = (i2c3 & 0x01);
-
-  xprintf("I2C: %08b %08b %08b \n", i2c1, i2c2, i2c3);
-
+        // xprintf("I2C: %d%d%d\n", i2c1, i2c2, i2c3);
 #else
         for (i = 0; i < ROWS_PER_HAND-1; ++i) {
             matrix[slaveOffset+i] = i2c_master_read(I2C_ACK);
