@@ -19,6 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 void analog_stick_init(void);
 uint16_t readaxis(uint8_t analogPin);
-int16_t parseaxis(uint16_t analogValue);
+int8_t parseaxis(uint16_t analogValue);
 
 #endif

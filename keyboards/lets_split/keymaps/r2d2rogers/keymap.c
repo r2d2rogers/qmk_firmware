@@ -208,11 +208,9 @@ void matrix_init_keymap(void){
     debug_keyboard=true;
 };
 
-void slave_scan_user(void){
-  analogX = 512;
-  analogY = 512;
-  //analogX = readaxis(ANALOG_X_PIN);
-  //analogY = readaxis(ANALOG_Y_PIN);
+void matrix_slave_scan_user(void){
+  analogX = readaxis(ANALOG_X_PIN);
+  analogY = readaxis(ANALOG_Y_PIN);
 }
 
 #ifdef POINTING_DEVICE_ENABLE
@@ -226,15 +224,20 @@ void pointing_device_task(void){
   //mouseReport.x = 127 max -127 min
   //currentReport.x = readaxis(analogRead(ANALOG_X_PIN));
   currentReport.x = parseaxis(readaxis(ANALOG_X_PIN));
+  //currentReport.x = 0;
 
   //mouseReport.y = 127 max -127 min
   //currentReport.y = readaxis(analogRead(ANALOG_Y_PIN)) * -1;
-  currentReport.y = parseaxis(readaxis(ANALOG_Y_PIN));
+  currentReport.y = parseaxis(readaxis(ANALOG_Y_PIN)) * -1;
+  //currentReport.y = 0;
 
   //mouseReport.v = 127 max -127 min (scroll vertical)
   currentReport.v = parseaxis(analogY);
+  //currentReport.v = 0;
+
   //mouseReport.h = 127 max -127 min (scroll horizontal)
   currentReport.h = parseaxis(analogX);
+  //currentReport.h = 0;
 
   //currentReport.buttons = 0x00;
   currentReport.buttons = buttonPressed;
