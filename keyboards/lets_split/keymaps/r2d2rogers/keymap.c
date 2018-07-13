@@ -239,8 +239,8 @@ void pointing_device_task(void){
   //currentReport.buttons = 0x00;
   currentReport.buttons = buttonPressed;
 
-  xprintf("PD Master: %d,   %d Slave: %d,   %d \n", readaxis(ANALOG_X_PIN), readaxis(ANALOG_Y_PIN), analogX, analogY);
-  xprintf("PD      x: %d y: %d v:     %d h: %d \n", currentReport.x, currentReport.y, currentReport.v, currentReport.h);
+  // xprintf("PD Master: %d,   %d Slave: %d,   %d \n", readaxis(ANALOG_X_PIN), readaxis(ANALOG_Y_PIN), analogX, analogY);
+  // xprintf("PD      x: %d y: %d v:     %d h: %d \n", currentReport.x, currentReport.y, currentReport.v, currentReport.h);
 
   pointing_device_set_report(currentReport);
 
