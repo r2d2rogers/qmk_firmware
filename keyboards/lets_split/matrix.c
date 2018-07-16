@@ -240,7 +240,6 @@ int i2c_transaction(void) {
 
   // xprintf("I2C: %08b %08b %08b \n", i2c1, i2c2, i2c3);
 
->>>>>>> c607bb962a2c8e3af35a4936a3087d0c4181430a
 #else
         for (i = 0; i < ROWS_PER_HAND-1; ++i) {
             matrix[slaveOffset+i] = i2c_master_read(I2C_ACK);
