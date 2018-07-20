@@ -15,8 +15,8 @@ NKRO_ENABLE       = yes # Nkey Rollover - see here: https://github.com/tmk/tmk_k
 ONEHAND_ENABLE    = yes # Allow swapping hands of keyboard
 INDICATOR_LIGHTS  = no
 
-RGBLIGHT_TWINKLE = yes
-RGB_MATRIX_ENABLE= no
+RGBLIGHT_TWINKLE  = yes
+RGB_MATRIX_ENABLE = yes
 POINTING_DEVICE_ENABLE = no
-USE_I2C          = yes
+USE_I2C           = yes
 
