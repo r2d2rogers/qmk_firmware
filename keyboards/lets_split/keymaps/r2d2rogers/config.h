@@ -102,6 +102,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define EECONFIG_RGB_MATRIX (uint32_t *)16
 
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 160
+
 #define DRIVER_ADDR_1 0b1110100
 #define DRIVER_ADDR_2 0b1110110
 

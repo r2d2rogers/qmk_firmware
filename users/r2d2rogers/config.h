@@ -1,5 +1,4 @@
-#ifndef USERSPACE_CONFIG_H
-#define USERSPACE_CONFIG_H
+#pragma once
 
 
 #ifdef AUDIO_ENABLE
@@ -66,11 +65,11 @@
 #if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
 #define NO_PRINT
 #endif // !NO_PRINT
-#define MACRO_TIMER 10
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 
 #define DISABLE_LEADER
 
-#endif // !USERSPACE_CONFIG_H
+#define MACRO_TIMER 10
+
 

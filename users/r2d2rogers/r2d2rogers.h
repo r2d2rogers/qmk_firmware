@@ -51,8 +51,8 @@ void rgblight_sethsv_default_helper(uint8_t index);
 #endif // RGBLIGHT_ENABLE
 
 void tap(uint16_t keycode);
-bool process_record_secrets(uint16_t keycode, keyrecord_t *record);
-
+bool mod_key_press_timer (uint16_t code, uint16_t mod_code, bool pressed);
+bool mod_key_press (uint16_t code, uint16_t mod_code, bool pressed, uint16_t this_timer);
 
 #define EECONFIG_USERSPACE (uint8_t *)19
 
@@ -129,7 +129,7 @@ enum {
 #define LAYOUT_ergodox_pretty_wrapper(...)   LAYOUT_ergodox_pretty(__VA_ARGS__)
 #define KEYMAP_wrapper(...)                  LAYOUT(__VA_ARGS__)
 #define LAYOUT_wrapper(...)                  LAYOUT(__VA_ARGS__)
-
+#define LAYOUT_ortho_4x12_wrapper(...)       LAYOUT_ortho_4x12(__VA_ARGS__)
 
 // Blocks for each of the four major keyboard layouts
 // Organized so we can quickly adapt and modify all of them
