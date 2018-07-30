@@ -14,74 +14,71 @@ enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
 };
 
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+const int16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Keymap 0: Basic layer
- * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   `    |   1  |   2  |   3  |   4  |   5  |   =  |           | NPAD |   6  |   7  |   8  |   9  |   0  |   -    |
- * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Tab    |   Q  |   W  |   E  |   R  |   T  |  [   |           |   ]  |   Y  |   U  |   I  |   O  |   P  |   \    |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |Ctrl/Esc|A/Flip|   S  |   D  |   F  |G/Flip|------|           |------|H/Flip|   J  |   K  |   L  |   ;  | '/Flip |
- * |--------+------+------+------+------+------| ^FKEY|           | ^FKEY|------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
- * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LGui | LAlt |  Ins |   [  |   ]  |                                       | Left | Down |  Up  | Right| RGui |
- *   `----------------------------------'                                       `----------------------------------'
- *                                       ,-------------.         ,-------------.
- *                                       | Ctrl |  Alt |         | Alt  | Ctrl |
- *                                ,------|------|------|         |------+------+------.
- *                                |      | LOWER| Home |         | PgUp | UPPER|Space |
- *                                | Space| /Back|------|         |------|   /  |  /   |
- *                                |      | Space| End  |         | PgDn | Enter|SPCFN |
- *                                `--------------------'         `--------------------'
+ *,----------------------------------------------------------.         ,----------------------------------------------------------.
+ *|    `     |   1   |   2   |   3   |   4   |   5   |   =   |         | NPAD  |   6   |   7   |   8   |   9   |   0   |    -     |
+ *|----------+-------+-------+-------+-------+---------------|         |-------+-------+-------+-------+-------+-------+----------|
+ *|  Tab     |   Q   |   W   |   E   |   R   |   T   |  [    |         |   ]   |   Y   |   U   |   I   |   O   |   P   |    \     |
+ *|----------+-------+-------+-------+-------+-------|       |         |       |-------+-------+-------+-------+-------+----------|
+ *| Ctrl/Esc |A/Flip |   S   |   D   |   F   |G/Flip |-------|         |-------|H/Flip |   J   |   K   |   L   |   ;   |  '/Flip  |
+ *|----------+-------+-------+-------+-------+-------| ^FKEY |         | ^FKEY |-------+-------+-------+-------+-------+----------|
+ *|  LShift  |   Z   |   X   |   C   |   V   |   B   |       |         |       |   N   |   M   |   ,   |   .   |   /   |  RShift  |
+ *`----------+-------+-------+-------+-------+---------------'         `---------------+-------+-------+-------+-------+----------'
+ *   | LGui  | LAlt  |  Ins  |   [   |   ]   |                                         | Left  | Down  |  Up   | Right |  RGui |
+ *   `---------------------------------------'                                         `---------------------------------------'
+ *                                           ,---------------.         ,-------------.
+ *                                           | Ctrl  |  Alt  |         | Alt  | Ctrl |
+ *                                   ,-------|-------|-------|         |------+------+------.
+ *                                   |       | LOWER |  Home |         | PgUp | UPPER|Space |
+ *                                   | Space | /Back |-------|         |------|   /  |  /   |
+ *                                   |       | Space |  End  |         | PgDn | Enter|SPCFN |
+ *                                   `-----------------------'         `--------------------'
  */
 
-  [_QWERTY] = LAYOUT_ergodox_pretty_wrapper(  // layer 0 : default
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,         TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-      KC_TAB,  _________________QWERTY_L1_________________, KC_LBRC,        KC_RBRC, _________________QWERTY_R1_________________, KC_BSLS,
-      KC_ESCC, _________________QWERTY_L2_________________,                          _________________QWERTY_R2_________________, SH_T(KC_QUOT),
-      KC_LSFT, _________________QWERTY_L3_________________, ADJUST,         ADJUST,  _________________QWERTY_R3_________________, KC_RSFT,
-      KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,                          ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
-                                                   KC_LCTL, KC_LALT,        KC_RALT, KC_RCTL,
-                                                            KC_HOME,        KC_PGUP,
-                                          KC_SPC,  LOWER,   KC_END,         KC_PGDN, RAISE,   SPACEFN
+  [_QWERTY] = LAYOUT_ergodox_pretty_wrapper(  // layer 0 :default
+      KC_GRV, ________________NUMBER_LEFT________________,KC_EQL,         TKEY,   ________________NUMBER_RIGHT_______________,KC_MINS,
+      KC_TAB, _________________QWERTY_L1_________________,KC_LBRC,        KC_RBRC,_________________QWERTY_R1_________________,KC_BSLS,
+      KC_ESCC,_________________QWERTY_L2_________________,                        _________________QWERTY_R2_________________,SH_T(KC_QUOT),
+      KC_LSFT,_________________QWERTY_L3_________________,ADJUST,         ADJUST, _________________QWERTY_R3_________________,KC_RSFT,
+      KC_LGUI,___________ERGODOX_BOTTOM_LEFT_____________,                        ___________ERGODOX_BOTTOM_RIGHT____________,KC_RGUI,
+                                                  KC_LCTL,KC_LALT,        KC_RALT,KC_RCTL,
+                                                          KC_HOME,        KC_PGUP,
+                                         KC_SPC,  LOWER,  KC_END,         KC_PGDN,RAISE,  SPACEFN
   ),
 
   [_COLEMAK] = LAYOUT_ergodox_pretty_wrapper(  // layer 0 : default
-      // left hand
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,         TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-      KC_TAB,  _________________COLEMAK_L1________________, KC_LBRC,        KC_RBRC, _________________COLEMAK_R1________________, KC_BSLS,
-      KC_ESCC, _________________COLEMAK_L2________________,                          _________________COLEMAK_R2________________, KC_QUOT,
-      KC_LSFT, _________________COLEMAK_L3________________, ADJUST,         ADJUST,  _________________COLEMAK_R3________________, KC_RSFT,
-      KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,                          ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
-                                                   KC_LCTL, KC_LALT,        KC_RALT, KC_RCTL,
-                                                            KC_HOME,        KC_PGUP,
-                                          KC_SPC,  LOWER,   KC_END,         KC_PGDN, RAISE,   SPACEFN
+      KC_GRV, ________________NUMBER_LEFT________________,KC_EQL,         TKEY,   ________________NUMBER_RIGHT_______________,KC_MINS,
+      KC_TAB, _________________COLEMAK_L1________________,KC_LBRC,        KC_RBRC,_________________COLEMAK_R1________________,KC_BSLS,
+      KC_ESCC,_________________COLEMAK_L2________________,                        _________________COLEMAK_R2________________,KC_QUOT,
+      KC_LSFT,_________________COLEMAK_L3________________,ADJUST,         ADJUST, _________________COLEMAK_R3________________,KC_RSFT,
+      KC_LGUI,___________ERGODOX_BOTTOM_LEFT_____________,                        ___________ERGODOX_BOTTOM_RIGHT____________,KC_RGUI,
+                                                  KC_LCTL,KC_LALT,        KC_RALT,KC_RCTL,
+                                                          KC_HOME,        KC_PGUP,
+                                          KC_SPC, LOWER,  KC_END,         KC_PGDN,RAISE,  SPACEFN
   ),
 
   [_DVORAK] = LAYOUT_ergodox_pretty_wrapper(  // layer 0 : default
-      // left hand
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,         TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-      KC_TAB,  _________________DVORAK_L1_________________, KC_LBRC,        KC_RBRC, _________________DVORAK_R1_________________, KC_BSLS,
-      KC_ESCC, _________________DVORAK_L2_________________,                          _________________DVORAK_R2_________________, KC_QUOT,
-      KC_LSFT, _________________DVORAK_L3_________________, ADJUST,         ADJUST,  _________________DVORAK_R3_________________, KC_RSFT,
-      KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,                          ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
-                                                   KC_LCTL, KC_LALT,        KC_RALT, KC_RCTL,
-                                                            KC_HOME,        KC_PGUP,
-                                          KC_SPC,  LOWER,   KC_END,         KC_PGDN, RAISE,   SPACEFN
+      KC_GRV, ________________NUMBER_LEFT________________,KC_EQL,         TKEY,   ________________NUMBER_RIGHT_______________,KC_MINS,
+      KC_TAB, _________________DVORAK_L1_________________,KC_LBRC,        KC_RBRC,_________________DVORAK_R1_________________,KC_BSLS,
+      KC_ESCC,_________________DVORAK_L2_________________,                        _________________DVORAK_R2_________________,KC_QUOT,
+      KC_LSFT,_________________DVORAK_L3_________________,ADJUST,         ADJUST, _________________DVORAK_R3_________________,KC_RSFT,
+      KC_LGUI,___________ERGODOX_BOTTOM_LEFT_____________,                        ___________ERGODOX_BOTTOM_RIGHT____________,KC_RGUI,
+                                                  KC_LCTL,KC_LALT,        KC_RALT,KC_RCTL,
+                                                          KC_HOME,        KC_PGUP,
+                                          KC_SPC, LOWER,  KC_END,         KC_PGDN,RAISE,  SPACEFN
   ),
 
   [_WORKMAN] = LAYOUT_ergodox_pretty_wrapper(  // layer 0 : default
-      // left hand
-      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_EQL,         TKEY,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-      KC_TAB,  _________________WORKMAN_L1________________, KC_LBRC,        KC_RBRC, _________________WORKMAN_R1________________, KC_BSLS,
-      KC_ESCC, _________________WORKMAN_L2________________,                          _________________WORKMAN_R2________________, KC_QUOT,
-      KC_LSFT, _________________WORKMAN_L3________________, ADJUST,         ADJUST,  _________________WORKMAN_R3________________, KC_RSFT,
-      KC_LGUI, ___________ERGODOX_BOTTOM_LEFT_____________,                          ___________ERGODOX_BOTTOM_RIGHT____________, KC_RGUI,
-                                                   KC_LCTL, KC_LALT,        KC_RALT, KC_RCTL,
-                                                            KC_HOME,        KC_PGUP,
-                                          KC_SPC,  LOWER,   KC_END,         KC_PGDN, RAISE,   SPACEFN
+      KC_GRV, ________________NUMBER_LEFT________________,KC_EQL,         TKEY,   ________________NUMBER_RIGHT_______________,KC_MINS,
+      KC_TAB, _________________WORKMAN_L1________________,KC_LBRC,        KC_RBRC,_________________WORKMAN_R1________________,KC_BSLS,
+      KC_ESCC,_________________WORKMAN_L2________________,                        _________________WORKMAN_R2________________,KC_QUOT,
+      KC_LSFT,_________________WORKMAN_L3________________,ADJUST,         ADJUST, _________________WORKMAN_R3________________,KC_RSFT,
+      KC_LGUI,___________ERGODOX_BOTTOM_LEFT_____________,                        ___________ERGODOX_BOTTOM_RIGHT____________,KC_RGUI,
+                                                  KC_LCTL,KC_LALT,        KC_RALT,KC_RCTL,
+                                                          KC_HOME,        KC_PGUP,
+                                          KC_SPC, LOWER,  KC_END,         KC_PGDN,RAISE,  SPACEFN
   ),
 
 /* Keymap 1: Keyboard Upper Layer
@@ -106,15 +103,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [_RAISE] = LAYOUT_ergodox_pretty_wrapper(  // layer 1 : Keymap Template
-      // left hand
-      _______, _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______, _______,
-      KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , _______,        _______, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , _______,
-      _______, KC_4   , KC_5   , KC_6   , KC_DOT , _______,                          _______, KC_MINS, KC_EQL , KC_LBRC, KC_RBRC, KC_BSLS,
-      _______, KC_7   , KC_8   , KC_9   , KC_0   , _______, _______,        _______, _______, _______, _______, KC_DOT , _______, _______,
-      _______, KC_HYPR, _______, _______, _______,                                            _______, KC_MPLY, KC_VOLD, KC_VOLU, KC_MFFD,
-                                                   _______, _______,        _______, _______,
-                                                            _______,        _______,
-                                          _______, _______, _______,        _______, _______, _______
+      _______,_______,_______,_______,_______,_______,_______,        _______,_______,_______,_______,_______,_______,_______,
+      KC_GRV ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,KC_5   ,_______,        _______,KC_6   ,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______,
+      _______,KC_4   ,KC_5   ,KC_6   ,KC_DOT ,_______,                        _______,KC_MINS,KC_EQL ,KC_LBRC,KC_RBRC,KC_BSLS,
+      _______,KC_7   ,KC_8   ,KC_9   ,KC_0   ,_______,_______,        _______,_______,_______,_______,KC_DOT ,_______,_______,
+      _______,KC_HYPR,_______,_______,_______,                                        _______,KC_MPLY,KC_VOLD,KC_VOLU,KC_MFFD,
+                                              _______,_______,        _______,_______,
+                                                      _______,        _______,
+                                      _______,_______,_______,        _______,_______,_______
   ),
 
 /* Keymap 2: Keyboard Lower Layer
@@ -139,7 +135,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_LOWER] = LAYOUT_ergodox_pretty_wrapper(  // layer 2 : Keymap Template
-      // left hand
       _______,_______,_______,_______,_______,_______,_______,         _______,_______,_______,_______,_______,_______,_______,
       KC_TILD,KC_EXLM,KC_AT  ,KC_HASH,KC_DLR ,KC_PERC,_______,         _______,KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______,
       _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                         KC_F11 ,KC_UNDS,KC_PLUS,KC_LCBR,KC_RCBR,KC_PIPE,
@@ -172,7 +167,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [_SPACEFN] = LAYOUT_ergodox_pretty_wrapper(  // layer 3 : Right Space
-      // left hand
       _______,_______,_______,_______,_______,_______,_______,         _______,_______,_______,_______,_______,_______,_______,
       _______,_______,KC_BTN2,KC_MS_U,KC_BTN1,KC_WH_U,_______,         _______,_______,KC_BTN1,KC_BTN3,KC_BTN2,_______,_______,
       _______,_______,KC_MS_L,KC_MS_D,KC_MS_R,KC_WH_D,                         KC_LEFT,KC_DOWN,KC_UP,  KC_RGHT,_______,_______,
@@ -205,7 +199,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [_ADJUST] = LAYOUT_ergodox_pretty_wrapper(  // layer 4 : function and symbol keys
-      // left hand
       BL_TOGG,KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F11,          KC_F12, KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, BL_TOGG,
       BL_INC, KC_F11, KC_F12, KC_F13, KC_F14, KC_F15, _______,         _______,KC_F16, KC_F17, KC_F18, KC_F19, KC_F20, BL_INC,
       BL_DEC, _______,_______,_______,_______,_______,                         _______,KC_MPRV,KC_MPLY,KC_MNXT,_______,BL_DEC,
@@ -238,7 +231,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [_TKEY] = LAYOUT_ergodox_pretty_wrapper(  // layer 5: numpad
-      // left hand
       KC_BSPC,KC_CALC,KC_NLCK,KC_PSLS,KC_PAST,KC_PMNS,_______,         _______,KC_CALC,KC_NLCK,KC_PSLS,KC_PAST,KC_PMNS,KC_BSPC,
       _______,XXXXXXX,KC_P7,  KC_P8,  KC_P9,  KC_PPLS,_______,         _______,XXXXXXX,KC_P7,  KC_P8,  KC_P9,  KC_PPLS,KC_TAB,
       _______,XXXXXXX,KC_P4,  KC_P5,  KC_P6,  KC_PPLS,                         XXXXXXX,KC_P4,  KC_P5,  KC_P6,  KC_PPLS,KC_PENT,
