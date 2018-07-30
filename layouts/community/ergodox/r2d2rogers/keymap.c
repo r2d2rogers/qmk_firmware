@@ -14,7 +14,7 @@ enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
 };
 
-const int16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Keymap 0: Basic layer
  *,----------------------------------------------------------.         ,----------------------------------------------------------.
