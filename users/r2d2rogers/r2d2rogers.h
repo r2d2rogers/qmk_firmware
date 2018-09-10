@@ -1,5 +1,6 @@
 /*
 Copyright 2017 Christopher Courtney <drashna@live.com> @drashna
+Copyright 2018 Rob Rogers <r2d2rogers@gmail.com> @r2d2rogers
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -15,11 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef USERSPACE
-#define USERSPACE
+#pragma once
 #include "quantum.h"
-
-
+#include "version.h"
+#include "eeprom.h"
+#ifdef RGB_MATRIX_ENABLE
+#include "rgb_matrix.h"
+#endif
 // Define layer names
 enum userspace_layers {
   _QWERTY = 0,
@@ -30,6 +33,11 @@ enum userspace_layers {
   _SPACEFN,
   _UTIL,
   _MUSIC,
+  _MODS,
+  _GAMEPAD,
+  _DIABLO,
+  _MACROS,
+  _MEDIA,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -51,7 +59,7 @@ extern bool clicky_enable;
 void rgblight_sethsv_default_helper(uint8_t index);
 #endif // RGBLIGHT_ENABLE
 
-void tap(uint16_t keycode);
+inline void tap(uint16_t keycode){ register_code(keycode); unregister_code(keycode); };
 bool mod_key_press_timer (uint16_t code, uint16_t mod_code, bool pressed);
 bool mod_key_press (uint16_t code, uint16_t mod_code, bool pressed, uint16_t this_timer);
 
@@ -68,29 +76,48 @@ typedef union {
 } userspace_config_t;
 
 enum userspace_custom_keycodes {
-  EPRM = SAFE_RANGE, // can always be here
-  VRSN,
-  KC_QWERTY,
-  KC_COLEMAK,
-  KC_DVORAK,
-  KC_WORKMAN,
+  EPRM = SAFE_RANGE, // Resets EEPROM do defaults (as in eeconfig_init)
+  VRSN,              // Prints QMK Firmware and board info
+  KC_QWERTY,         // Sets default layer to QWERTY
+  KC_COLEMAK,        // Sets default layer to COLEMAK
+  KC_DVORAK,         // Sets default layer to DVORAK
+  KC_WORKMAN,        // Sets default layer to WORKMAN
   MUSIC,
-  KC_MAKE,
-  KC_RESET,
-  KC_RGB_T,
-  KC_SECRET_1,
-  KC_SECRET_2,
-  KC_SECRET_3,
-  KC_SECRET_4,
-  KC_SECRET_5,
-  USER,
-  NEW_SAFE_RANGE // use "NEWPLACEHOLDER" for keymap specific codes
+  KC_DIABLO_CLEAR,   // Clears all Diablo Timers
+  KC_OVERWATCH,      // Toggles game macro input mode (so in OW, it defaults to game chat)
+  KC_SALT,           // See drashna.c for details
+  KC_MORESALT,
+  KC_SALTHARD,
+  KC_GOODGAME,
+  KC_SYMM,
+  KC_JUSTGAME,
+  KC_GLHF,
+  KC_TORB,
+  KC_AIM,
+  KC_C9,
+  KC_GGEZ,
+  KC_MAKE,           // Run keyboard's customized make command
+  KC_RGB_T,          // Toggles RGB Layer Indication mode
+  USER,              // Username eg keymap name
+  KC_SECRET_1,       // test1
+  KC_SECRET_2,       // test2
+  KC_SECRET_3,       // test3
+  KC_SECRET_4,       // test4
+  KC_SECRET_5,       // test5
+  KC_CCCV,           // Hold to copy, tap to paste
+  KC_NUKE,           // NUCLEAR LAUNCH DETECTED!!!
+
+#ifdef UNICODE_ENABLE
+  UC_FLIP,           // Table flip (not working?)
+#endif //UNICODE_ENABLE
+  NEW_SAFE_RANGE     //use "NEWPLACEHOLDER for keymap specific codes
 };
 
 #define LOWER LT(_LOWER, KC_BSPC)
 #define RAISE LT(_RAISE, KC_ENT)
 #define ADJUST MO(_ADJUST)
-
+#define TG_MODS TG(_MODS)
+#define TG_GAME TG(_GAMEPAD)
 
 #define KC_SEC1 KC_SECRET_1
 #define KC_SEC2 KC_SECRET_2
@@ -110,6 +137,37 @@ enum userspace_custom_keycodes {
 #define KC_ESCC MT(MOD_LCTL, KC_ESC)
 #define SPACEFN LT(_SPACEFN, KC_SPC)
 
+#define KC_RESET RESET
+#define KC_RST KC_RESET
+
+#ifdef SWAP_HANDS_ENABLE
+#define KC_C1R3 SH_TT
+#else // SWAP_HANDS_ENABLE
+#define KC_C1R3 KC_BSPC
+#endif // SWAP_HANDS_ENABLE
+
+#define BK_LWER LT(_LOWER, KC_BSPC)
+#define SP_LWER LT(_LOWER, KC_SPC)
+#define DL_RAIS LT(_RAISE, KC_DEL)
+#define ET_RAIS LT(_RAISE, KC_ENTER)
+
+// OSM keycodes, to keep things clean and easy to change
+#define KC_MLSF OSM(MOD_LSFT)
+#define KC_MRSF OSM(MOD_RSFT)
+
+#define OS_LGUI OSM(MOD_LGUI)
+#define OS_RGUI OSM(MOD_RGUI)
+#define OS_LSFT OSM(MOD_LSFT)
+#define OS_RSFT OSM(MOD_RSFT)
+#define OS_LCTL OSM(MOD_LCTL)
+#define OS_RCTL OSM(MOD_RCTL)
+#define OS_LALT OSM(MOD_LALT)
+#define OS_RALT OSM(MOD_RALT)
+#define ALT_APP ALT_T(KC_APP)
+
+#define MG_NKRO MAGIC_TOGGLE_NKRO
+
+
 #ifdef TAP_DANCE_ENABLE
 enum {
   TD_D3_1 = 0,
@@ -118,6 +176,24 @@ enum {
   TD_D3_4
 };
 #endif // TAP_DANCE_ENABLE
+
+
+// Custom Keycodes for Diablo 3 layer
+// But since TD() doesn't work when tap dance is disabled
+// We use custom codes here, so we can substitute the right stuff
+#ifdef TAP_DANCE_ENABLE
+#define KC_D3_1 TD(TD_D3_1)
+#define KC_D3_2 TD(TD_D3_2)
+#define KC_D3_3 TD(TD_D3_3)
+#define KC_D3_4 TD(TD_D3_4)
+#else // TAP_DANCE_ENABLE
+#define KC_D3_1 KC_1
+#define KC_D3_2 KC_2
+#define KC_D3_3 KC_3
+#define KC_D3_4 KC_4
+#endif // TAP_DANCE_ENABLE
+
+
 
 // Since our quirky block definitions are basically a list of comma separated
 // arguments, we need a wrapper in order for these definitions to be
@@ -183,7 +259,7 @@ enum {
 
 #define _________________WORKMAN_R1________________       KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN
 #define _________________WORKMAN_R2________________       KC_Y,    KC_N,    KC_E,    KC_O,    KC_I
-#define _________________WORKMAN_R3________________       KC_K,    KC_L,    KC_COMM, KC_DOT,    CTL_T(KC_SLASH)
+#define _________________WORKMAN_R3________________       KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLASH
 
 
 #define _________________NORMAN_L1_________________       KC_Q,    KC_W,    KC_D,    KC_F,    KC_K
@@ -296,4 +372,3 @@ enum {
 #define ___________GENERAL_BOTTOM_LEFT_____________          KC_LGUI,  KC_MEH, KC_LALT, KC_INS,  SPACEFN, LOWER
 #define ___________GENERAL_BOTTOM_RIGHT____________          RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
 
-#endif // !USERSPACE

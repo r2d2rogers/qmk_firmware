@@ -17,16 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "r2d2rogers.h"
-#include "version.h"
-#include "eeprom.h"
 #include "tap_dances.h"
 #include "rgb_stuff.h"
 
-
-float tone_copy[][2]            = SONG(SCROLL_LOCK_ON_SOUND);
-float tone_paste[][2]           = SONG(SCROLL_LOCK_OFF_SOUND);
-
-//static uint16_t copy_paste_timer;
 userspace_config_t userspace_config;
 
 //  Helper Functions
@@ -36,8 +29,14 @@ userspace_config_t userspace_config;
 // the same thing, but with differring text sent.
 bool send_game_macro(const char *str, keyrecord_t *record, bool override) {
   if (!record->event.pressed || override) {
+    uint16_t keycode;
+    if (userspace_config.is_overwatch) {
+      keycode = KC_BSPC;
+    } else {
+      keycode = KC_ENTER;
+    }
     clear_keyboard();
-    tap(userspace_config.is_overwatch ? KC_BSPC : KC_ENTER);
+    tap(keycode);
     wait_ms(50);
     send_string_with_delay(str, MACRO_TIMER);
     wait_ms(50);
@@ -46,8 +45,6 @@ bool send_game_macro(const char *str, keyrecord_t *record, bool override) {
   if (override) wait_ms(3000);
   return false;
 }
-
-void tap(uint16_t keycode){ register_code(keycode); unregister_code(keycode); };
 
 bool mod_key_press_timer (uint16_t code, uint16_t mod_code, bool pressed) {
   static uint16_t this_timer;
@@ -95,6 +92,9 @@ __attribute__ ((weak))
 void startup_keymap(void) {}
 
 __attribute__ ((weak))
+void shutdown_keymap(void) {}
+
+__attribute__ ((weak))
 void suspend_power_down_keymap(void) {}
 
 __attribute__ ((weak))
@@ -128,6 +128,7 @@ __attribute__ ((weak))
 void led_set_keymap(uint8_t usb_led) {}
 
 
+
 // Call user matrix init, set default RGB colors and then
 // call the keymap's init function
 void matrix_init_user(void) {
@@ -157,6 +158,24 @@ void startup_user (void) {
     matrix_init_rgb();
   #endif //RGBLIGHT_ENABLE
   startup_keymap();
+}
+
+void shutdown_user (void) {
+#ifdef RGBLIGHT_ENABLE
+  rgblight_enable_noeeprom();
+  rgblight_mode_noeeprom(1);
+  rgblight_setrgb_red();
+#endif // RGBLIGHT_ENABLE
+#ifdef RGB_MATRIX_ENABLE
+  rgb_led led;
+  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+    led = g_rgb_leds[i];
+    if (led.matrix_co.raw < 0xFF) {
+      rgb_matrix_set_color( i, 0xFF, 0x00, 0x00 );
+    }
+  }
+#endif //RGB_MATRIX_ENABLE
+  shutdown_keymap();
 }
 
 void suspend_power_down_user(void)
@@ -247,20 +266,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
     break;
 
-
-  case KC_RESET: // Custom RESET code that sets RGBLights to RED
-    if (!record->event.pressed) {
-#ifdef RGBLIGHT_ENABLE
-      rgblight_enable_noeeprom();
-      rgblight_mode_noeeprom(1);
-      rgblight_setrgb_red();
-#endif // RGBLIGHT_ENABLE
-      reset_keyboard();
-    }
-    return false;
-    break;
-
-
   case EPRM: // Resets EEPROM
     if (record->event.pressed) {
       eeconfig_init();
@@ -280,8 +285,96 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         SEND_STRING(QMK_KEYMAP);
     }
+
+/*  Code has been depreciated
+    case KC_SECRET_1 ... KC_SECRET_5: // Secrets!  Externally defined strings, not stored in repo
+      if (!record->event.pressed) {
+        clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+        send_string(decoy_secret[keycode - KC_SECRET_1]);
+      }
+      return false;
+      break;
+*/
+
+// These are a serious of gaming macros.
+// Only enables for the viterbi, basically,
+// to save on firmware space, since it's limited.
+#ifdef MACROS_ENABLED
+  case KC_OVERWATCH: // Toggle's if we hit "ENTER" or "BACKSPACE" to input macros
+    if (record->event.pressed) { userspace_config.is_overwatch ^= 1; eeprom_update_byte(EECONFIG_USERSPACE, userspace_config.raw); }
+#ifdef RGBLIGHT_ENABLE
+    userspace_config.is_overwatch ? rgblight_mode_noeeprom(17) : rgblight_mode_noeeprom(18);
+#endif //RGBLIGHT_ENABLE
+    return false; break;
+  case KC_SALT:
+    return send_game_macro("Salt, salt, salt...", record, false);
+  case KC_MORESALT:
+    return  send_game_macro("Please sir, can I have some more salt?!", record, false);
+  case KC_SALTHARD:
+    return send_game_macro("Your salt only makes me harder, and even more aggressive!", record, false);
+  case KC_GOODGAME:
+    return send_game_macro("Good game, everyone!", record, false);
+  case KC_GLHF:
+    return send_game_macro("Good luck, have fun!!!", record, false);
+  case KC_SYMM:
+    return send_game_macro("Left click to win!", record, false);
+  case KC_JUSTGAME:
+    return send_game_macro("It may be a game, but if you don't want to actually try, please go play AI, so that people that actually want to take the game seriously and \"get good\" have a place to do so without trolls like you throwing games.", record, false);
+  case KC_TORB:
+    return send_game_macro("That was positively riveting!", record, false);
+  case KC_AIM:
+    send_game_macro("That aim is absolutely amazing. It's almost like you're a machine!", record, true);
+    return send_game_macro("Wait! That aim is TOO good!  You're clearly using an aim hack! CHEATER!", record, false);
+  case KC_C9:
+    return send_game_macro("OMG!!!  C9!!!", record, false);
+  case KC_GGEZ:
+    return send_game_macro("That was a fantastic game, though it was a bit easy. Try harder next time!", record, false);
+#endif // MACROS_ENABLED
+
+
+  case KC_DIABLO_CLEAR:  // reset all Diablo timers, disabling them
+#ifdef TAP_DANCE_ENABLE
+    if (record->event.pressed) {
+      uint8_t dtime;
+      for (dtime = 0; dtime < 4; dtime++) {
+        diablo_key_time[dtime] = diablo_times[0];
+      }
+    }
+#endif // TAP_DANCE_ENABLE
+    return false; break;
+
+
+  case CLICKY_TOGGLE:
+#ifdef AUDIO_CLICKY
+    userspace_config.clicky_enable = clicky_enable;
+    eeprom_update_byte(EECONFIG_USERSPACE, userspace_config.raw);
+#endif
+    break;
+#ifdef UNICODE_ENABLE
+  case UC_FLIP: // (╯°□°)╯ ︵ ┻━┻
+    if (record->event.pressed) {
+      register_code(KC_RSFT);
+      tap(KC_9);
+      unregister_code(KC_RSFT);
+      process_unicode((0x256F | QK_UNICODE), record); // Arm
+      process_unicode((0x00B0 | QK_UNICODE), record); // Eye
+      process_unicode((0x25A1 | QK_UNICODE), record); // Mouth
+      process_unicode((0x00B0 | QK_UNICODE), record); // Eye
+      register_code(KC_RSFT);
+      tap(KC_0);
+      unregister_code(KC_RSFT);
+      process_unicode((0x256F | QK_UNICODE), record); // Arm
+      tap(KC_SPC);
+      process_unicode((0x0361 | QK_UNICODE), record); // Flippy
+      tap(KC_SPC);
+      process_unicode((0x253B | QK_UNICODE), record); // Table
+      process_unicode((0x2501 | QK_UNICODE), record); // Table
+      process_unicode((0x253B | QK_UNICODE), record); // Table
+    }
     return false;
     break;
+#endif // UNICODE_ENABLE
+
   }
   return process_record_keymap(keycode, record) &&
 #ifdef RGBLIGHT_ENABLE
@@ -296,7 +389,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // on layer change, no matter where the change was initiated
 // Then runs keymap's layer change check
 uint32_t layer_state_set_user(uint32_t state) {
-  state = update_tri_layer_state(state, _SPACEFN, _LOWER, _ADJUST);
+  state = update_tri_layer_state(state, _RAISE, _LOWER, _ADJUST);
 #ifdef RGBLIGHT_ENABLE
   state = layer_state_set_rgb(state);
 #endif // RGBLIGHT_ENABLE

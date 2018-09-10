@@ -267,7 +267,7 @@ void matrix_init_rgb(void) {
       case _COLEMAK:
         rgblight_sethsv_noeeprom_magenta(); break;
       case _DVORAK:
-        rgblight_sethsv_noeeprom_green(); break;
+        rgblight_sethsv_noeeprom_springgreen(); break;
       case _WORKMAN:
         rgblight_sethsv_noeeprom_goldenrod(); break;
       default:
@@ -292,12 +292,28 @@ uint32_t layer_state_set_rgb(uint32_t state) {
 #ifdef RGBLIGHT_ENABLE
   if (userspace_config.rgb_layer_change) {
     switch (biton32(state)) {
+    case _MACROS:
+      rgblight_sethsv_noeeprom_orange();
+      userspace_config.is_overwatch ? rgblight_mode_noeeprom(17) : rgblight_mode_noeeprom(18);
+      break;
+    case _MEDIA:
+      rgblight_sethsv_noeeprom_chartreuse();
+      rgblight_mode_noeeprom(22);
+      break;
+    case _GAMEPAD:
+      rgblight_sethsv_noeeprom_orange();
+      rgblight_mode_noeeprom(17);
+      break;
+    case _DIABLO:
+      rgblight_sethsv_noeeprom_red();
+      rgblight_mode_noeeprom(5);
+      break;
     case _RAISE:
       rgblight_sethsv_noeeprom_yellow();
       rgblight_mode_noeeprom(5);
       break;
     case _LOWER:
-      rgblight_sethsv_noeeprom_orange();
+      rgblight_sethsv_noeeprom_green();
       rgblight_mode_noeeprom(5);
       break;
     case _ADJUST:
@@ -309,13 +325,13 @@ uint32_t layer_state_set_rgb(uint32_t state) {
         case _COLEMAK:
           rgblight_sethsv_noeeprom_magenta(); break;
         case _DVORAK:
-          rgblight_sethsv_noeeprom_green(); break;
+          rgblight_sethsv_noeeprom_springgreen(); break;
         case _WORKMAN:
           rgblight_sethsv_noeeprom_goldenrod(); break;
         default:
           rgblight_sethsv_noeeprom_cyan(); break;
       }
-      //biton32(state) == _MODS ? rgblight_mode_noeeprom(2) : rgblight_mode_noeeprom(1); // if _MODS layer is on, then breath to denote it
+      biton32(state) == _MODS ? rgblight_mode_noeeprom(2) : rgblight_mode_noeeprom(1); // if _MODS layer is on, then breath to denote it
       break;
     }
 //    layer_state_set_indicator(); // Runs every scan, so need to call this here .... since I can't get it working "right" anyhow
@@ -324,4 +340,5 @@ uint32_t layer_state_set_rgb(uint32_t state) {
 
   return state;
 }
+
 
