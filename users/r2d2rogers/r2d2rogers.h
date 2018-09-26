@@ -26,21 +26,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Define layer names
 enum userspace_layers {
   _QWERTY = 0,
-  _TKEY,
   _COLEMAK,
   _DVORAK,
-  _WORKMAN,
+  _LOWER,
+  _RAISE,
   _SPACEFN,
   _UTIL,
+  _TKEY,
   _MUSIC,
   _MODS,
   _GAMEPAD,
   _DIABLO,
   _MACROS,
   _MEDIA,
-  _LOWER,
-  _RAISE,
-  _ADJUST,
+  _WORKMAN,
+  _NORMAN,
+  _ADJUST
 };
 
 //define modifiers
