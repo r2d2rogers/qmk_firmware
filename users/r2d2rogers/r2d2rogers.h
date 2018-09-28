@@ -326,7 +326,6 @@ enum {
 
 #define ___________________BLANK___________________        _______, _______, _______, _______, _______
 
-
 #define _________________LOWER_L1__________________        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
 #define _________________LOWER_L2__________________        _________________FUNC_LEFT_________________
 #define _________________LOWER_L3__________________        _________________FUNC_RIGHT________________
@@ -334,7 +333,6 @@ enum {
 #define _________________LOWER_R1__________________        KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN
 #define _________________LOWER_R2__________________        _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR
 #define _________________LOWER_R3__________________        _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
-
 
 
 #define _________________RAISE_L1__________________        ________________NUMBER_LEFT________________
@@ -345,6 +343,14 @@ enum {
 #define _________________RAISE_R2__________________        _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC
 #define _________________RAISE_R3__________________        _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
 
+
+#define ________________SPACEFN_L1_________________        _______, KC_BTN2, KC_BTN3, KC_BTN1, USER   ,
+#define ________________SPACEFN_L2_________________        _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,
+#define ________________SPACEFN_L3_________________        _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R,
+
+#define ________________SPACEFN_R1_________________        KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______
+#define ________________SPACEFN_R2_________________        KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______
+#define ________________SPACEFN_R3_________________        KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______
 
 
 #define _________________ADJUST_L1_________________        RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG
