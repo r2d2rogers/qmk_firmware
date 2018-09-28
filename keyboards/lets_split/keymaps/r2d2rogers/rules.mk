@@ -16,7 +16,7 @@ ONEHAND_ENABLE    = yes # Allow swapping hands of keyboard
 INDICATOR_LIGHTS  = no
 
 RGBLIGHT_TWINKLE  = no
-RGB_MATRIX_ENABLE = yes
+RGB_MATRIX_ENABLE = IS31FL3731
 POINTING_DEVICE_ENABLE = no
 USE_I2C           = yes
 
