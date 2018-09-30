@@ -378,6 +378,6 @@ enum {
                                                                                           KC_HOME,         KC_PGUP, \
                                                              LT(_LOWER, KC_SPACE),KC_BSPC, KC_END,         KC_PGDN, KC_DEL,  LT(_RAISE, KC_ENTER)
 
-#define ___________GENERAL_BOTTOM_LEFT_____________          KC_LGUI,  KC_MEH, KC_LALT, KC_INS,  SPACEFN, LOWER
+#define ___________GENERAL_BOTTOM_LEFT_____________          KC_LGUI,  KC_MEH, KC_LALT, KC_INS,  RAISE, LOWER
 #define ___________GENERAL_BOTTOM_RIGHT____________          RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
 
