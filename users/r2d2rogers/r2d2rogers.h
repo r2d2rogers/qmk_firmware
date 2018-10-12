@@ -344,9 +344,9 @@ enum {
 #define _________________RAISE_R3__________________        _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
 
 
-#define ________________SPACEFN_L1_________________        _______, KC_BTN2, KC_BTN3, KC_BTN1, USER   ,
-#define ________________SPACEFN_L2_________________        _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R,
-#define ________________SPACEFN_L3_________________        _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R,
+#define ________________SPACEFN_L1_________________        _______, KC_BTN2, KC_BTN3, KC_BTN1, USER
+#define ________________SPACEFN_L2_________________        _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R
+#define ________________SPACEFN_L3_________________        _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R
 
 #define ________________SPACEFN_R1_________________        KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______
 #define ________________SPACEFN_R2_________________        KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______

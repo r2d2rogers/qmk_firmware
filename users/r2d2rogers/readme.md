@@ -1,3 +1,5 @@
+# Rob Rogers - r2d2rogers - userspace
+
 Copyright 2018 Rob Rogers <r2d2rogers@gmail.com> @r2d2rogers
 
 This program is free software: you can redistribute it and/or modify
@@ -13,12 +15,36 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
- * Macros, Tapdance,
- * Username short cut
- * make command, shift for make and flash
- * Layers, names purpose?
- * sounds
- * lights
- * joystick
+## My keyboards
+
+I have a growing collection of keyboards:
+
+* Split keyboards
+  * Ortholinear
+    * Let's Split
+    * Orthodox
+    * Nyquist
+      * (not built yet)
+  * Column Staggered
+    * Corne aka crkbd
+    * Ergodox Infinity
+  * 3D Curved
+    * Dactyl Manuform
+      * (In progress)
+
+## Plans
+
+These are some of the ideas I'd like to apply in my kemaps:
+
+* Features
+  * Macros, Tapdance,
+  * Username short cut
+  * make command, shift for make and flash
+  * Layers, names purpose?
+* Hardware
+  * joysticks
+  * lights
+  * sounds
+  * screens/displays
 
 Starting to consolidate common useful functions for my keymaps.
