@@ -21,15 +21,15 @@ I have a growing collection of keyboards:
 
 * Split keyboards
   * Ortholinear
-    * Let's Split
-    * Orthodox
-    * Nyquist
+    * [Let's Split](http://github.com/qmk/qmk_firmware/tree/master/keyboards/lets_split/readme.md) - [keymap](http://github.com/r2d2rogers/qmk_firmware/tree/r2d2rogers/keyboards/lets_split/keymaps/r2d2rogers/keymap.c)
+    * [Orthodox](http://github.com/qmk/qmk_firmware/tree/master/keyboards/orthodox/readme.md) - [keymap](http://github.com/r2d2rogers/qmk_firmware/tree/r2d2rogers/keyboards/orthodox/keymaps/r2d2rogers/keymap.c)
+    * [Nyquist](http://github.com/qmk/qmk_firmware/tree/master/keyboards/nyquist/readme.md) - [keymap](http://github.com/r2d2rogers/qmk_firmware/tree/r2d2rogers/keyboards/nyquist/keymaps/r2d2rogers/keymap.c)
       * (not built yet)
   * Column Staggered
-    * Corne aka crkbd
-    * Ergodox Infinity
+    * [Corne aka crkbd](http://github.com/qmk/qmk_firmware/tree/master/keyboards/crkbd/readme.md) - [keymap](http://github.com/r2d2rogers/qmk_firmware/tree/r2d2rogers/keyboards/crkbd/keymaps/r2d2rogers/keymap.c)
+    * [Ergodox Infinity](http://github.com/qmk/qmk_firmware/tree/master/keyboards/ergodox_infinity/readme.md) - [keymap](https://github.com/r2d2rogers/qmk_firmware/blob/r2d2rogers/layouts/community/ergodox/r2d2rogers/keymap.c)
   * 3D Curved
-    * Dactyl Manuform
+    * [Dactyl Manuform](http://github.com/qmk/qmk_firmware/tree/master/keyboards/handwired/dactyl_manuform/readme.md) - [keymap](http://github.com/r2d2rogers/qmk_firmware/tree/r2d2rogers/keyboards/handwired/dactyl_manuform/keymaps/r2d2rogers/keymap.c)
       * (In progress)
 
 ## Plans
