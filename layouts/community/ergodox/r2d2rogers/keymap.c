@@ -89,7 +89,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_RAISE]   = LAYOUT_ergodox_pretty_wrapper(  // layer 1 : Keymap Template
-
 //,--------+--------+--------+--------+--------+--------+--------.        .--------+--------+--------+--------+--------+--------+--------.
     _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
 //|--------+--------+--------+--------+--------+--------+--------|        |--------+--------+--------+--------+--------+--------+--------|
@@ -229,41 +228,4 @@ void matrix_scan_keymap(void) {
 
     uint8_t layer = biton32(layer_state);
 
-    switch (layer) {
-      // TODO: Make this relevant to the ErgoDox EZ.
-        case 0:
-#ifdef SUBPROJECT_infinity
-      lcd_backlight_hal_color(5000, 0, 0);
-#endif
-      break;
-        case 1:
-#ifdef SUBPROJECT_infinity
-      lcd_backlight_hal_color(5000, 0, 0);
-#endif
-      break;
-        case 2:
-            ergodox_right_led_1_on();
-#ifdef SUBPROJECT_infinity
-      lcd_backlight_hal_color(5000, 0, 0);
-#endif
-            break;
-        case 3:
-            ergodox_right_led_2_on();
-#ifdef SUBPROJECT_infinity
-      lcd_backlight_hal_color(5000, 0, 0);
-#endif
-            break;
-        case 4:
-            ergodox_right_led_3_on();
-#ifdef SUBPROJECT_infinity
-      lcd_backlight_hal_color(5000, 0, 0);
-#endif
-            break;
-        default:
-            ergodox_board_led_off();
-            ergodox_right_led_1_off();
-            ergodox_right_led_2_off();
-            ergodox_right_led_3_off();
-            break;
-    }
 };

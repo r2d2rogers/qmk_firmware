@@ -107,6 +107,9 @@ enum userspace_custom_keycodes {
   KC_SECRET_5,       // test5
   KC_CCCV,           // Hold to copy, tap to paste
   KC_NUKE,           // NUCLEAR LAUNCH DETECTED!!!
+  MS_BTN1,
+  MS_BTN2,
+  MS_BTN3,
 
 #ifdef UNICODE_ENABLE
   UC_FLIP,           // Table flip (not working?)
@@ -366,6 +369,7 @@ enum {
 // this allows us to quickly modify the bottom row for all of the layouts
 // so we don't have to alter it 4 times and hope that we haven't missed
 // anything
+
 #define ___________ERGODOX_BOTTOM_LEFT_____________       KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
 #define ___________ERGODOX_BOTTOM_RIGHT____________       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
@@ -378,6 +382,6 @@ enum {
                                                                                           KC_HOME,         KC_PGUP, \
                                                              LT(_LOWER, KC_SPACE),KC_BSPC, KC_END,         KC_PGDN, KC_DEL,  LT(_RAISE, KC_ENTER)
 
-#define ___________GENERAL_BOTTOM_LEFT_____________          KC_LGUI,  KC_MEH, KC_LALT, KC_INS,  RAISE, LOWER
-#define ___________GENERAL_BOTTOM_RIGHT____________          RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
+#define ________________GENERAL_BOTTOM_LEFT_________________          KC_LGUI,  KC_MEH, KC_LALT, KC_INS,  RAISE, LOWER
+#define ________________GENERAL_BOTTOM_RIGHT________________          RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
 
