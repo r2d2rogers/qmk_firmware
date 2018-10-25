@@ -226,6 +226,6 @@ void matrix_init_keymap(void) {
 // Runs constantly in the background, in a loop.
 void matrix_scan_keymap(void) {
 
-    uint8_t layer = biton32(layer_state);
+    //uint8_t layer = biton32(layer_state);
 
 };
