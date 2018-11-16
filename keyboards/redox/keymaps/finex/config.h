@@ -1,5 +1,5 @@
 /*
-Copyright 2013 Mathias Andersson <wraul@dbox.se>
+Copyright 2018 Leonardo (FiNeX) Finetti <finex@finex.org>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,26 +17,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <stdint.h>
-#include <stdbool.h>
+/* Use I2C or Serial, not both */
 
-typedef union {
-    uint8_t raw;
-    struct {
-        bool    enable :1;
-        uint8_t level  :7;
-    };
-} backlight_config_t;
+#define USE_SERIAL
+// #define USE_I2C
 
-void backlight_init(void);
-void backlight_increase(void);
-void backlight_decrease(void);
-void backlight_toggle(void);
-void backlight_enable(void);
-void backlight_disable(void);
-bool is_backlight_enabled(void);
-void backlight_step(void);
-void backlight_set(uint8_t level);
-void backlight_level(uint8_t level);
-uint8_t get_backlight_level(void);
+/* Select hand configuration */
 
+#define MASTER_LEFT
+// #define MASTER_RIGHT
+// #define EE_HANDS
+
+#undef RGBLED_NUM
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 14
+#define RGBLIGHT_HUE_STEP 8
+#define RGBLIGHT_SAT_STEP 8
+#define RGBLIGHT_VAL_STEP 8
