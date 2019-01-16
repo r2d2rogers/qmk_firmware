@@ -16,6 +16,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_NO  , KC_MPRV, KC_MNXT, KC_MPLY, RGB_SPI, RGB_SPD, BL_INC , BL_ON  , KC_PGDN, KC_HOME, KC_END , KC_NO  , KC_NO  , KC_NO  ,
 	                                    BL_TOGG, BL_STEP, BL_DEC , BL_OFF , KC_NO  , KC_NO
 	),
+
 	[2] = LAYOUT(
 	KC_LPRN, KC_RPRN, KC_PSLS, KC_PAST, KC_PMNS, KC_BSPC,                   KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
 	KC_LT  , KC_GT  , KC_P7  , KC_P8  , KC_P9  , KC_PPLS,                   KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,
