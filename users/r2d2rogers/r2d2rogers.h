@@ -375,7 +375,7 @@ enum {
 
 
 #define ___________ORTHODOX_THUMP_TOP_____________                               KC_LALT, KC_LGUI,         KC_RGUI, KC_RALT
-#define ___________________ORTHODOX_THUMB_BOTTOM____________________   SPACEFN,  LOWER,   KC_BSPC,         KC_DEL,  RAISE,   SPACEFN
+#define ___________________ORTHODOX_THUMB_BOTTOM____________________    KC_BSPC, SPACEFN,   LOWER,         RAISE,   SPACEFN, KC_DEL
 
 
 #define __________________ERGODOX_THUMB_CLUSTER_____________________       ALT_T(KC_APP), KC_LGUI,         KC_RGUI, CTL_T(KC_ESCAPE), \
