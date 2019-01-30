@@ -39,23 +39,23 @@ enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
-#define KC______ KC_TRNS
-#define KC_XXXXX KC_NO
-#define KC_LOWER LOWER
-#define KC_RAISE RAISE
-#define KC_RST   RESET
-#define KC_LRST  RGBRST
-#define KC_LTOG  RGB_TOG
-#define KC_LHUI  RGB_HUI
-#define KC_LHUD  RGB_HUD
-#define KC_LSAI  RGB_SAI
-#define KC_LSAD  RGB_SAD
-#define KC_LVAI  RGB_VAI
-#define KC_LVAD  RGB_VAD
-#define KC_LSMOD RGB_SMOD
-#define KC_CTLTB CTL_T(KC_TAB)
-#define KC_GUIEI GUI_T(KC_LANG2)
-#define KC_ALTKN ALT_T(KC_LANG1)
+#define ______ KC_TRNS
+#define XXXXX KC_NO
+#define LOWER LOWER
+#define RAISE RAISE
+#define RST   RESET
+#define LRST  RGBRST
+#define LTOG  RGB_TOG
+#define LHUI  RGB_HUI
+#define LHUD  RGB_HUD
+#define LSAI  RGB_SAI
+#define LSAD  RGB_SAD
+#define LVAI  RGB_VAI
+#define LVAD  RGB_VAD
+#define LMOD  RGB_MOD
+#define CTLTB CTL_T(KC_TAB)
+#define GUIEI GUI_T(KC_LANG2)
+#define ALTKN ALT_T(KC_LANG1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
@@ -91,15 +91,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_PDOT, KC_PPLS, KC_PENT ,  KC_LPRN, KC_RPRN, KC_TRNS
     //                           └────────┴────────┴─────────┘└────────┴────────┴────────┘
       ),
-  [_ADJUST] = LAYOUT_kc( \
+  [_ADJUST] = LAYOUT( \
   //,-----------------------------------------.                ,-----------------------------------------.
         RST,  LRST, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LTOG,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      LSMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+      LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  GUIEI, LOWER,   SPC,      ENT, RAISE, ALTKN \
+                                  GUIEI, LOWER,KC_SPC,   KC_ENT, RAISE, ALTKN \
                               //`--------------------'  `--------------------'
   )
 };
