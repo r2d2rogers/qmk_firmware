@@ -60,35 +60,35 @@ enum macro_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
     //┌────────┬────────┬────────┬────────┬────────┬─────────┐┌────────┬────────┬────────┬────────┬────────┬────────┐
-        KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T    ,  KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC,
+KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSPC,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        MO(3)  , KC_A   , KC_S   , KC_D   , KC_F   , KC_G    ,  KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT,
+MO(3), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, 
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B    ,  KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_BSLS,
+KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_BSLS,
     //└────────┴────────┴────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┴────────┴────────┘
-                                   KC_LALT, KC_LCTL, KC_SPC  ,  KC_ENT , KC_RGUI, TG(4)
+KC_LALT, KC_LCTL, KC_SPC, KC_ENT, KC_RGUI, TT(4)
     //                           └────────┴────────┴─────────┘└────────┴────────┴────────┘
       ),
   [_LOWER] = LAYOUT( \
     //┌────────┬────────┬────────┬────────┬────────┬─────────┐┌────────┬────────┬────────┬────────┬────────┬────────┐
-        KC_MUTE, KC_VOLD, KC_UP  , KC_VOLU, BL_TOGG, RGB_TOG ,  KC_NO  , KC_BTN1, KC_MS_U, KC_BTN2, KC_PSCR, KC_DEL ,
+KC_MUTE, KC_VOLD, KC_UP, KC_VOLU, RGB_SPI, RGB_TOG, KC_NO, KC_BTN1, KC_MS_U, KC_BTN2, KC_PSCR, KC_DEL,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, BL_STEP, RGB_MOD ,  KC_PGUP, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO  , KC_CAPS,
+KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, RGB_SPD, RGB_MOD, KC_PGUP, KC_MS_L, KC_MS_D, KC_MS_R, KC_NO, KC_CAPS, 
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        KC_LSFT, KC_MPRV, KC_MNXT, KC_MPLY, RGB_M_P, RGB_M_SW,  KC_PGDN, KC_HOME, KC_END , KC_NO  , KC_NO  , KC_NLCK,
+KC_LSFT, KC_MPRV, KC_MNXT, KC_MPLY, RGB_M_P, RGB_M_SW, KC_PGDN, KC_HOME, KC_END, KC_NO, KC_NO, KC_NLCK,
     //└────────┴────────┴────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┴────────┴────────┘
-                                   KC_LBRC, KC_RBRC, KC_LPRN ,  KC_RPRN, KC_MINS, KC_EQL
+KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN, KC_MINS, KC_EQL
     //                           └────────┴────────┴─────────┘└────────┴────────┴────────┘
       ),
   [_RAISE] = LAYOUT( \
     //┌────────┬────────┬────────┬────────┬────────┬─────────┐┌────────┬────────┬────────┬────────┬────────┬────────┐
-        KC_ESC , KC_NO  , KC_P7  , KC_P8  , KC_P9  , KC_PSLS ,  KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, KC_CIRC,
+KC_ESC, KC_NO, KC_P7, KC_P8, KC_P9, KC_PSLS, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_BSPC,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        KC_BSPC, KC_NO  , KC_P4  , KC_P5  , KC_P6  , KC_PAST ,  KC_AMPR, KC_ASTR, KC_UNDS, KC_PLUS, KC_LT  , KC_GT  ,
+KC_BSPC, KC_PCMM, KC_P4, KC_P5, KC_P6, KC_PAST, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        KC_CALC, KC_P0  , KC_P1  , KC_P2  , KC_P3  , KC_PMNS ,  KC_TILD, KC_QUES, KC_PIPE, KC_DQUO, KC_LCBR, KC_RCBR,
+KC_PENT, KC_P0, KC_P1, KC_P2, KC_P3, KC_PMNS, KC_UNDS, KC_PLUS, KC_PIPE, KC_LCBR, KC_RCBR, KC_CALC,
     //└────────┴────────┴────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┴────────┴────────┘
-                                   KC_PDOT, KC_PPLS, KC_PENT ,  KC_LPRN, KC_RPRN, KC_TRNS
+KC_PDOT, KC_PPLS, KC_SPC, KC_ENT, KC_NO, KC_TRNS
     //                           └────────┴────────┴─────────┘└────────┴────────┴────────┘
       ),
   [_ADJUST] = LAYOUT( \
