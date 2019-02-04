@@ -331,41 +331,54 @@ enum {
 
 #define ___________________BLANK___________________       _______, _______, _______, _______, _______
 
-#define _________________LOWER_L1__________________       KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
+#define _________________LOWER_L0__________________       _________________FUNC_LEFT_________________
+#define _________________LOWER_L1__________________       ________________NUMBER_LEFT________________
 #define _________________LOWER_L2__________________       _________________FUNC_LEFT_________________
 #define _________________LOWER_L3__________________       _________________FUNC_RIGHT________________
 
-#define _________________LOWER_R1__________________       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN
-#define _________________LOWER_R2__________________       _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR
-#define _________________LOWER_R3__________________       _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+#define _________________LOWER_R0__________________       _________________FUNC_RIGHT________________
+#define _________________LOWER_R1__________________       ________________NUMBER_RIGHT_______________
+#define _________________LOWER_R2__________________       _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC
+#define _________________LOWER_R3__________________       _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
 
 
+#define _________________RAISE_L0__________________       _________________FUNC2_LEFT________________
 #define _________________RAISE_L1__________________       _____________NUMBER_SHIFT_LEFT_____________
 #define _________________RAISE_L2__________________       ___________________BLANK___________________
 #define _________________RAISE_L3__________________       ___________________BLANK___________________
 
+#define _________________RAISE_R0__________________       _________________FUNC2_RIGHT_______________
 #define _________________RAISE_R1__________________       _____________NUMBER_SHIFT_RIGHT____________
-#define _________________RAISE_R2__________________       _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC
-#define _________________RAISE_R3__________________       _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
+#define _________________RAISE_R2__________________       _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR
+#define _________________RAISE_R3__________________       _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
 
+#define ________________SPACEFN_L0_________________       _______, KC_BTN2, KC_BTN3, KC_BTN1, USER
 #define ________________SPACEFN_L1_________________       _______, KC_BTN2, KC_BTN3, KC_BTN1, USER
 #define ________________SPACEFN_L2_________________       _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R
 #define ________________SPACEFN_L3_________________       _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R
 
+#define ________________SPACEFN_R0_________________       KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______
 #define ________________SPACEFN_R1_________________       KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______
 #define ________________SPACEFN_R2_________________       KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______
 #define ________________SPACEFN_R3_________________       KC_HOME, KC_PGDN, KC_PGUP, KC_END , _______
 
 
+#define _________________ADJUST_L0_________________       RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG
 #define _________________ADJUST_L1_________________       RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG
 #define _________________ADJUST_L2_________________       _______, CK_TOGG, AU_ON,   AU_OFF,  AG_NORM
 #define _________________ADJUST_L3_________________       RGB_RMOD,RGB_HUD,RGB_SAD, RGB_VAD, KC_RGB_T
 
+#define _________________ADJUST_R0_________________       KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5
 #define _________________ADJUST_R1_________________       KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5
 #define _________________ADJUST_R2_________________       AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN
 #define _________________ADJUST_R3_________________       MG_NKRO, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT
 
+#define _________________NUMPAD_0__________________       KC_NLCK, KC_PSLS, KC_PAST,KC_PMNS,KC_BSPC
+#define _________________NUMPAD_1__________________       KC_P7,   KC_P8,   KC_P9, KC_PPLS,  KC_TAB
+#define _________________NUMPAD_2__________________       KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PENT
+#define _________________NUMPAD_3__________________       KC_P1,   KC_P2,   KC_P3, KC_PENT, KC_PENT
+#define _________________NUMPAD_4__________________       KC_P0,   KC_P0,  KC_PDOT,KC_PENT, KC_PENT
 
 // Since we have 4 default layouts (QWERTY, DVORAK, COLEMAK and WORKMAN),
 // this allows us to quickly modify the bottom row for all of the layouts
