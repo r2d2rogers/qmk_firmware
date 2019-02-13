@@ -371,14 +371,15 @@ enum {
 
 #define _________________ADJUST_R0_________________       KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5
 #define _________________ADJUST_R1_________________       KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5
-#define _________________ADJUST_R2_________________       AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN
+//#define _________________ADJUST_R2_________________       AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN
+#define _________________ADJUST_R2_________________       AG_SWAP, _______, _______, _______, _______
 #define _________________ADJUST_R3_________________       MG_NKRO, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT
 
-#define _________________NUMPAD_0__________________       KC_NLCK, KC_PSLS, KC_PAST,KC_PMNS,KC_BSPC
-#define _________________NUMPAD_1__________________       KC_P7,   KC_P8,   KC_P9, KC_PPLS,  KC_TAB
-#define _________________NUMPAD_2__________________       KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PENT
-#define _________________NUMPAD_3__________________       KC_P1,   KC_P2,   KC_P3, KC_PENT, KC_PENT
-#define _________________NUMPAD_4__________________       KC_P0,   KC_P0,  KC_PDOT,KC_PENT, KC_PENT
+#define _________________NUMPAD_0__________________       KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, KC_BSPC
+#define _________________NUMPAD_1__________________         KC_P7,   KC_P8,   KC_P9, KC_PPLS,  KC_TAB
+#define _________________NUMPAD_2__________________         KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PENT
+#define _________________NUMPAD_3__________________         KC_P1,   KC_P2,   KC_P3, KC_PENT, KC_PENT
+#define _________________NUMPAD_4__________________         KC_P0,   KC_P0, KC_PDOT, KC_PENT, KC_PENT
 
 // Since we have 4 default layouts (QWERTY, DVORAK, COLEMAK and WORKMAN),
 // this allows us to quickly modify the bottom row for all of the layouts
@@ -389,13 +390,13 @@ enum {
 #define ___________ERGODOX_BOTTOM_RIGHT____________       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
 
-#define ___________ORTHODOX_THUMP_TOP_____________                               KC_LALT, KC_LGUI,         KC_RGUI, KC_RALT
+#define          ___________ORTHODOX_THUMP_TOP_____________                      KC_LALT, KC_LGUI,         KC_RGUI, KC_RALT
 #define ___________________ORTHODOX_THUMB_BOTTOM____________________    KC_BSPC, SPACEFN,   LOWER,         RAISE,   SPACEFN, KC_DEL
 
 
-#define __________________ERGODOX_THUMB_CLUSTER_____________________       ALT_T(KC_APP), KC_LGUI,         KC_RGUI, CTL_T(KC_ESCAPE), \
+#define __________________ERGODOX_THUMB_CLUSTER_____________________       ALT_T(KC_APP), KC_LGUI,         KC_RGUI, KC_RALT, \
                                                                                           KC_HOME,         KC_PGUP, \
-                                                             LT(_LOWER, KC_SPACE),KC_BSPC, KC_END,         KC_PGDN, KC_DEL,  LT(_RAISE, KC_ENTER)
+                                                                         SPACEFN,  LOWER,  KC_END,         KC_PGDN,   RAISE, SPACEFN
 
 #define ________________GENERAL_BOTTOM_LEFT_________________          KC_LGUI,  KC_MEH, KC_LALT, KC_INS,  RAISE, LOWER
 #define ________________GENERAL_BOTTOM_RIGHT________________          RAISE,   SPACEFN, KC_LEFT, KC_DOWN, KC_UP,   GUIRGHT
