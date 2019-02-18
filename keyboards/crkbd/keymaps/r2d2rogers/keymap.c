@@ -163,15 +163,17 @@ void matrix_render_user(void) {
 void oled_task_user(void) {
   matrix_render_user();
 }
+#endif//SSD1306OLED
 
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
+#ifdef SSD1306OLED
     set_keylog(keycode, record);
-    // set_timelog();
     oled_on();
+#endif
+    // set_timelog();
   }
 
   return true;
 }
 
-#endif
