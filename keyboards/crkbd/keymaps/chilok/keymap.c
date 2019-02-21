@@ -93,13 +93,13 @@ KC_PDOT, KC_PPLS, KC_SPC, KC_ENT, TG(16), KC_TRNS
       ),
   [_ADJUST] = LAYOUT( \
     //┌────────┬────────┬────────┬────────┬────────┬─────────┐┌────────┬────────┬────────┬────────┬────────┬────────┐
-KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, RGB_M_R,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, RGB_M_R,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, RGB_M_SW,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, RGB_M_SW,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, RGB_RMOD, KC_NO, KC_NO, KC_NO, RGB_M_P, RGB_M_G,
+          KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO, RGB_RMOD, VLK_TOG,   KC_NO,   KC_NO, RGB_M_P, RGB_M_G,
     //└────────┴────────┴────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┴────────┴────────┘
-KC_NO, KC_NO, KC_NO, KC_NO, TG(16), KC_TRNS
+                                     KC_NO,   KC_NO,    KC_NO,    KC_NO,  TG(16), KC_TRNS
     //                           └────────┴────────┴─────────┘└────────┴────────┴────────┘
   )
 };
