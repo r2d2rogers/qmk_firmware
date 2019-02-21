@@ -34,11 +34,6 @@ enum userspace_layers {
   _UTIL,
   _TKEY,
   _MUSIC,
-  _MODS,
-  _GAMEPAD,
-  _DIABLO,
-  _MACROS,
-  _MEDIA,
   _WORKMAN,
   _NORMAN,
   _ADJUST
@@ -86,17 +81,7 @@ enum userspace_custom_keycodes {
   MUSIC,
   KC_DIABLO_CLEAR,   // Clears all Diablo Timers
   KC_OVERWATCH,      // Toggles game macro input mode (so in OW, it defaults to game chat)
-  KC_SALT,           // See drashna.c for details
-  KC_MORESALT,
-  KC_SALTHARD,
-  KC_GOODGAME,
-  KC_SYMM,
-  KC_JUSTGAME,
-  KC_GLHF,
-  KC_TORB,
-  KC_AIM,
-  KC_C9,
-  KC_GGEZ,
+  KC_SHOV,           // See r2d2rogers.c for details
   KC_MAKE,           // Run keyboard's customized make command
   KC_RGB_T,          // Toggles RGB Layer Indication mode
   USER,              // Username eg keymap name

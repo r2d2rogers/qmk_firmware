@@ -2,7 +2,7 @@
 
 
 #ifdef AUDIO_ENABLE
-#define AUDIO_CLICKY
+//#define AUDIO_CLICKY
 #define STARTUP_SONG SONG(E1M1_DOOM)
 #define GOODBYE_SONG  SONG(SONIC_RING)
 #define DEFAULT_LAYER_SONGS { SONG(QWERTY_SOUND), \
@@ -12,9 +12,9 @@
                                 }
 
 #define AUDIO_CLICKY_FREQ_RANDOMNESS 1.5f
-// #ifdef RGBLIGHT_ENABLE
-// #define NO_MUSIC_MODE
-// #endif //RGBLIGHT_ENABLE
+#ifdef RGBLIGHT_ENABLE
+#define NO_MUSIC_MODE
+#endif //RGBLIGHT_ENABLE
 #endif
 
 #ifdef RGBLIGHT_ENABLE
