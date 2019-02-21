@@ -1,4 +1,4 @@
-/* Copyright 2019
+/* Copyright 2019 MechMerlin
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,20 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "xd84.h"
 
-void keyboard_pre_init_kb(void) {
-  setPinOutput(B6);
+#pragma once
 
-  keyboard_pre_init_user();
-}
-
-void led_set_kb(uint8_t usb_led) {
-  if (IS_LED_ON(usb_led, USB_LED_CAPS_LOCK)) {
-    writePinLow(B6);
-  } else {
-    writePinHigh(B6);
-  }
-
-  led_set_user(usb_led);
-}
+// place overrides here
