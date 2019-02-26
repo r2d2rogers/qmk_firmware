@@ -11,6 +11,7 @@ TAP_DANCE_ENABLE  = no
 RGBLIGHT_ENABLE   = yes
 AUDIO_ENABLE      = no
 NKRO_ENABLE       = yes
+VELOCIKEY_ENABLE = yes
 
 ONEHAND_ENABLE    = yes # Allow swapping hands of keyboard
 INDICATOR_LIGHTS  = no
