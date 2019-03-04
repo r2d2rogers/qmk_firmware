@@ -79,10 +79,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif //AUDIO_ENABLE
 
 #undef PRODUCT
-#ifdef KEYBOARD_lets_split_rev2
-#define PRODUCT         r2d2rogers Hacked Lets Split Rev.2
-
-
+#ifdef KEYBOARD_keebio_nyquist_rev1
+#define PRODUCT         r2d2rogers Hacked Keebio Nyquist Rev.1
 #endif
 
 #define QMK_ESC_OUTPUT D7 // usually COL
