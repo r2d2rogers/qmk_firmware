@@ -231,39 +231,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return false;
     break;
-  case KC_COLEMAK:
-    if (record->event.pressed) {
-      set_single_persistent_default_layer(_COLEMAK);
-    }
-    return false;
-    break;
-  case KC_DVORAK:
-    if (record->event.pressed) {
-      set_single_persistent_default_layer(_DVORAK);
-    }
-    return false;
-    break;
-  case KC_WORKMAN:
-    if (record->event.pressed) {
-      set_single_persistent_default_layer(_WORKMAN);
-    }
-    return false;
-    break;
-
 
   case KC_MAKE:  // Compiles the firmware, and adds the flash command based on keyboard bootloader
     if (!record->event.pressed) {
-      send_string_with_delay_P(PSTR("make " QMK_KEYBOARD ":" QMK_KEYMAP
-#if  (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
-                   ":dfu"
+#if !defined(KEYBOARD_viterbi)
+      uint8_t temp_mod = get_mods();
+      uint8_t temp_osm = get_oneshot_mods();
+      clear_mods(); clear_oneshot_mods();
+#endif
+      send_string_with_delay_P(PSTR("make " QMK_KEYBOARD ":" QMK_KEYMAP), 10);
+      if (temp_mod & MODS_SHIFT_MASK || temp_osm & MODS_SHIFT_MASK ) {
+#if defined(__arm__)
+        send_string_with_delay_P(PSTR(":dfu-util"), 10);
+#elif defined(BOOTLOADER_DFU)
+        send_string_with_delay_P(PSTR(":dfu"), 10);
 #elif defined(BOOTLOADER_HALFKAY)
-                   ":teensy"
+        send_string_with_delay_P(PSTR(":teensy"), 10);
 #elif defined(BOOTLOADER_CATERINA)
-                   ":avrdude"
+        send_string_with_delay_P(PSTR(":avrdude"), 10);
 #endif // bootloader options
-                   SS_TAP(X_ENTER)), 10);
+
+      }
+      if (temp_mod & MODS_CTRL_MASK || temp_osm & MODS_CTRL_MASK) { send_string_with_delay_P(PSTR(" -j8 --output-sync"), 10);  }
+      send_string_with_delay_P(PSTR(SS_TAP(X_ENTER)), 10);
+      set_mods(temp_mod);
+
     }
-    return false;
     break;
 
   case EPRM: // Resets EEPROM
