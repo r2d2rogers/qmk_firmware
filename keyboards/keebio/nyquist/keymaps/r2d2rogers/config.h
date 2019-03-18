@@ -19,8 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CONFIG_USER_H
-#define CONFIG_USER_H
+#pragma once
 
 #include QMK_KEYBOARD_CONFIG_H
 
@@ -29,10 +28,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Use I2C or Serial, not both */
 
-//#undef USE_SERIAL
-#undef USE_I2C
-#define USE_SERIAL
-//#define USE_I2C
+#undef USE_SERIAL
+//#undef USE_I2C
+//#define USE_SERIAL
+#define USE_I2C
 
 /* Select hand configuration */
 
@@ -71,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef AUDIO_ENABLE
-//#define B5_AUDIO
+#define B5_AUDIO
 #define C6_AUDIO
 #ifdef RGBLIGHT_ENABLE
 #define NO_MUSIC_MODE
@@ -114,5 +113,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DRIVER_LED_TOTAL DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL
 //#define DRIVER_LED_TOTAL DRIVER_1_LED_TOTAL
 
-#endif
 #endif
