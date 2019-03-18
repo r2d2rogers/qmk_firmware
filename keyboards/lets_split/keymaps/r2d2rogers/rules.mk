@@ -2,6 +2,7 @@
 #   change to "no" to disable the options, or define them in the Makefile in
 #   the appropriate keymap folder that will get included automatically
 
+BOOTLOADER             = qmk-dfu
 AUDIO_ENABLE           = yes # Audio output on port C6
 CONSOLE_ENABLE         = no  # Console for debug(+400)
 COMMAND_ENABLE         = no  # Commands for debug and configuration
@@ -12,8 +13,7 @@ ONEHAND_ENABLE         = yes # Allow swapping hands of keyboard
 POINTING_DEVICE_ENABLE = no
 TAP_DANCE_ENABLE       = no
 INDICATOR_LIGHTS       = no
-RGBLIGHT_ENABLE        = yes # Enable WS2812 RGB underlight.
+RGBLIGHT_ENABLE        = no  # Enable WS2812 RGB underlight.
 RGBLIGHT_TWINKLE       = no
 RGB_MATRIX_ENABLE      = no  # IS31FL3731
-USE_I2C                = no
 
