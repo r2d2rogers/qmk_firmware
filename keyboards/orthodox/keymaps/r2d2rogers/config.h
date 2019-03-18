@@ -72,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif // RGBLIGHT_ENABLE
 
 #ifdef AUDIO_ENABLE
-//#define B5_AUDIO
+// #define B5_AUDIO // Not open on an Orthodox
 #define C6_AUDIO
 #ifdef RGBLIGHT_ENABLE
 #define NO_MUSIC_MODE
