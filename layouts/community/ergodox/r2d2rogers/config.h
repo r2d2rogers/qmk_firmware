@@ -1,6 +1,4 @@
-#ifndef CONFIG_USER_H
-#define CONFIG_USER_H
-
+#pragma once
 #include QMK_KEYBOARD_CONFIG_H
 
 #define MIDI_ADVANCED
@@ -11,9 +9,3 @@
 #undef TAPPING_TERM
 #define TAPPING_TERM 180
 
-#define PERMISSIVE_HOLD
-
-#define _______ KC_TRNS
-#define XXXXXXX KC_NO
-
-#endif
