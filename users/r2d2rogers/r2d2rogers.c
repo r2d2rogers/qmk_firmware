@@ -17,7 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "r2d2rogers.h"
-#include "tap_dances.h"
 #include "rgb_stuff.h"
 
 userspace_config_t userspace_config;
@@ -200,10 +199,6 @@ void matrix_scan_user(void) {
     has_ran_yet = true;
     startup_user();
   }
-
-#ifdef TAP_DANCE_ENABLE  // Run Diablo 3 macro checking code.
-  run_diablo_macro_check();
-#endif // TAP_DANCE_ENABLE
 
 #ifdef RGBLIGHT_ENABLE
   matrix_scan_rgb();

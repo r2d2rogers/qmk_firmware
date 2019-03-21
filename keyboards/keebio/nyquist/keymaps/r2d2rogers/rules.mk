@@ -11,7 +11,6 @@ MOUSEKEY_ENABLE        = no  # Mouse keys(+4700)
 NKRO_ENABLE            = yes # Nkey Rollover - see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 ONEHAND_ENABLE         = no  # Allow swapping hands of keyboard
 POINTING_DEVICE_ENABLE = no
-TAP_DANCE_ENABLE       = no
 INDICATOR_LIGHTS       = no
 RGBLIGHT_ENABLE        = yes # Enable WS2812 RGB underlight.
 RGBLIGHT_TWINKLE       = no
