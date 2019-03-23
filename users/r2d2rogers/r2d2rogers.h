@@ -350,14 +350,14 @@ enum {
 
 
 #define _________________ADJUST_L0_________________       RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG
-#define _________________ADJUST_L1_________________       RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG
-#define _________________ADJUST_L2_________________       _______, CK_TOGG, AU_ON,   AU_OFF,  AG_NORM
-#define _________________ADJUST_L3_________________       RGB_RMOD,RGB_HUD,RGB_SAD, RGB_VAD, KC_RGB_T
+#define _________________ADJUST_L1_________________       RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI
+#define _________________ADJUST_L2_________________       _______, CK_TOGG, _______, _______, _______
+#define _________________ADJUST_L3_________________       RGB_RMOD,RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD
 
 #define _________________ADJUST_R0_________________       KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5
 #define _________________ADJUST_R1_________________       KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5
 //#define _________________ADJUST_R2_________________       AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN
-#define _________________ADJUST_R2_________________       AG_SWAP, _______, _______, _______, _______
+#define _________________ADJUST_R2_________________       KC_RGB_T,AU_ON,   AU_OFF,  AG_NORM, AG_SWAP
 #define _________________ADJUST_R3_________________       MG_NKRO, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT
 
 #define _________________NUMPAD_0__________________       KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, KC_BSPC
