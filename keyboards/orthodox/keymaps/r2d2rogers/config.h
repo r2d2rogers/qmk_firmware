@@ -51,8 +51,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_DI_PIN D3
 #define RGBLIGHT_LIMIT_VAL 144
 #undef RGBLED_NUM
-#define RGBLED_NUM 46       // Number of LEDs
-#define RGBLED_SPLIT 23     // Number of LEDs per hand
+#define RGBLED_NUM 46           // Number of LEDs
+#define RGBLED_SPLIT { 23, 23 } // Number of LEDs per hand
 #define RGBLIGHT_ANIMATIONS
 #endif
 
