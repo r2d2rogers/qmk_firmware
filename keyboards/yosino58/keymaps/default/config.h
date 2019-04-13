@@ -1,5 +1,8 @@
 /*
-Copyright 2016 Luiz Ribeiro <luizribeiro@gmail.com>
+This is the c configuration file for the keymap
+
+Copyright 2012 Jun Wako <wakojun@gmail.com>
+Copyright 2015 Jack Humbert
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -15,13 +18,26 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// Please do not modify this file 
+#pragma once
 
-#ifndef __I2C_H__
-#define __I2C_H__
+//#define USE_MATRIX_I2C
 
-void i2c_init(void);
-void i2c_set_bitrate(uint16_t bitrate_khz);
-uint8_t i2c_send(uint8_t address, uint8_t *data, uint16_t length);
+/* Select hand configuration */
 
-#endif
+#define MASTER_LEFT
+// #define MASTER_RIGHT
+// #define EE_HANDS
+
+#define SSD1306OLED
+// #define SSD1306_128X64
+
+#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 100
+
+#undef RGBLED_NUM
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 12
+#define RGBLIGHT_LIMIT_VAL 120
+#define RGBLIGHT_HUE_STEP 10
+#define RGBLIGHT_SAT_STEP 17
+#define RGBLIGHT_VAL_STEP 17
