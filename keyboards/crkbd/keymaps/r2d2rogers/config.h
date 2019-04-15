@@ -39,8 +39,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 54
 #define RGBLED_SPLIT { 27, 27 }
+#define DRIVER_LED_TOTAL RGBLED_NUM
+
 #define RGBLIGHT_LIMIT_VAL 100
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 10
 #define RGBLIGHT_VAL_STEP 10
+
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+#undef RGBLED_NUM
+#define RGBLED_NUM 54
+#define RGBLED_SPLIT { 27, 27 }
+#define DRIVER_LED_TOTAL RGBLED_NUM
+#define RGB_MATRIX_KEYPRESSES
 #endif
