@@ -129,6 +129,14 @@ const char *read_keylogs(void);
 // void set_timelog(void);
 // const char *read_timelog(void);
 
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+  if (is_master) {
+    return OLED_ROTATION_270;
+  } else {
+    return rotation;
+  }
+}
+
 void matrix_scan_keymap(void) {
    oled_task();
 }
