@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef USE_I2C
 
-#define OLED_FONT_H "lib/glcdfont.c"
+#define OLED_FONT_H "drivers/oled/glcdfont.c"
 
 //#define TAPPING_FORCE_HOLD
 
@@ -40,7 +40,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define RGBLIGHT_ANIMATIONS
 #undef RGBLED_NUM
 #define RGBLED_NUM 54
-#define RGBLED_SPLIT { 27, 27 }
+//#define RGBLED_SPLIT { 27, 27 }
 
 #define RGBLIGHT_LIMIT_VAL 100
 #define RGBLIGHT_HUE_STEP 10
