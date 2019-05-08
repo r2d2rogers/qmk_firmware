@@ -28,33 +28,53 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
     //if (state->status.leds & (1u << USB_LED_CAPS_LOCK)) {
         //saturation = 255;
     //}
-    if (state->status.layer & 0x400) {
+    if (state->status.layer & 0x8000) {
         state->target_lcd_color = LCD_COLOR(0,255,255);
+        state->layer_text = "15";
+    }
+    else if (state->status.layer & 0x4000) {
+        state->target_lcd_color = LCD_COLOR(0,255,255);
+        state->layer_text = "14";
+    }
+    else if (state->status.layer & 0x2000) {
+        state->target_lcd_color = LCD_COLOR(0,255,255);
+        state->layer_text = "13";
+    }
+    else if (state->status.layer & 0x1000) {
+        state->target_lcd_color = LCD_COLOR(0,255,255);
+        state->layer_text = "12";
+    }
+    else if (state->status.layer & 0x800) {
+        state->target_lcd_color = LCD_COLOR(0,255,255);
+        state->layer_text = "ADJUST";
+    }
+    else if (state->status.layer & 0x400) {
+        state->target_lcd_color = LCD_COLOR(60,255,255);
         state->layer_text = "MUSIC";
     }
     else if (state->status.layer & 0x200) {
-        state->target_lcd_color = LCD_COLOR(60,255,255);
-        state->layer_text = "UTIL";
-    }
-    else if (state->status.layer & 0x100) {
         state->target_lcd_color = LCD_COLOR(300,255,255);
         state->layer_text = "TKEY";
     }
-    else if (state->status.layer & 0x80) {
+    else if (state->status.layer & 0x100) {
         state->target_lcd_color = LCD_COLOR(51,255,255);
-        state->layer_text = "ADJUST";
+        state->layer_text = "UTIL";
     }
-    else if (state->status.layer & 0x40) {
+    else if (state->status.layer & 0x80) {
         state->target_lcd_color = LCD_COLOR(16,176,255);
         state->layer_text = "SPACEFN";
     }
-    else if (state->status.layer & 0x20) {
+    else if (state->status.layer & 0x40) {
         state->target_lcd_color = LCD_COLOR(270,255,255);
+        state->layer_text = "RAISE";
+    }
+    else if (state->status.layer & 0x20) {
+        state->target_lcd_color = LCD_COLOR(39,255,255);
         state->layer_text = "LOWER";
     }
     else if (state->status.layer & 0x10) {
-        state->target_lcd_color = LCD_COLOR(39,255,255);
-        state->layer_text = "RAISE";
+        state->target_lcd_color = LCD_COLOR(174,90,112);
+        state->layer_text = "NORMAN";
     }
     else if (state->status.layer & 0x8) {
         state->target_lcd_color = LCD_COLOR(174,90,112);

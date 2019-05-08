@@ -28,14 +28,14 @@ enum userspace_layers {
   _QWERTY = 0,
   _COLEMAK,
   _DVORAK,
+  _WORKMAN,
+  _NORMAN,
   _LOWER,
   _RAISE,
   _SPACEFN,
   _UTIL,
   _TKEY,
   _MUSIC,
-  _WORKMAN,
-  _NORMAN,
   _ADJUST
 };
 
