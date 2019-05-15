@@ -166,13 +166,13 @@ void shutdown_user (void) {
   rgblight_setrgb_red();
 #endif // RGBLIGHT_ENABLE
 #ifdef RGB_MATRIX_ENABLE
-  rgb_led led;
-  for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-    led = g_rgb_leds[i];
-    if (led.matrix_co.raw < 0xFF) {
-      rgb_matrix_set_color( i, 0xFF, 0x00, 0x00 );
-    }
-  }
+  //rgb_led led;
+  //for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+    //led = g_rgb_leds[i];
+    //if (led.matrix_co.raw < 0xFF) {
+      //rgb_matrix_set_color( i, 0xFF, 0x00, 0x00 );
+    //}
+  //}
 #endif //RGB_MATRIX_ENABLE
   shutdown_keymap();
 }

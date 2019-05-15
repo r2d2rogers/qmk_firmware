@@ -79,8 +79,6 @@ enum userspace_custom_keycodes {
   KC_DVORAK,         // Sets default layer to DVORAK
   KC_WORKMAN,        // Sets default layer to WORKMAN
   MUSIC,
-  KC_DIABLO_CLEAR,   // Clears all Diablo Timers
-  KC_OVERWATCH,      // Toggles game macro input mode (so in OW, it defaults to game chat)
   KC_SHOV,           // See r2d2rogers.c for details
   KC_MAKE,           // Run keyboard's customized make command
   KC_RGB_T,          // Toggles RGB Layer Indication mode
