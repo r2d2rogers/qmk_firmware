@@ -39,24 +39,6 @@ enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
-#define ______ KC_TRNS
-#define XXXXX KC_NO
-#define LOWER LOWER
-#define RAISE RAISE
-#define RST   RESET
-#define LRST  RGBRST
-#define LTOG  RGB_TOG
-#define LHUI  RGB_HUI
-#define LHUD  RGB_HUD
-#define LSAI  RGB_SAI
-#define LSAD  RGB_SAD
-#define LVAI  RGB_VAI
-#define LVAD  RGB_VAD
-#define LMOD  RGB_MOD
-#define CTLTB CTL_T(KC_TAB)
-#define GUIEI GUI_T(KC_LANG2)
-#define ALTKN ALT_T(KC_LANG1)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
     //┌────────┬────────┬────────┬────────┬────────┬─────────┐┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -218,16 +200,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
         break;
-    case RGB_MOD:
-      #ifdef RGBLIGHT_ENABLE
-        if (record->event.pressed) {
-          rgblight_mode(RGB_current_mode);
-          rgblight_step();
-          RGB_current_mode = rgblight_config.mode;
-        }
-      #endif
-      return false;
-      break;
     case RGBRST:
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
