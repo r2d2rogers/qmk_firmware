@@ -19,6 +19,8 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   ADJUST,
+  DVORAK,
+  COLEMAK
 };
 
 // Fillers to make layering more clear
