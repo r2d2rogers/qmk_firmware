@@ -36,6 +36,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //#define TAPPING_FORCE_HOLD
 
+#ifdef AUDIO_ENABLE
+#define B5_AUDIO
+//#define C6_AUDIO // Not open on crkbd
+#define NO_MUSIC_MODE
+#endif
+
 #ifdef RGBLIGHT_ENABLE
 //#define RGBLIGHT_ANIMATIONS
 #undef RGBLED_NUM

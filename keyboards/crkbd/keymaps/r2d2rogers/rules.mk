@@ -4,7 +4,7 @@
 #   the appropriate keymap folder that will get included automatically
 #
 BOOTMAGIC_ENABLE   = no      # Virtual DIP switch configuration(+1000)
-MOUSEKEY_ENABLE    = no      # Mouse keys(+4700)
+MOUSEKEY_ENABLE    = yes     # Mouse keys(+4700)
 EXTRAKEY_ENABLE    = yes     # Audio control and System control(+450)
 CONSOLE_ENABLE     = no      # Console for debug(+400)
 COMMAND_ENABLE     = no      # Commands for debug and configuration
@@ -19,7 +19,7 @@ RGB_MATRIX_ENABLE  = WS2812  # Enable WS2812 RGB matrix.
 SWAP_HANDS_ENABLE  = no      # Enable one-hand typing
 RGBLIGHT_TWINKLE   = no
 INDICATOR_LIGHTS   = no
-VELOCIKEY_ENABLE   = no
+VELOCIKEY_ENABLE   = yes
 OLED_DRIVER_ENABLE = yes
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
