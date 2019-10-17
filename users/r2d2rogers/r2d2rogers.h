@@ -337,8 +337,8 @@ enum {
 
 
 #define ________________SPACEFN_L0_________________       _______, KC_BTN2, KC_BTN3, KC_BTN1, USER
-#define ________________SPACEFN_L1_________________       _______, KC_BTN2, KC_BTN3, KC_BTN1, USER
-#define ________________SPACEFN_L2_________________       _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R
+#define ________________SPACEFN_L1_________________       _______, KC_BTN2, KC_MS_U, KC_BTN1, USER
+#define ________________SPACEFN_L2_________________       _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_BTN3
 #define ________________SPACEFN_L3_________________       _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R
 
 #define ________________SPACEFN_R0_________________       KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______
@@ -359,19 +359,18 @@ enum {
 #define _________________ADJUST_R3_________________       MG_NKRO, KC_MUTE, KC_VOLD, KC_VOLU, KC_MNXT
 
 #define _________________NUMPAD_0__________________       KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, KC_BSPC
-#define _________________NUMPAD_1__________________         KC_P7,   KC_P8,   KC_P9, KC_PPLS,  KC_TAB
-#define _________________NUMPAD_2__________________         KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PENT
-#define _________________NUMPAD_3__________________         KC_P1,   KC_P2,   KC_P3, KC_PENT, KC_PENT
-#define _________________NUMPAD_4__________________         KC_P0,   KC_P0, KC_PDOT, KC_PENT, KC_PENT
+#define _________________NUMPAD_1__________________       KC_P7,   KC_P8,   KC_P9, KC_PPLS,  KC_TAB
+#define _________________NUMPAD_2__________________       KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PENT
+#define _________________NUMPAD_3__________________       KC_P1,   KC_P2,   KC_P3, KC_PENT, KC_PENT
+#define _________________NUMPAD_4__________________       KC_P0,   KC_P0, KC_PDOT, KC_PENT, KC_PENT
 
 // Since we have 4 default layouts (QWERTY, DVORAK, COLEMAK and WORKMAN),
 // this allows us to quickly modify the bottom row for all of the layouts
 // so we don't have to alter it 4 times and hope that we haven't missed
 // anything
 
-#define ___________ERGODOX_BOTTOM_LEFT_____________       KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
-#define ___________ERGODOX_BOTTOM_RIGHT____________       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
-
+#define _______ERGODOX_BOTTOM_LEFT________                KC_LALT, KC_INS,  KC_LBRC, KC_RBRC
+#define ________ERGODOX_BOTTOM_RIGHT______                KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 
 #define          ___________ORTHODOX_THUMP_TOP_____________                      KC_LALT, KC_LGUI,         KC_RGUI, KC_RALT
 #define ___________________ORTHODOX_THUMB_BOTTOM____________________    KC_BSPC, SPACEFN,   LOWER,         RAISE,   SPACEFN, KC_DEL
