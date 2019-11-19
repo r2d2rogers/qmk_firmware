@@ -305,10 +305,13 @@ enum {
 
 #define ________________NUMBER_LEFT________________         KC_1,    KC_2,    KC_3,    KC_4,    KC_5
 #define ________________NUMBER_RIGHT_______________         KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+
 #define _____________NUMBER_SHIFT_LEFT_____________         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
 #define _____________NUMBER_SHIFT_RIGHT____________         KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN
+
 #define _________________FUNC_LEFT_________________         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
 #define _________________FUNC2_LEFT________________         KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15
+
 #define _________________FUNC_RIGHT________________         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
 #define _________________FUNC2_RIGHT_______________         KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20
 
