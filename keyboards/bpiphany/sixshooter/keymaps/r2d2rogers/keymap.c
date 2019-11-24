@@ -38,9 +38,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FN] = LAYOUT(
 //┌────────┬────────┬────────┐
-    KC_TRNS,  SS_LON, SS_LOFF,
+    KC_TRNS, BL_TOGG, BL_STEP,
 //├────────┼────────┼────────┤
-      KC_NO,   KC_NO,   KC_NO
+      KC_NO,   KC_NO, BL_BRTG
 //└────────┴────────┴────────┘
   ),
 
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
 	// Put your per-action keyboard code here.
 	// Runs for every action, just before processing by the firmware.
   if (record->event.pressed) {
@@ -90,7 +90,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 };
 
-void matrix_init_user(void) {
+void matrix_init_keymap(void) {
   // Default all LEDs to on
   sixshooter_led_all_on();
 }
