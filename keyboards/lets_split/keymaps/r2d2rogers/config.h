@@ -52,8 +52,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGBLIGHT_ENABLE
 //#define RGB_DI_PIN D3
 #undef RGBLED_NUM
-#define RGBLED_NUM 24
+#define RGBLED_NUM 36
 #define RGBLIGHT_ANIMATIONS
+
+
 #endif
 
 #ifdef RGBLIGHT_ANIMATIONS
@@ -68,6 +70,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_EFFECT_CHRISTMAS_INTERVAL 500
 #define RGBLIGHT_EFFECT_CHRISTMAS_STEP 3
 #endif
+
+#ifdef RGB_MATRIX_ENABLE
+#define RGBLED_SPLIT { 36, 36 }
+#define RGB_MATRIX_KEYPRESSES
+#endif
+
 
 #ifdef AUDIO_ENABLE
 //#define B5_AUDIO // Not open on Let's Split
@@ -85,7 +93,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define QMK_ESC_OUTPUT F6 // usually COL
-#define QMK_ESC_INPUT D7 // usually ROW
+#define QMK_ESC_INPUT E6 // usually ROW
 #define QMK_LED B0
 #define QMK_SPEAKER C6
 
@@ -101,9 +109,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef RGB_MATRIX_ENABLE
 
-#define EECONFIG_RGB_MATRIX (uint32_t *)16
-
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 160
+//#define EECONFIG_RGB_MATRIX (uint32_t *)16
 
 #define DRIVER_ADDR_1 0b1110100
 #define DRIVER_ADDR_2 0b1110110
