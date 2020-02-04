@@ -20,7 +20,7 @@ SWAP_HANDS_ENABLE  = no      # Enable one-hand typing
 RGBLIGHT_TWINKLE   = no
 INDICATOR_LIGHTS   = no
 VELOCIKEY_ENABLE   = yes
-OLED_DRIVER_ENABLE = yes
+OLED_DRIVER_ENABLE = no
 
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
