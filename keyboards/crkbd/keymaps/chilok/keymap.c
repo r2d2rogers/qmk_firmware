@@ -53,11 +53,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
   [_LOWER] = LAYOUT(
     //┌────────┬────────┬────────┬────────┬────────┬─────────┐┌────────┬────────┬────────┬────────┬────────┬────────┐
-        KC_MUTE, KC_VOLD, KC_UP  , KC_VOLU, BL_TOGG, RGB_TOG ,  KC_NO  , KC_BTN1, KC_WH_U, KC_BTN2, KC_PSCR, KC_DEL ,
+        KC_ESC , KC_VOLD, KC_UP  , KC_VOLU, KC_NO  , RGB_TOG ,  KC_NO  , KC_BTN1, KC_WH_U, KC_BTN2, KC_PSCR, KC_DEL ,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, BL_STEP, RGB_MOD ,  KC_PGUP, KC_WH_L, KC_WH_D, KC_WH_R, KC_NO  , KC_NO  ,
+        KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_NO  , RGB_MOD ,  KC_PGUP, KC_WH_L, KC_WH_D, KC_WH_R, KC_NO  , KC_NO  ,
     //├────────┼────────┼────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┼────────┼────────┤
-        KC_LSFT, KC_MRWD, KC_MFFD, KC_MPLY, KC_NO  , RGB_RMOD,  KC_PGDN, KC_HOME, KC_END , KC_NO  , KC_NLCK, KC_CAPS,
+        KC_LSFT, KC_MRWD, KC_MFFD, KC_MPLY, KC_NO  , KC_MUTE ,  KC_PGDN, KC_HOME, KC_END , KC_NO  , KC_NLCK, KC_CAPS,
     //└────────┴────────┴────────┼────────┼────────┼─────────┤├────────┼────────┼────────┼────────┴────────┴────────┘
                                    KC_MINS, KC_EQL , KC_LPRN ,  KC_RPRN, KC_LBRC, KC_RBRC
     //                           └────────┴────────┴─────────┘└────────┴────────┴────────┘
