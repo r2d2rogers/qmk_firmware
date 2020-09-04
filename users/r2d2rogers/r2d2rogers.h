@@ -122,7 +122,10 @@ enum userspace_custom_keycodes {
 #define RSFTENT MT(MOD_RSFT, KC_ENT)
 #define GUIRGHT MT(MOD_RGUI, KC_RGHT)
 #define KC_ESCC MT(MOD_LCTL, KC_ESC)
+
 #define SPACEFN LT(_SPACEFN, KC_SPC)
+#define RSPACEFN LT(_SPACEFN, KC_SPC)
+#define LSPACEFN LT(_SPACEFN, KC_SPC)
 
 #define KC_RESET RESET
 #define KC_RST KC_RESET
