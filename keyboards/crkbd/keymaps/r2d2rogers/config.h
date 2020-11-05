@@ -32,7 +32,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef USE_I2C
 
-#define OLED_FONT_H "drivers/oled/glcdfont.c"
+#ifdef OLED_DRIVER_ENABLE
+    #define OLED_FONT_H "drivers/oled/glcdfont.c"
+    #define OLED_DISPLAY_128X32
+    #define OLED_TIMEOUT 300000
+#endif
 
 //#define TAPPING_FORCE_HOLD
 
