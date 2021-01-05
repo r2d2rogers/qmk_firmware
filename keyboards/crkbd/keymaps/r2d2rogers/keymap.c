@@ -19,8 +19,6 @@ char wpm_str[10];
 extern rgblight_config_t rgblight_config;
 #endif
 
-extern uint8_t is_master;
-
 enum custom_keycodes {
   BACKLIT = SAFE_RANGE,
   RGBRST

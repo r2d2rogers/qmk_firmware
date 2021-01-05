@@ -30,12 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
-#undef USE_I2C
-
 #ifdef OLED_DRIVER_ENABLE
-    #define OLED_FONT_H "drivers/oled/glcdfont.c"
-    #define OLED_DISPLAY_128X32
-    #define OLED_TIMEOUT 300000
+    #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+    //#define OLED_FONT_H "drivers/oled/glcdfont.c"
+    //#define OLED_DISPLAY_128X32
+    //#define OLED_TIMEOUT 300000
 #endif
 
 //#define TAPPING_FORCE_HOLD
@@ -47,16 +46,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGBLIGHT_ENABLE
-//#define RGBLIGHT_ANIMATIONS
 #undef RGBLED_NUM
-#define RGBLED_NUM 54
-//#define RGBLED_SPLIT { 27, 27 }
-
-#define RGBLIGHT_LIMIT_VAL 100
+#define RGBLIGHT_ANIMATIONS
+#define RGBLED_NUM 27
+#define RGBLIGHT_LIMIT_VAL 120
 #define RGBLIGHT_HUE_STEP 10
-#define RGBLIGHT_SAT_STEP 10
-#define RGBLIGHT_VAL_STEP 10
-
+#define RGBLIGHT_SAT_STEP 17
+#define RGBLIGHT_VAL_STEP 17
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
