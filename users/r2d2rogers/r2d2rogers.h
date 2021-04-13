@@ -327,8 +327,8 @@ enum {
 
 #define _________________LOWER_R0__________________         _________________FUNC_RIGHT________________
 #define _________________LOWER_R1__________________         ________________NUMBER_RIGHT_______________
-#define _________________LOWER_R2__________________         _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC
-#define _________________LOWER_R3__________________         _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END
+#define _________________LOWER_R2__________________         KC_PPLS, KC_4,    KC_5,    KC_6,    KC_PENT
+#define _________________LOWER_R3__________________         KC_PMNS, KC_1,    KC_2,    KC_3,    KC_PENT
 
 
 #define _________________RAISE_L0__________________         _________________FUNC2_LEFT________________
@@ -338,8 +338,8 @@ enum {
 
 #define _________________RAISE_R0__________________         _________________FUNC2_RIGHT_______________
 #define _________________RAISE_R1__________________         _____________NUMBER_SHIFT_RIGHT____________
-#define _________________RAISE_R2__________________         _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR
-#define _________________RAISE_R3__________________         _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+#define _________________RAISE_R2__________________         _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC
+#define _________________RAISE_R3__________________         _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR
 
 
 #define ________________SPACEFN_L0_________________         _______, KC_BTN2, KC_BTN3, KC_BTN1, USER
