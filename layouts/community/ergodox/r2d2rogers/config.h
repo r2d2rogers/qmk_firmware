@@ -1,5 +1,4 @@
 #pragma once
-#include QMK_KEYBOARD_CONFIG_H
 
 #define MIDI_ADVANCED
 
