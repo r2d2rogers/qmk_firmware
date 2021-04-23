@@ -285,30 +285,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     eeprom_update_byte(EECONFIG_USERSPACE, userspace_config.raw);
 #endif
     break;
-#ifdef UNICODE_ENABLE
-  case UC_FLIP: // (╯°□°)╯ ︵ ┻━┻
-    if (record->event.pressed) {
-      register_code(KC_RSFT);
-      tap(KC_9);
-      unregister_code(KC_RSFT);
-      process_unicode((0x256F | QK_UNICODE), record); // Arm
-      process_unicode((0x00B0 | QK_UNICODE), record); // Eye
-      process_unicode((0x25A1 | QK_UNICODE), record); // Mouth
-      process_unicode((0x00B0 | QK_UNICODE), record); // Eye
-      register_code(KC_RSFT);
-      tap(KC_0);
-      unregister_code(KC_RSFT);
-      process_unicode((0x256F | QK_UNICODE), record); // Arm
-      tap(KC_SPC);
-      process_unicode((0x0361 | QK_UNICODE), record); // Flippy
-      tap(KC_SPC);
-      process_unicode((0x253B | QK_UNICODE), record); // Table
-      process_unicode((0x2501 | QK_UNICODE), record); // Table
-      process_unicode((0x253B | QK_UNICODE), record); // Table
-    }
-    return false;
-    break;
-#endif // UNICODE_ENABLE
 
   }
   return process_record_keymap(keycode, record) &&
